@@ -1,0 +1,24 @@
+_id,firstName,mname,lastName ,dept,email,Salary,City
+1002,Diane,J,Murphy,Admin,dmurphy@classicmodelcars.com,10000,Pune 
+1056,Mary,B,Patterson,HR,mpatterso@classicmodelcars.com,15000,Mumbai
+1076,Jeff,S,Firrelli,Production,jfirrelli@classicmodelcars.com,20000,Nashik
+1088,William,M,Patterson,Purchase,wpatterson@classicmodelcars.com,10400,Jalgaon
+1102,Gerard,A,Bondur,HR,gbondur@classicmodelcars.com,30000,Nashik
+1143,Anthony,H,Bow,Production,abow@classicmodelcars.com,75000,Mumbai
+1165,Leslie,E,Jennings,HR,ljennings@classicmodelcars.com,50000,Pune 
+1166,Leslie,X,Thompson,Purchase,lthompson@classicmodelcars.com,38000,Jalgaon
+1188,Julie,Z,Firrelli,Front office,jfirrelli@classicmodelcars.com,40000,Mumbai
+1216,Steve,C,Patterson,Admin,spatterson@classicmodelcars.com,60000,Mumbai
+1286,Foon Yue,A,Tseng,Design,ftseng@classicmodelcars.com,19000,Pune
+1323,George,Q,Vanauf,Design,gvanauf@classicmodelcars.com,60000,Jalgaon
+1337,Loui,L,Bondur,Sales,lbondur@classicmodelcars.com,10200,Nashik 
+1370,Gerard,D,Hernandez,Purchase,ghernande@classicmodelcars.com,11000,Pune
+1401,Pamela,S,Castillo,Sales,pcastillo@classicmodelcars.com,110000,Pune
+1501,Larry,B,Bott,Sales,lbott@classicmodelcars.com,90000,Nashik
+1504,Barry,M,Jones,HR,bjones@classicmodelcars.com,30000,Mumbai
+1611,Andy,N,Fixter,Desgin,afixter@classicmodelcars.com,45000,Mumbai
+1612,Peter,L,Marsh,Production,pmarsh@classicmodelcars.com,48000,Pune 
+1619,Tom,S,King,Purchase,tking@classicmodelcars.com,34000,Jalgaon
+1621,Mami,I,Nishi,Sales,mnishi@classicmodelcars.com,5000,Pune 
+1625,Yoshimi,V,Kato,Planning,ykato@classicmodelcars.com,200000,Nashik 
+1702,Martin,P,Gerard,Planning,mgerard@classicmodelcars.com,150000,Nashik 
