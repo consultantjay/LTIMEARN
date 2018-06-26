@@ -1,8 +1,8 @@
-# Description of DataSet
+Description of DataSet
   Columns: 18
   Records: 10000
 
-## Columns
+Columns
 1.	_id
 2.	uniq_id	
 3.	product_name 
