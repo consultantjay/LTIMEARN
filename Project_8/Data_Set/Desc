@@ -1,2 +1,23 @@
-#Data-Set of Toys From Amazon
+# Description of DataSet
+  Columns: 18
+  Records: 10000
 
+## Columns
+1.	_id
+2.	uniq_id	
+3.	product_name 
+4.	manufacturer 
+5.	price
+6.	number_available_in_stock
+7.	number_of_reviews
+8.	number_of_answered_questions
+9.	average_review_rating
+10.	amazon_category_and_sub_category
+11.	customers_who_bought_this_item_also_bought
+12.	description 
+13.	product_information,	
+14.	product_description
+15.	items_customers_buy_after_viewing_this_item
+16.	customer_questions_and_answers	
+17.	customer_reviews
+18.	sellers
