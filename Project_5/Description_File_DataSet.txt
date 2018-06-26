@@ -1,0 +1,44 @@
+Data Set Description :-
+
+
+Documents: 6000
+Fields : 29
+
+Field details:-
+
+1.address : hotel detailed address
+2.city : city details of the hotel
+3.country : country of the selected hotel
+4.crawl_date : hotel register date
+5.hotel_brand : brand associated with the hotel
+6.hotel_description : details of the hotel
+7.hotel_facilities : facilities provided 
+8.hotel_star_rating : Rating given out of 5
+9.image_count : image count
+10.latitude : Geographical location
+11.locality : particular address of the hotel
+12.longitude : Geographical location
+13.pageurl : internet url
+14.property_id : property details
+15.property_name : name of the hotel
+16.property_type : property type
+17.province : Area
+18.qts : date (format)	
+19.room_count : No of rooms available
+20.room_type : Room type
+21.similar_hotel : Available similar hotels
+22.site_review_count : total reviews
+23.site_review_rating : Site rating
+24.site_stay_review_rating : Site Stay rating
+25.sitename : Available site names
+26.special_tag : Share
+27.state : state 
+28.uniq_id : unique ID 
+29.zone : area zone
+
+Project Overview:
+
+Infotel provides with the details of best-in-class Hotels according to the customer demands and shortlisting them according to specific parameters like Hotel Rating , Site Review Rating etc.
+
+
+
