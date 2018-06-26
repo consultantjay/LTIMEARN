@@ -1,1 +1,38 @@
+A) Zomato Dataset:
 
+# Description of Dataset:
+Columns: 21
+Rows: 9542
+
+## Columns Description:
+1. _id
+2. Restaurant ID
+3. Restaurant Name
+4. Country Code
+5. City
+6. Address
+7. Locality
+8. Locality Verbose
+9. Longitude
+10. Latitude
+11. Cuisines
+12. Average Cost for two
+13. Currency
+14. Has Table booking
+15. Is delivering now
+16. Switch to order menu
+17. Price range
+18. Aggregate rating
+19. Rating color
+20. Rating text
+21. Votes
+
+B) Country-Code Dataset:
+
+# Dataset Description:
+Columns: 2
+Rows: 15
+
+## Columns Description:
+1. Country Code
+2. Country
