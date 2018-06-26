@@ -1,3 +1,5 @@
+Project Description:-Clear Trip will provide you the clear vision of the hotel description on the basis various Attibutes and Ratings given by the various users.
+
 Documents:5001
 fields : 29
 
@@ -32,4 +34,3 @@ Fields Details:-
 28.tripadvisor_seller_rating:-Seller Rating provided by the seller
 29.unique_id:-unique id of every field
 
-Project Description:-Clear Trip will provide you the clear vision of the hotel description on the basis various Attibutes and Ratings given by the various users.
