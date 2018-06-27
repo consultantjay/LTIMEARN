@@ -1,0 +1,19 @@
+Details of Doctors across Pune city are listed.These includes Name, Specialization, Contact Details and Available timings.  
+Search for doctors can be made by Name, Specialization, Qualification and Area.
+Also details of Doctors according to Specialization will be listed.
+
+Description of Dataset:
+Columns: 9
+Records: 936
+
+Columns:
+
+1.	sno:		Serial Number of Doctor in Directory.
+2.	name: 		Name of Doctor.
+3.	qualification:	Doctor's Qualification.
+4.	specialization: Doctor's Specialization.
+5.	area: 		Main Area of Clinic.
+6.	locality: 	Loacality of Clinic.
+7.	time: 		Availablity of Doctor.
+8.	contact: 	Doctor's Contact details.
+9.	address: 	Doctor's Address.
