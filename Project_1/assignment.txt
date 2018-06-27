@@ -1,4 +1,3 @@
-
 db.inventory.insertMany([
 
     { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A", tags: ["red", "blank"], dim_cm: [14, 21], instock: [{ warehouse: "C", qty: 5 }] },
@@ -11,68 +10,92 @@ db.inventory.insertMany([
 
 
 1. Select * from Inventory :  Select all dcument from inventory
+> db.inventory.find().pretty()
+
 2  : We use field:value expression
 // Select * from inventoru where status  ="D"
+> db.inventory.find({status:"D"})
+
 3. Select * frm inventory where status in("A","D")
 // retrieves all documents from the inventory collection where status equals either "A" or "D":
+> db.inventory.find({status:{$in:["D","A"]}})
+
 4. Specify AND Conditions : Retrive all document whose status is A and qty is less than 30
+> db.inventory.find({$and:[{status:"A"},{qty:{$lt:30}}]})
+
 5. Specify Or Condition :Retrive all documents where  status equal A and qty less thatn 30
+> db.inventory.find({$or:[{status:"A"},{qty:{$lt:30}}]})
+
 6. Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
+
 7. Select all documents where status equal to A and Qty less than 30 or item starts with p charact
+> db.inventory.find({$or:[{$and:[{status:"A"},{qty:{$lt:30}}]},{item:"/p.*/"}]})
+
 8. Select all documents where the field size {h:14,w:21 uom :"cm"}
+> db.inventory.find({$and:[{"size.h":14},{"size.w":21},{"size.uom":"cm"}]})
+
 9. Specify match on nested fields
 // Select all document where the field uom nested in the size field equal in
+> db.inventory.find({$tags:{$in:["red","black"]}})
 
 10. Specify match using query operator
-db.inventory.find({ "size.h": { $lt: 15 } })
+> db.inventory.find({ "size.h": { $lt: 15 } })
+
 11. Specify AND condition. Select all documents where the nested field h is less than 15
 // the nested field uom equals in and the status field equals D
+> db.inventory.find({$and:[{"size.h":{$lt:15}},{"size.uom":"in"},{"status":"D"}]})
+
 12. Specify condition where value is exact match an array
 // Select all documents where the field tags values is an array with exactly 2 elements "red" and black in the 
 // specified order
+> db.inventory.find({tags:{$in:["red","blank"]}})
+
 13. Select all documents where the field tags values is an array with exactly 2 elements "red" and black in the 
 // in any order
+> db.inventory.find({tags:["red","blank"]})
+
 14. select all documents where tag is an array that contains the string "red" as one of its elements
+> db.inventory.find({tags:["red"]})
+> db.inventory.find({tags:{$in:["red"]}})
+
 15. Select all document where the dim_Cm contains atleast one element whose valies is greater than 25
+> db.inventory.find({$or:[{"dim_cm.0":{$gt:25}},{"dim_cm.1":{$gt:25}}]})
+
 16. specify multiple conditions fo array elements: Select all document where dim is greater than 15 and 20  or both
 // in this all the element weder its greater than 20 or 15 or both will be selected
+> db.inventory.find({$or:[{dim_cm:{$gt:15}},{dim_cm:{$gt:20}},{$and:[{dim_cm:{$gt:15}},{dim_cm:{$gt:20}}]}]})
+
 17. Find doc tag having length 3
+> db.inventory.find({tags:{$size:3}})
+
 18. Selects all documents where an element in the instock array match specified document
+> db.inventory.find({"instock.warehouse":"A"})
+
 19. Select all document where instock qty is less that or equal to 20
+> db.inventory.find({"instock.qty":{$lte:20}})
+
 20. Selects all documents where the instock array has atleast one embedded document that contains the field
 //qty whose value is less than or equal to 20
+> db.inventory.find({$or:[{"instock.0.qyt":{$lte:20}},{"instock.1.qty":{$lte:20}}]})
+
 21. select any document nested in the stock array has the qty greater than 10 and qty field has less than 20
+> db.inventory.find({$and:[{"instock.0.qyt":{$gt:10}},{"instock.1.qty":{$lt:20}}]})
+
 22. Select item and status where status is A
+> db.inventory.find({status:"A"},{status:0,item:0})
+
 23. Return all the fields except status and instock
+> db.inventory.find({},{status:0,instock:0})
+
 24. The { item : { $type: 10 } } query matches only documents that contain the item field whose value is null; 
 //i.e. the value of the item field is of BSON Type Null (type number 10)
+> db.inventory.find({item:{$type:10}})
+
 25. Query matches documents that do not contain the item field:
+> db.inventory.find({item:{$in:[]}})
 
 
 
-Microsoft Windows [Version 10.0.16299.371]
-(c) 2017 Microsoft Corporation. All rights reserved.
-
-C:\Users\LTI.INFVA07036>mongo
-MongoDB shell version v3.6.2
-connecting to: mongodb://127.0.0.1:27017
-MongoDB server version: 3.6.2
-Server has startup warnings:
-2018-06-26T10:18:28.009-0700 I CONTROL  [initandlisten]
-2018-06-26T10:18:28.010-0700 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
-2018-06-26T10:18:28.012-0700 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
-2018-06-26T10:18:28.014-0700 I CONTROL  [initandlisten]
-2018-06-26T10:18:28.015-0700 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
-2018-06-26T10:18:28.016-0700 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server.
-2018-06-26T10:18:28.017-0700 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP
-2018-06-26T10:18:28.019-0700 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
-2018-06-26T10:18:28.020-0700 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
-2018-06-26T10:18:28.026-0700 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
-2018-06-26T10:18:28.027-0700 I CONTROL  [initandlisten]
-2018-06-26T10:18:28.028-0700 I CONTROL  [initandlisten]
-2018-06-26T10:18:28.029-0700 I CONTROL  [initandlisten] ** WARNING: The file system cache of this machine is configured to be greater than 40% of the total memory. This can lead to increased memory pressure and poor performance.
-2018-06-26T10:18:28.030-0700 I CONTROL  [initandlisten] See http://dochub.mongodb.org/core/wt-windows-system-file-cache
-2018-06-26T10:18:28.031-0700 I CONTROL  [initandlisten]
 > db.inventory.insertMany([
 ...
 ...     { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A", tags: ["red", "blank"], dim_cm: [14, 21], instock: [{ warehouse: "C", qty: 5 }] },
@@ -81,327 +104,6 @@ Server has startup warnings:
 ...     { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A", tags: ["blue"], dim_cm: [10, 15.25], instock: [{ warehouse: "B", qty: 15 }, { warehouse: "C", qty: 35 }] }
 ...
 ... ]);
-{
-        "acknowledged" : true,
-        "insertedIds" : [
-                ObjectId("5b32fabc07ffd51def07b30f"),
-                ObjectId("5b32fabc07ffd51def07b310"),
-                ObjectId("5b32fabc07ffd51def07b311"),
-                ObjectId("5b32fabc07ffd51def07b312")
-        ]
-}
-> db.inventory.find().pretty()
-{
-        "_id" : 1,
-        "sku" : "almonds",
-        "description" : "product 1",
-        "instock" : 120
-}
-{ "_id" : 2, "sku" : "bread", "description" : "product 2", "instock" : 80 }
-{
-        "_id" : 3,
-        "sku" : "cashews",
-        "description" : "product 3",
-        "instock" : 60
-}
-{
-        "_id" : 4,
-        "sku" : "pecans",
-        "description" : "product 4",
-        "instock" : 70
-}
-{ "_id" : 5, "sku" : null, "description" : "Incomplete" }
-{ "_id" : 6 }
-{
-        "_id" : 8,
-        "sku" : "MON1003",
-        "type" : "Monitor",
-        "instock" : 120,
-        "size" : "27 inch",
-        "resolution" : "1920*1080"
-}
-{
-        "_id" : ObjectId("5b32fabc07ffd51def07b30f"),
-        "item" : "notebook",
-        "qty" : 50,
-        "size" : {
-                "h" : 8.5,
-                "w" : 11,
-                "uom" : "in"
-        },
-        "status" : "A",
-        "tags" : [
-                "red",
-                "blank"
-        ],
-        "dim_cm" : [
-                14,
-                21
-        ],
-        "instock" : [
-                {
-                        "warehouse" : "C",
-                        "qty" : 5
-                }
-        ]
-}
-{
-        "_id" : ObjectId("5b32fabc07ffd51def07b310"),
-        "item" : "paper",
-        "qty" : 100,
-        "size" : {
-                "h" : 8.5,
-                "w" : 11,
-                "uom" : "in"
-        },
-        "status" : "D",
-        "tags" : [
-                "red",
-                "blank",
-                "plain"
-        ],
-        "dim_cm" : [
-                14,
-                21
-        ],
-        "instock" : [
-                {
-                        "warehouse" : "A",
-                        "qty" : 60
-                },
-                {
-                        "warehouse" : "B",
-                        "qty" : 15
-                }
-        ]
-}
-{
-        "_id" : ObjectId("5b32fabc07ffd51def07b311"),
-        "item" : "planner",
-        "qty" : 75,
-        "size" : {
-                "h" : 22.85,
-                "w" : 30,
-                "uom" : "cm"
-        },
-        "status" : "D",
-        "tags" : [
-                "blank",
-                "red"
-        ],
-        "dim_cm" : [
-                22.85,
-                30
-        ],
-        "instock" : [
-                {
-                        "warehouse" : "A",
-                        "qty" : 40
-                },
-                {
-                        "warehouse" : "B",
-                        "qty" : 5
-                }
-        ]
-}
-{
-        "_id" : ObjectId("5b32fabc07ffd51def07b312"),
-        "item" : "postcard",
-        "qty" : 45,
-        "size" : {
-                "h" : 10,
-                "w" : 15.25,
-                "uom" : "cm"
-        },
-        "status" : "A",
-        "tags" : [
-                "blue"
-        ],
-        "dim_cm" : [
-                10,
-                15.25
-        ],
-        "instock" : [
-                {
-                        "warehouse" : "B",
-                        "qty" : 15
-                },
-                {
-                        "warehouse" : "C",
-                        "qty" : 35
-                }
-        ]
-}
-> db.inventory.find({status:"D"})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-> db.inventory.find({status:$in:["D","A"]})
-2018-06-26T19:50:32.363-0700 E QUERY    [thread1] SyntaxError: missing } after property list @(shell):1:29
-> db.inventory.find({status:{$in:["D","A"]}})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "status" : "A", "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
-> db.inventory.find({$and:[{status:"A"},{qty:{$lt:30}]})
-...
-...
-> db.inventory.find({$and:[{status:"A"},{qty:{$lt:30}}]})
-> db.inventory.find({$or:[{status:"A"},{qty:{$lt:30}}]})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "status" : "A", "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
-> db.inventory.find({$or:[{$and:[{status:"A"},{qty:{$lt:30}}]},{item:"/p.*/"}]})
-> db.inventory.find({$or:[{$and:[{status:"A"},{qty:{$lt:30}}]},{item:"/p.*/i"}]})
-> db.inventory.find({$or:[{$and:[{status:"A"},{qty:{$lt:30}}]},{item:"/^p.*/i"}]})
-> db.inventory.find({$and:[{$or:[{item:"/^p.*/"},{qty:{$lt:30}}]},{status:"A"}]})
-> db.inventory.find({$and:[{size.h:14},{size.w:21},{size.uom:"cm"}]})
-2018-06-26T20:09:30.110-0700 E QUERY    [thread1] SyntaxError: missing : after property id @(shell):1:30
-> db.inventory.find({$and:[{"size.h":14},{"size.w":21},{"size.uom":"cm"}]})
-> db.inventory.find()
-{ "_id" : 1, "sku" : "almonds", "description" : "product 1", "instock" : 120 }
-{ "_id" : 2, "sku" : "bread", "description" : "product 2", "instock" : 80 }
-{ "_id" : 3, "sku" : "cashews", "description" : "product 3", "instock" : 60 }
-{ "_id" : 4, "sku" : "pecans", "description" : "product 4", "instock" : 70 }
-{ "_id" : 5, "sku" : null, "description" : "Incomplete" }
-{ "_id" : 6 }
-{ "_id" : 8, "sku" : "MON1003", "type" : "Monitor", "instock" : 120, "size" : "27 inch", "resolution" : "1920*1080" }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "status" : "A", "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
->Microsoft Windows [Version 10.0.16299.371]
-(c) 2017 Microsoft Corporation. All rights reserved.
 
-C:\Users\LTI.INFVA07036>mongo
-MongoDB shell version v3.6.2
-connecting to: mongodb://127.0.0.1:27017
-MongoDB server version: 3.6.2
-Server has startup warnings:
-2018-06-27T14:10:09.946-0700 I CONTROL  [initandlisten]
-2018-06-27T14:10:09.946-0700 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
-2018-06-27T14:10:09.946-0700 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
-2018-06-27T14:10:09.946-0700 I CONTROL  [initandlisten]
-2018-06-27T14:10:09.946-0700 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
-2018-06-27T14:10:09.946-0700 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server.
-2018-06-27T14:10:09.947-0700 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP
-2018-06-27T14:10:09.947-0700 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
-2018-06-27T14:10:09.948-0700 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
-2018-06-27T14:10:09.949-0700 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
-2018-06-27T14:10:09.949-0700 I CONTROL  [initandlisten]
-2018-06-27T14:10:09.950-0700 I CONTROL  [initandlisten]
-2018-06-27T14:10:09.950-0700 I CONTROL  [initandlisten] ** WARNING: The file system cache of this machine is configured to be greater than 40% of the total memory. This can lead to increased memory pressure and poor performance.
-2018-06-27T14:10:09.951-0700 I CONTROL  [initandlisten] See http://dochub.mongodb.org/core/wt-windows-system-file-cache
-2018-06-27T14:10:09.951-0700 I CONTROL  [initandlisten]
-> db.inventory.find({$tags:{$in:["red","black"]}})
-Error: error: {
-        "ok" : 0,
-        "errmsg" : "unknown top level operator: $tags",
-        "code" : 2,
-        "codeName" : "BadValue"
-}
-> db.inventory.find({tags:{$in:["red","black"]}})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-> db.inventory.find({tags:{$in:["red","blank"]}})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-> db.inventory.find({tags:["red","blank"]})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-> db.inventory.find({tags:["red"]})
-> db.inventory.find({tags:{$in:["red"]}})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-> db.inventory.find({$or:[{dim_cm.0:{$gt:25}},{dim_cm.1:{$gt:25}}]})
-2018-06-27T14:18:47.133-0700 E QUERY    [thread1] SyntaxError: missing : after property id @(shell):1:31
-> db.inventory.find({$or:[{"dim_cm.0":{$gt:25}},{"dim_cm.1":{$gt:25}}]})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-> db.inventory.find({$or:[{dim_cm:{$gt:15}},{dim_cm:{$gt:20}},{$and:[{dim_cm:{$gt:15}},{dim_cm:{$gt:20}}]}]})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "status" : "A", "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
-> db.inventory.find({tags:{$size:3}})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-Microsoft Windows [Version 10.0.16299.371]
-(c) 2017 Microsoft Corporation. All rights reserved.
 
-C:\Users\LTI.INFVA07036>db.inventory.find({item:{$in:[]}})
-'db.inventory.find' is not recognized as an internal or external command,
-operable program or batch file.
 
-C:\Users\LTI.INFVA07036>mongfo
-'mongfo' is not recognized as an internal or external command,
-operable program or batch file.
-
-C:\Users\LTI.INFVA07036>mongo
-MongoDB shell version v3.6.2
-connecting to: mongodb://127.0.0.1:27017
-2018-06-27T18:16:01.460-0700 W NETWORK  [thread1] Failed to connect to 127.0.0.1:27017 after 5000ms milliseconds, giving up.
-2018-06-27T18:16:01.461-0700 E QUERY    [thread1] Error: couldn't connect to server 127.0.0.1:27017, connection attempt failed :
-connect@src/mongo/shell/mongo.js:251:13
-@(connect):1:6
-exception: connect failed
-
-C:\Users\LTI.INFVA07036>mongo
-MongoDB shell version v3.6.2
-connecting to: mongodb://127.0.0.1:27017
-MongoDB server version: 3.6.2
-Server has startup warnings:
-2018-06-27T18:16:12.066-0700 I CONTROL  [initandlisten]
-2018-06-27T18:16:12.066-0700 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
-2018-06-27T18:16:12.066-0700 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
-2018-06-27T18:16:12.068-0700 I CONTROL  [initandlisten]
-2018-06-27T18:16:12.068-0700 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
-2018-06-27T18:16:12.069-0700 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server.
-2018-06-27T18:16:12.069-0700 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP
-2018-06-27T18:16:12.069-0700 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
-2018-06-27T18:16:12.069-0700 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
-2018-06-27T18:16:12.069-0700 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
-2018-06-27T18:16:12.070-0700 I CONTROL  [initandlisten]
-2018-06-27T18:16:12.070-0700 I CONTROL  [initandlisten]
-2018-06-27T18:16:12.070-0700 I CONTROL  [initandlisten] ** WARNING: The file system cache of this machine is configured to be greater than 40% of the total memory. This can lead to increased memory pressure and poor performance.
-2018-06-27T18:16:12.071-0700 I CONTROL  [initandlisten] See http://dochub.mongodb.org/core/wt-windows-system-file-cache
-2018-06-27T18:16:12.071-0700 I CONTROL  [initandlisten]
-> db.inventory.find({item:{$in:[]}})
-> db.inventory.find({item:{$type:10}})
-> db.inventory.find({},{status:0,instock:0})
-{ "_id" : 1, "sku" : "almonds", "description" : "product 1" }
-{ "_id" : 2, "sku" : "bread", "description" : "product 2" }
-{ "_id" : 3, "sku" : "cashews", "description" : "product 3" }
-{ "_id" : 4, "sku" : "pecans", "description" : "product 4" }
-{ "_id" : 5, "sku" : null, "description" : "Incomplete" }
-{ "_id" : 6 }
-{ "_id" : 8, "sku" : "MON1003", "type" : "Monitor", "size" : "27 inch", "resolution" : "1920*1080" }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ] }
-> db.inventory.find({status:"A"},{status:0,item:0})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
-> db.inventory.find({})
-{ "_id" : 1, "sku" : "almonds", "description" : "product 1", "instock" : 120 }
-{ "_id" : 2, "sku" : "bread", "description" : "product 2", "instock" : 80 }
-{ "_id" : 3, "sku" : "cashews", "description" : "product 3", "instock" : 60 }
-{ "_id" : 4, "sku" : "pecans", "description" : "product 4", "instock" : 70 }
-{ "_id" : 5, "sku" : null, "description" : "Incomplete" }
-{ "_id" : 6 }
-{ "_id" : 8, "sku" : "MON1003", "type" : "Monitor", "instock" : 120, "size" : "27 inch", "resolution" : "1920*1080" }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "status" : "A", "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
-> db.inventory.find({$and:[{"instock.0.qyt":{$gt:10}},{"instock.1.qty":{$lt:20}}]})
-> db.inventory.find({$or:[{"instock.0.qyt":{$lte:20}},{"instock.1.qty":{$lte:20}}]})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-> db.inventory.find({instock.qty:{$lte:20}})
-2018-06-27T18:27:31.003-0700 E QUERY    [thread1] SyntaxError: missing : after property id @(shell):1:26
-> db.inventory.find({"instock.qty":{$lte:20}})
-{ "_id" : ObjectId("5b32fabc07ffd51def07b30f"), "item" : "notebook", "qty" : 50, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "A", "tags" : [ "red", "blank" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "C", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b310"), "item" : "paper", "qty" : 100, "size" : { "h" : 8.5, "w" : 11, "uom" : "in" }, "status" : "D", "tags" : [ "red", "blank", "plain" ], "dim_cm" : [ 14, 21 ], "instock" : [ { "warehouse" : "A", "qty" : 60 }, { "warehouse" : "B", "qty" : 15 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b311"), "item" : "planner", "qty" : 75, "size" : { "h" : 22.85, "w" : 30, "uom" : "cm" }, "status" : "D", "tags" : [ "blank", "red" ], "dim_cm" : [ 22.85, 30 ], "instock" : [ { "warehouse" : "A", "qty" : 40 }, { "warehouse" : "B", "qty" : 5 } ] }
-{ "_id" : ObjectId("5b32fabc07ffd51def07b312"), "item" : "postcard", "qty" : 45, "size" : { "h" : 10, "w" : 15.25, "uom" : "cm" }, "status" : "A", "tags" : [ "blue" ], "dim_cm" : [ 10, 15.25 ], "instock" : [ { "warehouse" : "B", "qty" : 15 }, { "warehouse" : "C", "qty" : 35 } ] }
->
