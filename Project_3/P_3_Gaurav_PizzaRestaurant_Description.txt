@@ -1,0 +1,25 @@
+The user can order different type of pizza from the website. Each pizza contain the description like name, price, description etc.
+The user can search pizza by name or between a particular price range.
+Also details of pizza will be listed.
+
+Description of Dataset:-
+Columns: 15
+Records: 3510
+
+Columns:-
+
+1.	_id:			Unique id of every record
+2.	address:		Address of the restaurant.
+3.	city:			City of pizza restaurant.
+4.	country:		Country of pizza restaurant.
+5.	latitude:		Latitude of restaurant.
+6. 	longitude:		Longitude of restaurant.
+7.	menuPageURL:		The URL of restaurant.
+8.	menus.amountMax: 	Maximum price of selected pizza.
+9.	menus.amountMin:	Minimum price of selected pizza.
+10.	menus.description:	Description of the selected pizza.
+11.	menus.name:		Name of the seleted pizza.
+12.	name:			Name of the category.
+13.	postalCode:		Postal Code of the restaurant.
+14.	priceRangeMax:		Maximum amount of pizza at the seleted restaurant.
+15. 	priceRangeMin:		Minimum amount of pizza at the seleted restaurant.	
