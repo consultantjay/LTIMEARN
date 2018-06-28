@@ -1,0 +1,24 @@
+									** MotoBike.com **
+
+Project Description:- For all the motorcycle lovers out there "MotoBike.com" is a place where you can view all kinds of bike with all the necessary details at just one place.
+		      You can get all the required details from scratch whether you are looking for buying a new one or be it the older one, you have come to the right place.
+		      We provide the best solution to our viewers by keeping in mind all the things a user expects before choosing a bike of their dream.
+
+Documents:7493
+Fields : 14
+
+
+1. Condition	   => It show that bike is New or Used.
+2. Price	   => Price of the bike.
+3. Location	   => Location where you can buy the bike.
+4. Model Year	   => Year of manufacture
+5. Mileage	   => Mileage of bike
+6. Exterior Color  => Exterior Color of bike
+7. Make		   => Maker or Band of the bike
+8. Warranty	   => Warranty of bike
+9. Model	   => Model of bike
+10. Sub_Model	   => Sub model of bike
+11. Type	   => Type of bike 
+12. Feedback_Perc  => Feedback percentage given by user
+13. N_Reviews	   => Reviews given by user
+14. Seller_Status  => Seller Status(Private/Dealer/Owner)
