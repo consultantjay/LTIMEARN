@@ -1,0 +1,137 @@
+DAY 7:
+
+--------------------------------------------------------------------------------------------------------
+VARIABLE SCOPE:
+
+a="Ajay";
+var b="jay";
+var a = "sakshi"
+console.log(a);
+
+console.log(global.a);
+
+console.log(b);
+
+console.log(global.b);
+
+----------------------------------------------------------------------------------------------------
+
+VARIABLE SCOPE WITH FUNCTIONS:
+
+a = "sakshi";
+var b = "priya";
+console.log(a);
+console.log(b)
+function sum(){
+var a= "xyz";
+b="abc";
+console.log(a)
+console.log(b)
+}
+sum();
+console.log(a);
+console.log(b);
+--------------------------------------------------------------------------------------------------
+
+COMMAND LINE ARGS:
+console.log(process.argv);
+
+
+-----------------------------------------------------------------------------------------------------
+
+PRINT VOWELS USIND CMD ARGS:
+
+
+--------------------------------------------------------------------------------------------------
+
+SYNCHRONOUOS AND ASYNCHRONOUS READING OF A FILE:
+
+var fs = require("fs");
+var data = fs.readFileSync('TestBlockingSample.txt');
+console.log(data.toString());
+console.log("\n");
+console.log("synchronous/blocking code ended");
+console.info("\n")
+
+fs.readFile('TestBlockingSample.txt', function(err,res){
+	if(err) return console.errror(err);
+console.log(data.toString());
+	});
+console.info("\n");
+console.log("asynchronous/  non blocking code ended");
+console.info("\n");
+-----------------------------------------------------------------------------------------------
+
+READ DIRECTORY:
+
+
+------------------------------------------------------------------------------------------------
+
+EMP FILE READ:
+
+
+-----------------------------------------------------------------------------------------------
+
+EXPRESS:
+
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+var mongojs = require('mongojs');
+var db = mongojs('demo',['emp']);
+app.use(express.static(__dname));
+app.get('/list',function(req,res){
+db.emp.find(function(err,docs){res.json(docs)});
+
+}) ;
+
+-----------------------------------------------------------------------------------------------
+var mongojs = require('mongojs');
+var db = mongojs('demo',['emp1'])
+b = "{"
+
+for(i=0;i<10;i++){
+b+="Name"+i+":\"value"+i+"\",";
+}
+b+="}";
+console.log("obj=>"+b);
+db.emp1.insert(b);
+
+------------------------------------------------------------------------------------------
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+var mongojs = require('mongojs');
+var db = mongojs('demo',['emp']);
+app.use(express.static(__dirname));
+app.get('/list',function(req,res){
+db.emp.find(function(err,docs){res.json(docs);});
+
+}) ;
+app.get('/:id',function(req,res){
+  console.log(req.params.id);
+db.emp.find({"_id":parseInt(req.params.id)},
+function(err,docs){res.json(docs);});
+});
+app.listen(3000);
+console.log("server running on port 3000");
+
+----------------------------------------------------------------------------------------------------------
+
+var mongojs = require('mongojs');
+var db=mongojs('lti',['emp']);
+
+b = "{"
+  for(j=209;j<210;j++){
+  for(i=10;i<11;i++){
+  b+="\"id"+i+"\""+":\"name"+i+"\""+",";
+}}
+var y = b.substring(0,b.length-1);
+y += ",\"|_id\":1}";
+
+ console.log(typeof y);
+console.log("obj=>" +y);
+db.emp.insert(JSON.parse(y));
+--------------------------------------------------------------------------------------------------
