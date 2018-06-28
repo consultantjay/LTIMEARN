@@ -1,0 +1,33 @@
+----------------------DATASET INFORMATION-------------------
+
+--> Format: csv
+
+--> Total Fields:18
+
+--> Total Records: 18155
+
+--> Dataset Content:
+This dataset has following fields:
+
+1. name
+2.  address
+3.  categories
+4.  city
+5.  claimed
+6.  country
+7.  cuisines
+8.  descriptions
+9.  features
+10. hours
+11. images
+12. lat
+13. long
+14. menus
+    	a. description
+	b. name
+ 	c. price
+15. phones
+16. postalCode
+17. priceRange
+18. websites
+19. unique id
