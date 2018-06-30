@@ -1,0 +1,93 @@
+
+This site has pages devoted to individual locations, such as restaurants or schools, 
+Where users can submit a review of their products or services using a one to five star rating system.
+Users can make restaurant reservations in Reservations category.
+features to have food ordered and delivered were added to site as well as the ability to view hygiene inspection scores 
+and make appointments at spas.
+This site added features for ordering and scheduling manicures, flowers, golf and legal consultations, 
+among other things, through website.
+Hotel booking is also a added featured in this site.
+
+This dataset is having two collection one is master table and other is reference table containing attribute for filtering.
+description of following collection is given below:
+
+1. buisness_id : primary key to the collection 
+2. name: name of the shop
+3. neighborhood: place near by shop
+4. address: address of shop
+5. city: City where you want to search
+6. state: state in which your city is
+7. postal_code: postal code of city
+8. latitude:latitiude of shop address
+9. longitude:longitude of shop address
+10.stars: it is a rating between 1 to 5 updated by user
+11.review_count: count of reviews for this shop
+12.is_open: it tells that the shop is open or not. 0 for closed and 1 for open
+13.categories: it will be our search criteria according to categories which are spa,bars,restaurant,hotels,outdoors,schools,
+college,hospitals,crockery,stationary,air conditioning and many more daily life events.
+
+collection2: yelp_service_attribute
+->three values are there for fields in a collection those are true false and NA. here true symbolize availability and false is for not available and NA for undefined
+
+1. buisness_id: foriegnField for collection 1(yelp_service)
+2. AcceptsInsurance: the shop accepts insurance or not
+3. ByAppointmentOnly: visit shop by appointment only
+4. BusinessAcceptsCreditCards: is credit card accepted or not
+5. BusinessParking_garage: is there a garage for parking
+6. BusinessParking_street: is there a street are for parking
+7. BusinessParking_validated: is parking allowed outside or not
+8. BusinessParking_lot: area for parking motor vehicles
+9. BusinessParking_valet: parking done by hotel attendents for their customers
+10.HairSpecializesIn_coloring: hair coloring is possible or not
+11.HairSpecializesIn_africanamerican: african and american hair specialist
+12.HairSpecializesIn_curly: curly hairs
+13.HairSpecializesIn_perms: curls in the style is available or not
+14.HairspecializesIn_kids: kids hairspecialization
+15.RestaurantsPriceRange2: range of restaurant
+16.GoodForKids: good for kids or not
+17.WheelchairAccessible: wheel char accessibility  is avaialble  or not
+18.BikeParking: bike parking allowed or not
+19.Alcohol: alchol allowed or not
+20.HasTV: hasTv or not
+21.NoiseLevel: noise level is high or not
+22.RestaurantsAttire: restaurant attire
+23.Music_dj: dj facility is there or not
+24.Music_background_music: only background music is available
+25.Music_no_music: no music provided
+26.Music_video
+27.Music_jukebox
+28.Ambience_romantic: Is ambience is romantic 
+29.Ambience_intimate:Is ambience is intimate 
+30.Ambience_classy: classy ambience is available
+31.Ambience_touristy: tourist environemnt
+32.Ambience_trendy: Is ambience is trendy
+33.Ambience_casual: Is ambience is casual
+34.RestaurantsGoodForGroups: Is restaurant good for groups.
+35.Caters: caters facility is provided or not
+36.WiFi: wifi availability 
+37.RestaurantsReservations: restaurant reservation can be done or not
+38.HappyHour: we have happy hour for coustomers
+39.GoodForDancing: ambience good for dancing or not
+40.RestaurantsTableService: table service is available or not
+41.OutdoorSeating: outdoor seating allowed or not
+42.RestaurantsDelivery: food delivery through restaurant is provided or not
+43.BestNights_monday: filter for best night of monday
+44.BestNights_tuesday: filter for best night of tuesday
+45.BestNights_friday: filter for best night of friday
+46.BestNights_wednesday: filter for best night of wednesday
+47.BestNights_thursday: filter for best night of thursday
+48.BestNights_sunday: filter for best night of sunday
+49.BestNights_saturday: filter for best night of saturday
+50.GoodForMeal_dessert: filter for dessert
+51.GoodForMeal_latenight: filter for late night meal
+52.GoodForMeal_lunch: good for lunch
+53.GoodForMeal_dinner: good for dinner
+54.GoodForMeal_breakfast: good for breakfast
+55.GoodForMeal_brunch: good for brunch
+56.Smoking: smoking restricted or not
+57.DogsAllowed: dogd inside business is allowed or not
+58.BusinessAcceptsBitcoin: is business accepts bitcoin
+59.Open24Hours: filters the business which is open for 24 hours
+60.AgesAllowed: ages allowed inside business or not
+61.RestaurantsCounterService: restaurant counter service provide or not
+   
