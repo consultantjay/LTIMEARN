@@ -10,7 +10,7 @@ db.cleartrip.aggregate([
 	["Jodhpur"]
 	}}
 	,	
-	{property_name:"Hotel Jivan Jyoti"}
+	{property_name:"Mohan Niwas"}
 	]
 	}
 	},
