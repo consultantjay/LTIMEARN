@@ -2,7 +2,8 @@
 This is an application for restaurant search and discovery using MEAN Stack (Mongo, ExpressJs, Angular4, NodeJs) which allows user to:
 
 1). Search Restaurant on the basis of:
-  a). Country, state
+  a). Country
+  b). State
   b). Cuisines
   c). Ratings
   d). Delivery service
