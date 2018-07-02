@@ -1,5 +1,5 @@
                                                              PROJECT DESCRIPTION
-Name: "HuntYourStay.com"
+Name: "Hunt Your Stay"
 
 This is a website that provides customers and travellers with hotels and alternate stay accommodation in India. Customers can easily view and choose their stays in various places according to their budgets and based on the facilities they wish to avail. 
 
