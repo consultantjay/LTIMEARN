@@ -1,0 +1,103 @@
+Search:
+
+By brand:
+db.flipkart.find({brand:/.*alisha.*/i},{product_name:1})
+
+By category:
+db.flipkart.find({product_category_tree:/.*clothing.*/i},{product_name:1})
+
+By product name:
+db.flipkart.find({product_name:/AW Bellies/i},{image:1})
+
+---------------------------------------------------------------------------------------------------------------
+Product Overview:
+
+Women:
+db.flipkart.find({"product_specifications.product_specification.value":/.*women.*/i},{product_name:1})
+
+Men:
+db.flipkart.find({"product_specifications.product_specification.value":/.*men.*/i},{product_name:1})
+
+Shoes:
+db.flipkart.find({"product_category_tree":/.*shoes.*/i},{product_name:1})
+
+Clothing:
+db.flipkart.find({"product_category_tree":/.*clothing.*/i},{product_name:1})
+
+Toys:
+db.flipkart.find({"product_category_tree":/.*toys.*/i},{product_name:1})
+
+Sports:
+db.flipkart.find({"product_category_tree":/.*sports.*/},{product_name:1})
+
+---------------------------------------------------------------------------------------------------------------
+Filters:
+
+By Price:
+db.flipkart.find({$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{product_name:1})
+
+By Color:
+db.flipkart.find({"product_specifications.product_specification.value":/red/i},{product_name:1})
+
+By Tags:
+db.flipkart.find({"product_category_tree":/baby care/i},{product_name:1})
+
+---------------------------------------------------------------------------------------------------------------
+Sorting:
+
+Default:
+db.flipkart.aggregate([{$project:{product_name:1,discounted_price:1}},{$sort:{discounted_price:1}}])
+
+Popularity:
+db.flipkart.aggregate([{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Overall rating:
+db.flipkart.aggregate([{$project:{product_name:1,overall_rating:1}},{$sort:{overall_rating:1}}])
+
+Newness:
+db.flipkart.aggregate([{$project:{product_name:1,crawl_timestamp:1}},{$sort:{crawl_timestamp:1}}])
+
+Price-Low to High:
+db.flipkart.aggregate([{$project:{product_name:1,discounted_price:1}},{$sort:{discounted_price:1}}])
+
+Price-High to Low:
+db.flipkart.aggregate([{$project:{product_name:1,discounted_price:1}},{$sort:{discounted_price:-1}}])
+
+---------------------------------------------------------------------------------------------------------------
+Multiple Filters:
+
+Color & Price:
+db.flipkart.find({$and:[{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{"product_specifications.product_specification.value":/red/i}]},{product_name:1})
+
+Color & Tags:
+db.flipkart.find({$and:[{"product_category_tree":/baby care/i},{"product_specifications.product_specification.value":/red/i}]},{product_name:1})
+
+Price & Tags
+db.flipkart.find({$and:[{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{"product_category_tree":/baby care/i}]},{product_name:1})
+
+Color, price & Tags:
+db.flipkart.find({$and:[{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{"product_specifications.product_specification.value":/red/i},{"product_category_tree":/baby care/i}]},{product_name:1})
+
+---------------------------------------------------------------------------------------------------------------
+Sorting with filters:
+
+Color with Sorting:
+db.flipkart.aggregate([{$match:{"product_specifications.product_specification.value":/red/i}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Price with Sorting:
+db.flipkart.aggregate([{$match:{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Tags with Sorting:
+db.flipkart.aggregate([{$match:{"product_category_tree":/baby care/i}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Color & Price with Sorting:
+db.flipkart.aggregate([{$match:{$and:[{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{"product_specifications.product_specification.value":/red/i}]}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Color & Tags with Sorting:
+db.flipkart.aggregate([{$match:{$and:[{"product_category_tree":/baby care/i},{"product_specifications.product_specification.value":/red/i}]}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Price & Tags with Sorting:
+db.flipkart.aggregate([{$match:{$and:[{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{"product_category_tree":/baby care/i}]}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
+
+Color, Price & Tags with Sorting:
+db.flipkart.aggregate([{$match:{$and:[{$and:[{discounted_price:{$lt:700}},{discounted_price:{$gt:0}}]},{"product_specifications.product_specification.value":/red/i},{"product_category_tree":/baby care/i}]}},{$project:{product_name:1,product_rating:1}},{$sort:{product_rating:1}}])
