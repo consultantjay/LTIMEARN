@@ -2,7 +2,7 @@
 //Commom for All Statements
 //Package required-'mongojs'
 var mongojs=require("mongojs");
-var db=mongojs('project',['fliipkart'])
+var db=mongojs('project',['flipkart'])
 // --------------------------------------------------------------------------------------------------------------------------------------------
 // Search->
 // By brand:
