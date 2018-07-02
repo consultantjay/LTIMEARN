@@ -1,0 +1,29 @@
+**********DATASET INFO**********
+
+--> Format: csv/json
+
+--> Total Fields: 19
+
+--> Total Records: 18000
+
+--> Dataset Content:
+This dataset has following fields:
+1. Restaurant ID
+2. Restaurant URL
+3. Name
+4. Address
+5. Phone
+6. City
+7. State
+8. Country
+9. Website
+10. Latitude
+11. Longitude
+12. Cuisine
+13. Good for(suitable)
+14. Currency
+15. Rating
+16. Ranking
+17. Total Review
+18. Last Reviewed
+19. Uniq Id
