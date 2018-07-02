@@ -3,15 +3,17 @@ It's a restaurant recommendation website.The user can search restaurant on the b
 Each restaurant contains the details like its address, postal code, website, rating etc.
 
 Documents:10000
-fields : 9
+fields : 11
 
 Field Details:
 1.address:-Restaurant address
 2.City:-City of Restaurant
-3.Country:-Country of Restaurant
-4.latitude:-Latitude of Restaurant Location
-5.longitude:-Longitude of Restaurant Location
-6.name:-Name of Restaurant
-7.rating:-Rating of Restaurant
-8.postalCode:-Postal Code of Restaurant
-9.websites:-Website of Restaurant
+3.Zonal Region:-Zone in which Restaurant is located
+4.Province:-State of Restaurant
+5.Country:-Country of Restaurant
+6.latitude:-Latitude of Restaurant Location
+7.longitude:-Longitude of Restaurant Location
+8.name:-Name of Restaurant
+9.rating:-Rating of Restaurant
+10.postalCode:-Postal Code of Restaurant
+11.websites:-Website of Restaurant
