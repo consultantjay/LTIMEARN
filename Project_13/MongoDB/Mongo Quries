@@ -1,212 +1,160 @@
-MotoBike: Mongo Query
+
+# MotoBike: Mongo Query
 ------------------------------------------------------------------------------------------------------------------------
-Home:
-1. Fetch 9 products to display on Home Page
-	db.toys.find(
+==> Search:
+
+1. Search by Make(Brand) name. Here 'KTM' is the keyword being searched .
+	db.bike.find(
+		{Make: /.*KTM.*/i},
+		{_id:1,Make:1,Price:1,Feedback_Perc:1}
+	)
+
+2. Display number of records when searched by Brand name.
+	db.bike.find(
+		{Make: /.*KTM.*/i},
+		{_id:1,Make:1,Price:1,Feedback_Perc:1}
+	).count()
+
+3. Search by Model name. Here 'FXR' is the keyword being searched. 
+	db.bike.find(
+		{Model: /.*FXR.*/i},
+		{_id:1,Make:1,Price:1,Feedback_Perc:1}
+	)
+
+4. Display number of records when searched by Model name.
+	db.bike.find(
+		{Model: /.*FXR.*/i},
+		{_id:1,Make:1,Price:1,Feedback_Perc:1}
+	).count()
+
+------------------------------------------------------------------------------------------------------------------------
+==> Filter:
+
+5. Fetch 12 bikes to display on List Page Listpage without Filter:
+	db.bike.find(
 		{},
-		{_id:0,uniq_id:1,product_name:1,price:1}
-	).limit(9)
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	).limit(12)
+
+6. Display list according to Make as checked in Filter. Here user has checked  'KTM' & 'Honda'
+	db.bike.find(
+		{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+7.Display number of records when multiple Makers name is checked in Filter
+	db.bike.find(
+		{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	).count()
+
+8. Display bikes which lie in the Price range as set by user.Here Price range is [900,10000]
+	db.bike.find({$and:[
+				{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+			]},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+9. Display number of records fetched for a  given Price range as selected in Filter
+	db.bike.find({$and:[
+				{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+			]},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	).count()
+
+10.  Display bikes which are of the Model specified by the user.Here Model is 'R-Series'
+	db.bike.find({Model:"R-Series"},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+11. Display number of records fetched for given Model as selected in Filter
+	db.bike.find({Model:"R-Series"},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	).count()
+
 ------------------------------------------------------------------------------------------------------------------------
-Search:
-2. Search by product name. Here 'steam' is the keyword being searched .
-	db.toys.find(
-		{product_name: /steam/i},
-		{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	)
-
-3. Display number of records when searched by product name.
-	db.toys.find(
-		{product_name: /steam/i},
-		{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	).count()
-
-4. Search by manufacturer's name. Here 'hornby' is the keyword being searched. 
-	db.toys.find(
-		{manufacturer: /hornby/i},
-		{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	)
-
-5. Display number of records when searched by manufacturer's name.
-	db.toys.find(
-		{manufacturer: /hornby/i},
-		{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	).count()
-------------------------------------------------------------------------------------------------------------------------
-Filter:
-6. Display list according to manufacturers as checked in Filter. Here user has checked  'hornby' & 'kato'
-	db.toys.find(
-		{manufacturer: {$in:[/hornby/i, /Kato/i]}},
-		{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	)
-
-7.Display number of records when multiple manufacturers name is checked in Filter
-	db.toys.find(
-		{manufacturer: {$in:[/hornby/i, /Kato/i]}},
-		{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	).count()
-
-8. Display product which lie in the the Price range as set by user.Here price range is [10,100]
-	db.toys.find({$and:[
-				{price: {$gte:10}},
-				{price: {$lte:100}},	
-			]},
-			{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	)
-
-9. Display number of records fetched for a  given price range as selected in Filter
-	db.toys.find({$and:[
-				{price: {$gte:10}},
-				{price: {$lte:100}},	
-			]},
-			{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	).count()
-
-10.  Display products which lie in the the Rate range as set by user.Here price range is [10,100]
-	db.toys.find({$and:[
-				{average_review_rating: {$gte:3.1}},
-				{average_review_rating: {$lte:5}},	
-			]},
-			{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	)
-
-11. Display number of records fetched for a  given Rate range as selected in Filter
-	db.toys.find({$and:[
-				{price: {$gte:10}},
-				{price: {$lte:100}}	
-			]},
-			{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}
-	).count()
-------------------------------------------------------------------------------------------------------------------------
-Sort:
-12. Fetches product according to multiple manfacturer selected in Filter and sort them according to price from high to low
-	db.toys.aggregate([
+==> Sort:
+12. Fetches bike according to multiple Maker selected in Filter and sort them according to Price from high to low
+	db.bike.aggregate([
 			{$match:
-				{manufacturer: {$in:[/hornby/i, /Kato/i]}},
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{price:-1}}
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Price:-1}}
 	])
 
-13. Fetches product according to multiple manfacturer selected in Filter and sort them according to price from low to high
-	db.toys.aggregate([
+13. Fetches bike according to multiple Maker selected in Filter and sort them according to Price from low to high
+	db.bike.aggregate([
 			{$match:
-				{manufacturer: {$in:[/hornby/i, /Kato/i]}},
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{price:1}}
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Price:1}}
 	])
 
-14. Fetches product according to multiple manfacturer selected in Filter and sort them according to average rating from high to low
-	db.toys.aggregate([
+14. Fetches bike according to multiple Maker selected in Filter and sort them according to Feedback Percentage from high to low
+	db.bike.aggregate([
 			{$match:
-				{manufacturer: {$in:[/hornby/i, /Kato/i]}},
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{average_review_rating:-1}}
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
 	])
 
-15. Fetches product according to multiple manfacturer selected in Filter and sort them according to average rating from low to high
-	db.toys.aggregate([
+15. Fetches bike according to multiple Maker selected in Filter and sort them according to Feedback Percentage from low to high
+	db.bike.aggregate([
 			{$match:
-				{manufacturer: {$in:[/hornby/i, /Kato/i]}},
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{average_review_rating:1}}
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
 	])
 
-16. Fetches product according to Price range selected in Filter and sort them according to price from high to low
-	db.toys.aggregate([
+16. Fetches bike according to Price range selected in Filter and sort them according to Price from high to low
+	db.bike.aggregate([
 			{$match:
 				{$and:[
-					{price: {$gte:10}},
-					{price: {$lte:100}}	
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}}	
 				]}
 		},
-		{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-		{$sort:{price:-1}}
+		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+		{$sort:{Price:-1}}
 	])
 
-17. Fetches product according to Price range selected in Filter and sort them according to price from low to high
-	db.toys.aggregate([
+17. Fetches bike according to Price range selected in Filter and sort them according to Price from low to high
+	db.bike.aggregate([
 			{$match:
 				{$and:[
-				{price: {$gte:10}},
-				{price: {$lte:100}}	
-			]}
-			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{price:1}}
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}}	
+				]}
+		},
+		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+		{$sort:{Price:1}}
 	])
 
-18. Fetches product according to Price range selected in Filter and sort them according to average rating from high to low
-	db.toys.aggregate([
+18. Fetches bike according to Price range selected in Filter and sort them according to Feedback Percentage from high to low
+	db.bike.aggregate([
 			{$match:
 				{$and:[
-					{price: {$gte:10}},
-					{price: {$lte:100}}	
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}}	
 				]}
 			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{average_review_rating:-1}}
+		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
 	])
-
-19. Fetches product according to Price range selected in Filter and sort them according to average rating from low to high
-	db.toys.aggregate([
+19. Fetches bike according to Price range selected in Filter and sort them according to Feedback Percentage from low to high
+	db.bike.aggregate([
 			{$match:
 				{$and:[
-					{price: {$gte:10}},
-					{price: {$lte:100}}	
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}}	
 				]}
 			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{average_review_rating:1}}
-	])
-
-20. Fetches product according to Average Rating range selected in Filter and sort them according to price from low to high
-
-	db.toys.aggregate([
-			{$match:
-				{$and:[
-					{average_review_rating: {$gte:3}},
-					{average_review_rating: {$lte:5}}
-				]}
-			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{price:1}}
-	])
-
-21. Fetches product according to Average Rating range selected in Filter and sort them according to price from  high to low
-	db.toys.aggregate([
-			{$match:
-				{$and:[
-					{average_review_rating: {$gte:3}},
-					{average_review_rating: {$lte:5}}
-				]}
-			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{price:-1}}
-	])
-
-22. Fetches product according to Average Rating range selected in Filter and sort them according to average rating from low to high
-	db.toys.aggregate([
-			{$match:
-				{$and:[
-					{average_review_rating: {$gte:3}},
-					{average_review_rating: {$lte:5}}
-				]}
-			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{average_review_rating:1}}
-	])
-
-23. Fetches product according to Average Rating range selected in Filter and sort them according to average rating from high to low
-	db.toys.aggregate([
-			{$match:
-				{$and:[
-					{average_review_rating: {$gte:3}},
-					{average_review_rating: {$lte:5}}
-				]}
-			},
-			{$project:{_id:0,uniq_id:1,product_name:1,price:1,average_review_rating:1}},
-			{$sort:{average_review_rating:-1}}
+		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
 	])
