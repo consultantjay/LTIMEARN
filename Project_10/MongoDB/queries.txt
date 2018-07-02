@@ -1,0 +1,30 @@
+/*
+
+@author:Tarun Rawat
+@version:1.0
+@DISCLAIMER:upcoming version may lead to complete makeover,more queries will be added in upcoming versions
+
+
+*/
+
+//DataBase name:LTI
+//Collection name:Jobs
+****************************Queries*********************************
+1 db.Jobs.arrgregate([{$match:{"company":{$regex:data}}},{$limit:count}])
+=>This query will return all the jobs whose company starts with 'data'
+
+
+2 db.Jobs.arrgregate([{$match:{"joblocation_address":{$regex:data}}},{$limit:count}])
+=>This query will return all the jobs whose joblocation_address starts with 'data'
+
+3db.Jobs.arrgregate([{$match:{"jobid":{$regex:data}}},{$limit:count}])
+=>This query will return all the jobs whose jobid starts with 'data'
+
+4 db.Jobs.arrgregate([{$match:{"skills":{$regex:data}}},{$limit:count}])
+=>This query will return all the jobs whose skills starting with 'data'
+
+5 db.Jobs.arrgregate([{$match:{"experience":data}},{$limit:count}])
+=>This query will return all the jobs whose experience is 'data'
+
+6 db.Jobs.arrgregate([{$match:{"jobtitle":{$regex:data}}},{$limit:count}])
+=>This query will return all the jobs whose jobtitle name starts with 'data'
