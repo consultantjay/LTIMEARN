@@ -1,0 +1,37 @@
+MongoDB queries to get details of restaurants based on different search criterias:
+
+1. Search by name-
+> db.foodexpress.aggregate([ {$match: {Name:name}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+2. Search by city-
+> db.foodexpress.aggregate([ {$match: {City:city}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+3. Search by country-
+> db.foodexpress.aggregate([ {$match: {Country:country}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+4. Search by cuisine-
+> db.foodexpress.aggregate([ {$match: {Cuisine:cuisine}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+5. Search by visitor's Type-
+> db.foodexpress.aggregate([ {$match: {"Good for(suitable)":goodFor}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+6. Search by name & city-
+> db.foodexpress.aggregate([ {$match: {Name:name,City:city}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+7. Search by city & cuisine-
+> db.foodexpress.aggregate([ {$match: {Cuisine:cuisine,City:city}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+8. Search by city & visitor's type-
+> db.foodexpress.aggregate([ {$match: {"Good for(suitable)":goodFor,City:city}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+9. Search by city & country-
+> db.foodexpress.aggregate([ {$match: {City:city,Country:country}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+10. Search by country & cuisine-
+> db.foodexpress.aggregate([ {$match: {Country:country,Cuisine:cuisine}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
+
+11. Search by country & visitor's type-
+> db.foodexpress.aggregate([ {$match: {"Good for(suitable)":goodFor,Country:country}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ]) 
+
+12. Search by city, country, cuisine, visitor's type-
+> db.foodexpress.aggregate([ {$match: {{$or:[{City:city},{Country:country}]},"Good for(suitable)":goodFor,Country:country}},{$project: {Name:1, Address:1, Phone:1, City:1, State:1, Country:1, Rating:1}}, {$sort: {Rating:-1}}, function(err, res){ console.log(res);} ])
