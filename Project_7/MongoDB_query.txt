@@ -1,0 +1,51 @@
+1. Search all
+db.deb.Search().pretty()                        
+
+2. Search all by SOUTHEAST-USing projections
+db.deb.Search({},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()                   
+
+3. Search by ZONAL REGION
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+4. Search by city                                 
+db.deb.Search({city:"Leland"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+5. Search by name
+db.deb.Search({name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+6. Search by ZONAL REGION and city
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US",city:"Leland"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+7. Search by ZONAL REGION and name
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US",name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+8. Search by city and name
+db.deb.Search({city:"Leland",name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+9. Search by ZONAL REGION,city and name
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US",city:"Leland",name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+10.  Search all by SOUTHEAST-USing projections and sort by ratings
+db.deb.Search({},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+11.Search by ZONAL REGION and sort by ratings
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+12. Search by city and sort by ratings
+db.deb.Search({city:"Leland"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+13. Search by name and sort by ratings
+db.deb.Search({name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+14. Search by ZONAL REGION and city and sort by ratings
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US",city:"Leland"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+15. Search by ZONAL REGION and name and sort by ratings
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US",name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+16. Search by city and name and sort by ratings
+db.deb.Search({city:"Leland",name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+17. Search by ZONAL REGION,city and name and sort by ratings
+db.deb.Search({ZONAL REGION:"SOUTHEAST-US",city:"Leland",name:"McDonald's"},{address:1,city:1,ZONAL REGION:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort({Rating: -1})
+
