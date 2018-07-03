@@ -1,102 +1,17 @@
 
 # MotoBike: Mongo Query
 ------------------------------------------------------------------------------------------------------------------------
-==> Search:
 
-1. Search by Make(Brand) name. Here 'KTM' is the keyword being searched .
-	db.bike.find(
-		{Make: /.*KTM.*/i},
-		{_id:1,Make:1,Price:1,Feedback_Perc:1}
-	)
-
-2. Display number of records when searched by Brand name.
-	db.bike.find(
-		{Make: /.*KTM.*/i},
-		{_id:1,Make:1,Price:1,Feedback_Perc:1}
-	).count()
-
-3. Search by Model name. Here 'FXR' is the keyword being searched. 
-	db.bike.find(
-		{Model: /.*FXR.*/i},
-		{_id:1,Make:1,Price:1,Feedback_Perc:1}
-	)
-
-4. Display number of records when searched by Model name.
-	db.bike.find(
-		{Model: /.*FXR.*/i},
-		{_id:1,Make:1,Price:1,Feedback_Perc:1}
-	).count()
-
-------------------------------------------------------------------------------------------------------------------------
-==> Filter:
-
-5. Fetch 12 bikes to display on List Page Listpage without Filter:
-	db.bike.find(
-		{},
-		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
-	).limit(12)
-
-6. Display list according to Make as checked in Filter. Here user has checked  'KTM' & 'Honda'
-	db.bike.find(
+==> Filter and Sort
+1) Make :
+   Display list according to Make as checked in Filter. Here user has checked  'KTM' & 'Honda'
+	
+#	db.bike.find(
 		{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
 	)
 
-7.Display number of records when multiple Makers name is checked in Filter
-	db.bike.find(
-		{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
-		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
-	).count()
-
-8. Display bikes which lie in the Price range as set by user.Here Price range is [900,10000]
-	db.bike.find({$and:[
-				{Price: {$gte:900}},
-				{Price: {$lte:10000}},	
-			]},
-		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
-	)
-
-9. Display number of records fetched for a  given Price range as selected in Filter
-	db.bike.find({$and:[
-				{Price: {$gte:900}},
-				{Price: {$lte:10000}},	
-			]},
-		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
-	).count()
-
-10.  Display bikes which are of the Model specified by the user.Here Model is 'R-Series'
-	db.bike.find({Model:"R-Series"},
-		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
-	)
-
-11. Display number of records fetched for given Model as selected in Filter
-	db.bike.find({Model:"R-Series"},
-		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
-	).count()
-
-------------------------------------------------------------------------------------------------------------------------
-==> Sort:
-
-12. Fetches bike according to multiple Maker selected in Filter and sort them according to Price from high to low
-	db.bike.aggregate([
-			{$match:
-				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
-			},
-			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
-			{$sort:{Price:-1}}
-	])
-
-13. Fetches bike according to multiple Maker selected in Filter and sort them according to Price from low to high
-	db.bike.aggregate([
-			{$match:
-				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
-			},
-			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
-			{$sort:{Price:1}}
-	])
-
-14. Fetches bike according to multiple Maker selected in Filter and sort them according to Feedback Percentage from high to low
-	db.bike.aggregate([
+#	db.bike.aggregate([
 			{$match:
 				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 			},
@@ -104,8 +19,7 @@
 			{$sort:{Feedback_Perc:-1}}
 	])
 
-15. Fetches bike according to multiple Maker selected in Filter and sort them according to Feedback Percentage from low to high
-	db.bike.aggregate([
+#	db.bike.aggregate([
 			{$match:
 				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
 			},
@@ -113,32 +27,17 @@
 			{$sort:{Feedback_Perc:1}}
 	])
 
-16. Fetches bike according to Price range selected in Filter and sort them according to Price from high to low
-	db.bike.aggregate([
-			{$match:
-				{$and:[
-					{Price: {$gte:900}},
-					{Price: {$lte:10000}}	
-				]}
-		},
-		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
-		{$sort:{Price:-1}}
-	])
+2) Price:
+   Display bikes which lie in the Price range as set by user.Here Price range is [900,10000]
+	
+#    	db.bike.find({$and:[
+				{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+			]},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
 
-17. Fetches bike according to Price range selected in Filter and sort them according to Price from low to high
-	db.bike.aggregate([
-			{$match:
-				{$and:[
-					{Price: {$gte:900}},
-					{Price: {$lte:10000}}	
-				]}
-		},
-		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
-		{$sort:{Price:1}}
-	])
-
-18. Fetches bike according to Price range selected in Filter and sort them according to Feedback Percentage from high to low
-	db.bike.aggregate([
+#	db.bike.aggregate([
 			{$match:
 				{$and:[
 					{Price: {$gte:900}},
@@ -148,8 +47,8 @@
 		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
 			{$sort:{Feedback_Perc:-1}}
 	])
-19. Fetches bike according to Price range selected in Filter and sort them according to Feedback Percentage from low to high
-	db.bike.aggregate([
+
+#	db.bike.aggregate([
 			{$match:
 				{$and:[
 					{Price: {$gte:900}},
@@ -157,5 +56,447 @@
 				]}
 			},
 		{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+3) Model:
+   Display bikes which are of the Model specified by the user.Here Model is 'R-Series'
+
+#	db.bike.find({Model:"R-Series"},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Model: {$in:[/.*R-Series.*/i, /.*FXR.*/i]}},
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
 			{$sort:{Feedback_Perc:-1}}
 	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Model: {$in:[/.*R-Series.*/i, /.*FXR.*/i]}},
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])	
+
+4) Type:
+   Display bikes which are of the Type specified by the user.Here Model is 'Standard'
+
+#	db.bike.find({Type:"Standard"},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Type: {$in:[/.*Standard.*/i, /.*Cruiser.*/i]}}?
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Type: {$in:[/.*Standard.*/i, /.*Cruiser.*/i]}}?
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+5) Make and Price:
+   Display bikes which are of the Make and Price specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},{$and:[
+				{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+			]}
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+6) Make and Type:
+   Display bikes which are of the Make and Type specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},
+			Type:"Standard"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+7) Make and Model:
+   Display bikes which are of the Make and Model specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},
+			Model:"R-Series"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+8)Make,Model and Price	
+   Display bikes which are of the Make,Model and Price specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},
+			Model:"R-Series",
+			{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]
+			}			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Model:"R-Series"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Model:"R-Series"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+
+9) Type,Make and Price:
+   Display bikes which are of the Make,Type and Price specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},
+			Type:"Standard",
+			{$and:[	{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+				]
+			}			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+10)Type,Make and Model:
+   Display bikes which are of the Type,Make and Model specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},
+			Type:"Standard",
+			Model:"R-Series"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+11) Type,Make,Model and Price  
+   Display bikes which are of the Make,Type,Model and Price specified by the user.
+
+#	db.bike.find({Make:{$in:[/.*KTM.*/i, /.*Honda.*/i]},
+			Type:"Standard",
+			{$and:[	{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+				]
+			},
+			Model:"R-Series"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+12) Type,Model and Price
+   Display bikes which are of the Type,Model and Price specified by the user.
+
+#	db.bike.find({	Type:"Standard",
+			{$and:[	{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+				]
+			},
+			Model:"R-Series"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:				
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:				
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+13) Type and Model
+   Display bikes which are of the Type and Model specified by the user.
+
+#	db.bike.find({	Type:"Standard",
+			Model:"R-Series"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:				
+				{Type:"Standard"},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:				
+				{Type:"Standard"},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+14) Type and Price 
+   Display bikes which are of the Type and Price specified by the user.
+
+#	db.bike.find({	Type:"Standard",
+			{$and:[	{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+				]
+			},
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{Type:"Standard"},
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+15) Model and Price  
+   Display bikes which are of the Model and Price specified by the user.
+
+#	db.bike.find({	{$and:[	{Price: {$gte:900}},
+				{Price: {$lte:10000}},	
+				]
+			},
+			Model:"R-Series"			
+		      },
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([
+			{$match:
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([
+			{$match:
+				{$and:[
+					{Price: {$gte:900}},
+					{Price: {$lte:10000}},	
+				]},
+				{Model:"R-Series"}
+			},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
+16) Search All
+
+#	db.bike.find({},
+		{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}
+	)
+
+#	db.bike.aggregate([{},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:-1}}
+	])
+
+#	db.bike.aggregate([{},
+			{$project:{_id:1,Make:1,Price:1,Model:1,Feedback_Perc:1}},
+			{$sort:{Feedback_Perc:1}}
+	])
+
