@@ -1,3 +1,16 @@
 
 This is a dataset of business listing application which has one collection involving following fields:
-
+  1. buisness_id : primary key to the collection 
+  2. name: name of the shop
+  3. neighborhood: place near by shop
+  4. address: address of shop
+  5. city: City where you want to search
+  6. state: state in which your city is
+  7. postal_code: postal code of city
+  8. latitude:latitiude of shop address
+  9. longitude:longitude of shop address
+  10.stars: it is a rating between 1 to 5 updated by user
+  11.review_count: count of reviews for this shop
+  12.is_open: it tells that the shop is open or not. 0 for closed and 1 for open
+  13.categories: it will be our search criteria according to categories which are spa,bars,restaurant,hotels,outdoors,schools,
+     college,hospitals,crockery,stationary,air conditioning and many more daily life events.
