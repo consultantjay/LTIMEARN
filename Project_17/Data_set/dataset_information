@@ -1,0 +1,41 @@
+*************************Project Details*************************
+
+This is restaurant searching website which provide following search options for restaurant:
+1) Search restaurant on the country(US) ,city and  restaurant name
+2) Provide filters to get specific result
+3) Provide information of perticular restaurant
+4) show location of restaurant on map
+
+----------------------DATASET INFORMATION-------------------
+
+--> Format: csv
+
+--> Total Fields:19
+
+--> Total Records: 18155
+
+--> Dataset Content:
+This dataset has following fields:
+
+1. name
+2.  address
+3.  categories
+4.  city
+5.  country
+6.  cuisines
+7.  descriptions
+8.  features
+9. hours
+10. images
+11. lat
+12. long
+13. menus
+    	a. description
+	b. name
+ 	c. price
+14. phones
+15. postalCode
+16. priceRange
+17. websites
+18. unique id
+19. rating
