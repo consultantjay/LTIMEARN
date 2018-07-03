@@ -10,6 +10,7 @@ var db=mongojs('PRO',['bike'])
 
 /*-------------------------------------------------------------------------------------------------------*/
 // Search:
+
 // 1. Search by Maker name. Here 'KTM' is the keyword being searched .
       db.bike.find(
       		        {Make: /.*KTM.*/i},
@@ -50,28 +51,28 @@ var db=mongojs('PRO',['bike'])
 
 // Filter:
 
-// 6. Display list according to manufacturers as checked in Filter. Here user has checked  'hornby' & 'kato'
+// 6. Display list of bike according Maker to as checked in Filter. Here user has checked  'KTM' & 'Honda'
     	db.bike.find(
-    		          {manufacturer: {$in:[/hornby/i, /Kato/i]}},
-    		          {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
+    		          {Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+   		          {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
     	            function(err,res){
     			             console.log(res)
     		          }
     	)
 
-// 7. Display number of records when multiple manufacturers name is checked in Filter
+// 7. Display number of records when multiple Make's name is checked in Filter
     	db.bike.find(
-    		          {manufacturer: {$in:[/hornby/i, /Kato/i]}},
-    		          {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
+    		          {Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
+   		          {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
     	            function(err,res){
     			             console.log(res.length)
     		          }
     	)
 
-//8. Display product which lie in the the Price range as set by user.Here Price range is [10,100]
+//8. Display bike which lie in the the Price range as set by user.Here Price range is [900,10000]
     	db.bike.find({$and:[
-    		                  {Price: {$gte:10}},
-    		                  {Price: {$lte:100}},
+    		                  {Price: {$gte:900}},
+    		                  {Price: {$lte:10000}},
     	                   ]
                     },
     		            {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
@@ -82,20 +83,20 @@ var db=mongojs('PRO',['bike'])
 
 //9. Display number of records fetched for a  given Price range as selected in Filter
     	db.bike.find({$and:[
-    		                  {Price: {$gte:10}},
-    		                  {Price: {$lte:100}},
+    		                  {Price: {$gte:900}},
+    		                  {Price: {$lte:10000}},
     	                   ]
                     },
     		            {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
     	              function(err,res){
-    			               console.log(res.length)
+    			                console.log(res.length)
     		            }
       )
 
-//10. Display products which lie in the the Rate range as set by user.Here Price range is [10,100]
+//10. Display bikes which lie in the range of Feedback Percentage as set by user.Here Feedback percentage range is [8.1,9.9]
       db.bike.find({$and:[
-      	                 {Feedback_Perc: {$gte:3.1}},
-      	                 {Feedback_Perc: {$lte:5}},
+      	                 {Feedback_Perc: {$gte:8.1.1}},
+      	                 {Feedback_Perc: {$lte:9.9}},
                        ]
                     },
       	            {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
@@ -104,24 +105,25 @@ var db=mongojs('PRO',['bike'])
       		          }
       )
 
-//11. Display number of records fetched for a  given Rate range as selected in Filter
+//11. Display number of records fetched for a given Feedback percentage range as selected in Filter
     	db.bike.find({$and:[
-    		                  {Price: {$gte:10}},
-    		                  {Price: {$lte:100}}
-    	                   ]
+      	                 {Feedback_Perc: {$gte:8.1.1}},
+      	                 {Feedback_Perc: {$lte:9.9}},
+                       ]
                     },
-    		            {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
-    	              function(err,res){
-    			               console.log(res.length)
-    		            }
+      	            {_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1},
+      	            function(err,res){
+      			             console.log(res.length)
+      		          }
       )
 
 /*-------------------------------------------------------------------------------------------------------*/
-// Sort
-//12. Fetches product according to multiple manfacturer selected in Filter and sort them according to Price from high to low
+// Sort:
+
+//12. Fetches bikes according to multiple makers selected in Filter and sort them according to Price from high to low
   		db.bike.aggregate([
   			                 {$match:
-  			                      {manufacturer: {$in:[/hornby/i, /Kato/i]}}
+  			                      {Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
   			                 },
   		                   {$project:{_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1}},
   			                 {$sort:{Price:-1}}
@@ -131,10 +133,10 @@ var db=mongojs('PRO',['bike'])
   		                  }
   		)
 
-//13. Fetches product according to multiple manfacturer selected in Filter and sort them according to Price from low to high
+//13. Fetches bikes according to multiple makers selected in Filter and sort them according to Price from low to high
     	db.bike.aggregate([
     		                  {$match:
-    		                      {manufacturer: {$in:[/hornby/i, /Kato/i]}},
+    		                      {Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
     		                  },
     	                    {$project:{_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1}},
     		                  {$sort:{Price:1}}
@@ -144,10 +146,10 @@ var db=mongojs('PRO',['bike'])
     	                   }
     	)
 
-//14. Fetches product according to multiple manfacturer selected in Filter and sort them according to average rating from high to low
+//14. Fetches bikes according to multiple makers selected in Filter and sort them according to feedback percentage from high to low
     	db.bike.aggregate([
     		                  {$match:
-    		                      {manufacturer: {$in:[/hornby/i, /Kato/i]}},
+    		                      {Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
     		                  },
     	                    {$project:{_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1}},
     		                  {$sort:{Feedback_Perc:-1}}
@@ -157,10 +159,10 @@ var db=mongojs('PRO',['bike'])
     	                   }
     	)
 
-//15. Fetches product according to multiple manfacturer selected in Filter and sort them according to average rating from low to high
+//15. Fetches bikes according to multiple makers selected in Filter and sort them according to feedback percentage from low to high
     	db.bike.aggregate([
     		                  {$match:
-    		                        {manufacturer: {$in:[/hornby/i, /Kato/i]}},
+    		                        {Make: {$in:[/.*KTM.*/i, /.*Honda.*/i]}},
     		                  },
     	                    {$project:{_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1}},
     		                  {$sort:{Feedback_Perc:1}}
@@ -170,12 +172,12 @@ var db=mongojs('PRO',['bike'])
     	                   }
       )
 
-//16. Fetches product according to Price range selected in Filter and sort them according to Price from high to low
+//16. Fetches bikes according to Price range selected in Filter and sort them according to Price from high to low
     	db.bike.aggregate([
     		                  {$match:
     	                       {$and:[
-    		                         {Price: {$gte:10}},
-    		                         {Price: {$lte:100}}
+    		                         {Price: {$gte:900}},
+    		                         {Price: {$lte:10000}}
     	                          ]
                               }
     		                  },
@@ -187,28 +189,29 @@ var db=mongojs('PRO',['bike'])
     	                   }
     	)
 
-//17. Fetches product according to Price range selected in Filter and sort them according to Price from low to high
+//17. Fetches bikes according to Price range selected in Filter and sort them according to Price from low to high
     	db.bike.aggregate([
     		                  {$match:
     	                       {$and:[
-    		                         {Price: {$gte:10}},
-    		                         {Price: {$lte:100}}
-    	                           ]}
-    		                     },
-    		                     {$project:{_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1}},
-    		                     {$sort:{Price:1}}
+    		                         {Price: {$gte:900}},
+    		                         {Price: {$lte:10000}}
+    	                          ]
+                              }
+    		                  },
+    		                  {$project:{_id:1,Model:1,Make:1,Price:1,Feedback_Perc:1}},
+    		                  {$sort:{Price:1}}
     	                   ],
                          function(err, res){
     		                     console.log(res)
     	                   }
     	)
 
-//18. Fetches product according to Price range selected in Filter and sort them according to average rating from high to low
+//18. Fetches bikes according to Price range selected in Filter and sort them according to feedback percentage from high to low
     	db.bike.aggregate([
     		                  {$match:
     	                       {$and:[
-    		                         {Price: {$gte:10}},
-    		                         {Price: {$lte:100}}
+    		                         {Price: {$gte:900}},
+    		                         {Price: {$lte:10000}}
     	                          ]
                               }
     		                   },
@@ -220,12 +223,12 @@ var db=mongojs('PRO',['bike'])
     	                   }
     	)
 
-//19. Fetches product according to Price range selected in Filter and sort them according to average rating from low to high
+//19. Fetches bikes according to Price range selected in Filter and sort them according to feedback percentage from low to high
       db.bike.aggregate([
       		                {$match:
       	                     {$and:[
-      		                       {Price: {$gte:10}},
-      		                       {Price: {$lte:100}}
+      		                       {Price: {$gte:900}},
+    		                         {Price: {$lte:10000}}
       	                        ]
                               }
       		                 },
