@@ -1,0 +1,26 @@
+Project Description:-This is a hotel recommendation system.It will help user to search various hotels and will be able to apply filters and sort hotels according to their requirement.  
+Documents:4007
+fields : 20
+
+Fields Details:-
+1.address:-Hotel address
+2.area:-Hotel near by area
+3.city:-City of hotel
+4.country:-Country of Hotel
+6.hotel_category:-Category of hotel
+5.hotel_description:-It will provide detailed description of hotel
+6.hotel_facilities:-Facilities provided by the hotel
+7.hotel_star_rating:-Rating by the users
+8.image_count:- number of images
+9.latitute:-Latitude of the hotel location 
+10.locality:-Locality of hotel
+11.longitude:-Longitude of the hotel location
+12.property_id:-property id of different hotels
+13.property_name:-Hotel name
+14.property_type:-Type of property
+15.room_area:Area of a room
+16.room_count:Counts of room
+17.room_facilities:-Facilities in a room
+18.room_type:Type of room
+19.state:-State
+20.uniq_id:- Unique Id
