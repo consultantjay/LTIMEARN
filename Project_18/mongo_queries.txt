@@ -80,7 +80,7 @@ Search by amenities:
 
 Search by hotel name and amenities:
 
-6.
+9.
 > db.hotel.find( {
 	$and:[ {
 		"property_name" : { 
@@ -89,7 +89,7 @@ Search by hotel name and amenities:
 			$regex : new RegExp(/.*AC.*/, "i") 
 		}} ]} ).pretty()
 
-7.
+10.
 > db.hotel.find( {
 	$and:[ {
 		"property_name" : { 
@@ -98,7 +98,7 @@ Search by hotel name and amenities:
 			$regex : new RegExp(/.*Pickup & Drop.*/, "i") 
 		}} ]} ).pretty()
 
-8.
+11.
 > db.hotel.find( {
 	$and:[ {
 		"property_name" : { 
@@ -107,7 +107,7 @@ Search by hotel name and amenities:
 			$regex : new RegExp(/.*Wifi.*/, "i") 
 		}} ]} ).pretty()
 
-9.
+12.
 > db.hotel.find( {
 	$and:[ {"property_name" : { 
 		$regex : new RegExp("hotel samrat", "i") 
@@ -116,7 +116,7 @@ Search by hotel name and amenities:
 	}} ]} ).pretty()
 
 
-10. Search by hotel name and price:
+13. Search by hotel name and price:
 > db.hotel.find({
 	$and: [ { 
 		"property_name" : { 
@@ -127,7 +127,7 @@ Search by hotel name and amenities:
 
 Search by city and amenities:
 
-11.
+14.
 >  db.hotel.find( {
 	$and:[ {"city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -136,7 +136,7 @@ Search by city and amenities:
 	}} ]} ).pretty()
 
 
-12.
+15.
 >  db.hotel.find( {
 	$and:[ {"city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -145,7 +145,7 @@ Search by city and amenities:
 	}} ]} ).pretty()
 
 
-13.
+16.
 >  db.hotel.find( {
 	$and:[ {"city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -154,7 +154,7 @@ Search by city and amenities:
 	}} ]} ).pretty()
 
 
-14.
+17.
 >  db.hotel.find( {
 	$and:[ {"city" : { 
 		$regex : new RegExp("Jhansi", "i")
@@ -163,7 +163,7 @@ Search by city and amenities:
 	}} ]} ).pretty()
 
 
-15. Search by city and price:
+18. Search by city and price:
 > db.hotel.find({
 	$and: [ { "city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -173,7 +173,7 @@ Search by city and amenities:
 
 Search by price and amenities:
 
-16.
+19.
 >  db.hotel.find( {
 	$and:[ {
 		room_price : {$lte:500} 
@@ -182,7 +182,7 @@ Search by price and amenities:
 	}} ]} ).pretty()
 
 
-17.
+20.
 >  db.hotel.find( {
 	$and:[ {
 		room_price : {$lte:500} },{"amenities" : { 
@@ -190,7 +190,7 @@ Search by price and amenities:
 	}} ]} ).pretty()
 
 
-18.
+21.
 >  db.hotel.find( {
 	$and:[ {
 		room_price : {$lte:500} 
@@ -199,7 +199,7 @@ Search by price and amenities:
 		}} ]} ).pretty()
 
 
-19.
+22.
 >  db.hotel.find( {
 	$and:[ {
 		room_price : {$lte:500} 
@@ -208,7 +208,7 @@ Search by price and amenities:
 		} ]} ).pretty()
 
 
-20. Search by hotel name, city and price:
+23. Search by hotel name, city and price:
 > db.hotel.find({
 	$and: [ { "city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -220,7 +220,7 @@ Search by price and amenities:
 
 Search by hotel name, city and amenities:
 
-21.
+24.
 > db.hotel.find({
 	$and: [ { "city" : { 
 		$regex : new RegExp("Jhansi", "i")
@@ -231,7 +231,7 @@ Search by hotel name, city and amenities:
 	}} ] }).pretty()
 
 
-22.
+25.
 > db.hotel.find({
 	$and: [ { "city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -242,7 +242,7 @@ Search by hotel name, city and amenities:
 	}} ] }).pretty()
 
 
-23.
+26.
 > db.hotel.find({
 	$and: [ { "city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -253,7 +253,7 @@ Search by hotel name, city and amenities:
 	}} ] }).pretty()
 
 
-24.
+27.
 > db.hotel.find({
 	$and: [ { "city" : { 
 		$regex : new RegExp("Jhansi", "i") 
@@ -266,7 +266,7 @@ Search by hotel name, city and amenities:
 
 Search by hotel name, amenities and price:
 
-25.
+28.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  }, {"property_name" : {
@@ -276,7 +276,7 @@ Search by hotel name, amenities and price:
 		} ] }).pretty()
 
 
-26.
+29.
 > db.hotel.find({
 	$and: [ { room_price : {$lte:1000}  
 	}, {"property_name" : { 
@@ -286,7 +286,7 @@ Search by hotel name, amenities and price:
 	} ] }).pretty()
 
 
-27.
+30.
 > db.hotel.find({
 	$and: [ { 
 	room_price : {$lte:1000}  
@@ -297,7 +297,7 @@ Search by hotel name, amenities and price:
 	} ] }).pretty()
 
 
-28.
+31.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -310,7 +310,7 @@ Search by hotel name, amenities and price:
 
 Search by amenities, price and city:
 
-29.
+32.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -321,7 +321,7 @@ Search by amenities, price and city:
 	}} ] }).pretty()
 
 
-30.
+33.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -332,7 +332,7 @@ Search by amenities, price and city:
 	}} ] }).pretty()
 
 
-31.
+34.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -343,7 +343,7 @@ Search by amenities, price and city:
 	}} ] }).pretty()
 
 
-32.
+35.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -356,7 +356,7 @@ Search by amenities, price and city:
 
 Search by hotel name, amenities, price and city:
 
-33.
+36.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -369,7 +369,7 @@ Search by hotel name, amenities, price and city:
 	}} ] }).pretty()
 
 
-34.
+37.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -382,7 +382,7 @@ Search by hotel name, amenities, price and city:
 	}} ] }).pretty()
 
 
-35.
+38.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -395,7 +395,7 @@ Search by hotel name, amenities, price and city:
 	}} ] }).pretty()
 
 
-36.
+39.
 > db.hotel.find({
 	$and: [ { 
 		room_price : {$lte:1000}  
@@ -413,7 +413,7 @@ Searching with sorting:
 
 *Sort according to price:
 
-37.
+40.
 > db.hotel.aggregate([{
 	$match:{
 		room_price:{$lte:500}
@@ -423,7 +423,7 @@ Searching with sorting:
 		room_price : 1}
 	}]).pretty()
 
-38.
+41.
 > db.hotel.find( {
 	$and:[ {
 		room_price : {$lte:500} 
@@ -434,7 +434,7 @@ Searching with sorting:
 
 *Sort according to star rating:
 
-39.
+42.
 > db.hotel.aggregate([{
 	$match:{
 		room_price:{$lte:500}
