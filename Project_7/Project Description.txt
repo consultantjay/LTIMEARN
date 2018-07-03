@@ -1,6 +1,6 @@
 Project Description:-  
-It's a restaurant recommendation website.The user can search restaurant on the basis of name and city.
-Each restaurant contains the details like its address, postal code, website, rating etc.
+It's a restaurant recommendation website. People can search restaurants on the basis of Zonal area, City and Name of the Restaurant and help them find a favourable place to eat according to their needs.
+Each restaurant contains details like its address, postal code, website, rating etc.
 
 Documents:10000
 fields : 11
