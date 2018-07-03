@@ -93,7 +93,7 @@ Search by hotel name and amenities:
 > db.hotel.find( {
 	$and:[ {
 		"property_name" : { 
-			$regex : new RegExp("hotel samrat", "i") 
+			$regex : new RegExp("kapurthala guest house", "i") 
 		}},{"amenities" : { 
 			$regex : new RegExp(/.*Pickup & Drop.*/, "i") 
 		}} ]} ).pretty()
@@ -102,7 +102,7 @@ Search by hotel name and amenities:
 > db.hotel.find( {
 	$and:[ {
 		"property_name" : { 
-			$regex : new RegExp("hotel samrat", "i") 
+			$regex : new RegExp("tranquility homestay", "i") 
 		}},{"amenities" : { 
 			$regex : new RegExp(/.*Wifi.*/, "i") 
 		}} ]} ).pretty()
@@ -110,7 +110,7 @@ Search by hotel name and amenities:
 12.
 > db.hotel.find( {
 	$and:[ {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("The Riverwood Forest Retreats", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Gym.*/, "i") 
 	}} ]} ).pretty()
@@ -120,7 +120,7 @@ Search by hotel name and amenities:
 > db.hotel.find({
 	$and: [ { 
 		"property_name" : { 
-			$regex : new RegExp(hotelname, "i") 
+			$regex : new RegExp("hotel samrat", "i") 
 		} }, { room_price : {$lte:500} 
 	} ] }).pretty()
 
@@ -157,7 +157,7 @@ Search by city and amenities:
 17.
 >  db.hotel.find( {
 	$and:[ {"city" : { 
-		$regex : new RegExp("Jhansi", "i")
+		$regex : new RegExp("Jalpaiguri", "i")
 	 }},{"amenities" : { 
 		$regex : new RegExp(/.*Gym.*/, "i") 
 	}} ]} ).pretty()
@@ -245,9 +245,9 @@ Search by hotel name, city and amenities:
 26.
 > db.hotel.find({
 	$and: [ { "city" : { 
-		$regex : new RegExp("Jhansi", "i") 
+		$regex : new RegExp("kapurthala", "i") 
 	} }, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("Kapurthala Guest House", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Pickup & Drop.*/, "i") 
 	}} ] }).pretty()
@@ -256,9 +256,9 @@ Search by hotel name, city and amenities:
 27.
 > db.hotel.find({
 	$and: [ { "city" : { 
-		$regex : new RegExp("Jhansi", "i") 
+		$regex : new RegExp("Jalpaiguri", "i") 
 	} }, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("The Riverwood Forest Retreats", "i") 
 	}},{"amenities" : { $regex : 
 		new RegExp(/.*Gym.*/, "i") }
 	} ] }).pretty()
@@ -278,9 +278,9 @@ Search by hotel name, amenities and price:
 
 29.
 > db.hotel.find({
-	$and: [ { room_price : {$lte:1000}  
+	$and: [ { room_price : {$lte:2000}  
 	}, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("Tranquility Homestay", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Wifi.*/, "i") }
 	} ] }).pretty()
@@ -289,9 +289,9 @@ Search by hotel name, amenities and price:
 30.
 > db.hotel.find({
 	$and: [ { 
-	room_price : {$lte:1000}  
+	room_price : {$lte:2000}  
 	}, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("Kapurthala Guest House", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Pickup & Drop.*/, "i") }
 	} ] }).pretty()
@@ -300,9 +300,9 @@ Search by hotel name, amenities and price:
 31.
 > db.hotel.find({
 	$and: [ { 
-		room_price : {$lte:1000}  
+		room_price : {$lte:4000}  
 	}, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("The Riverwood Forest Retreats", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Gym.*/, "i") }
 	} ] }).pretty()
@@ -335,9 +335,9 @@ Search by amenities, price and city:
 34.
 > db.hotel.find({
 	$and: [ { 
-		room_price : {$lte:1000}  
+		room_price : {$lte:2000}  
 	}, {"city" : { 
-		$regex : new RegExp("Jhansi", "i") 
+		$regex : new RegExp("kapurthala", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Pickup & Drop.*/, "i") 
 	}} ] }).pretty()
@@ -346,9 +346,9 @@ Search by amenities, price and city:
 35.
 > db.hotel.find({
 	$and: [ { 
-		room_price : {$lte:1000}  
+		room_price : {$lte:4000}  
 		}, {"city" : { 
-			$regex : new RegExp("Jhansi", "i") 
+			$regex : new RegExp("Jalpaiguri", "i") 
 		}},{"amenities" : { 
 			$regex : new RegExp(/.*Gym.*/, "i") 
 		}} ] }).pretty()
@@ -372,11 +372,11 @@ Search by hotel name, amenities, price and city:
 37.
 > db.hotel.find({
 	$and: [ { 
-		room_price : {$lte:1000}  
+		room_price : {$lte:4000}  
 	},{"city" : { 
-		$regex : new RegExp("Jhansi", "i") 
+		$regex : new RegExp("Jalpaiguri", "i") 
 	}}, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("The Riverwood Forest Retreats", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Wifi.*/, "i") 
 	}} ] }).pretty()
@@ -385,11 +385,11 @@ Search by hotel name, amenities, price and city:
 38.
 > db.hotel.find({
 	$and: [ { 
-		room_price : {$lte:1000}  
+		room_price : {$lte:4000}  
 	},{"city" : { 
-		$regex : new RegExp("Jhansi", "i") 
+		$regex : new RegExp("Jalpaiguri", "i") 
 	}}, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("The Riverwood Forest Retreats", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Pickup & Drop.*/, "i") 
 	}} ] }).pretty()
@@ -398,11 +398,11 @@ Search by hotel name, amenities, price and city:
 39.
 > db.hotel.find({
 	$and: [ { 
-		room_price : {$lte:1000}  
+		room_price : {$lte:4000}  
 	},{"city" : { 
-		$regex : new RegExp("Jhansi", "i") 
+		$regex : new RegExp("Jalpaiguri", "i") 
 	}}, {"property_name" : { 
-		$regex : new RegExp("hotel samrat", "i") 
+		$regex : new RegExp("The Riverwood Forest Retreats", "i") 
 	}},{"amenities" : { 
 		$regex : new RegExp(/.*Gym.*/, "i") 
 	}} ] }).pretty()
