@@ -119,7 +119,7 @@ db.hotel.find( {
 
 //Search by hotel name and amenities:
 
-//6.
+//9.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -133,7 +133,7 @@ db.hotel.find( {
 		console.log(res);
 		})
 
-//7.
+//10.
  var mongojs = require('mongojs');
  var db = mongojs('project',['hotel']);
  db.hotel.find( {
@@ -146,7 +146,7 @@ db.hotel.find( {
 		console.log(res);
 		})
 
-//8.
+//11.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -159,7 +159,7 @@ db.hotel.find( {
 		}} ]} , function(err,res){
 		console.log(res);
 		})
-//9.
+//12.
 
  var mongojs = require('mongojs');
  var db = mongojs('project',['hotel']);
@@ -173,7 +173,7 @@ db.hotel.find( {
 		console.log(res);
 		})
 
-//10. Search by hotel name and price:
+//13. Search by hotel name and price:
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -189,7 +189,7 @@ db.hotel.find({
 
 //Search by city and amenities:
 
-//11.
+//14.
   var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
 db.hotel.find( {
@@ -202,7 +202,7 @@ db.hotel.find( {
 		})
 
 
-//12.
+//15.
 
   var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -216,7 +216,7 @@ db.hotel.find( {
 		})
 
 
-//13.
+//16.
 
   var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -230,7 +230,7 @@ db.hotel.find( {
 		})
 
 
-//14.
+//17.
 
   var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -244,7 +244,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//15. Search by city and price:
+//18. Search by city and price:
 
 var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -260,7 +260,7 @@ var db = mongojs('project',['hotel']);
 
 //Search by price and amenities:
 
-//16.
+//19.
 
   var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -275,7 +275,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//17.
+//20.
 
   var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -288,7 +288,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//18.
+//21.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -303,7 +303,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//19.
+//22.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -318,7 +318,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//20. Search by hotel name, city and price:
+//23. Search by hotel name, city and price:
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -336,7 +336,7 @@ var db = mongojs('project',['hotel']);
 
 Search by hotel name, city and amenities:
 
-//21.
+//24.
  
 var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -352,7 +352,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//22.
+//25.
 var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
 
@@ -367,7 +367,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//23.
+//26.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -384,7 +384,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//24.
+//27.
 
 var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -403,7 +403,7 @@ var db = mongojs('project',['hotel']);
 
 //Search by hotel name, amenities and price:
 
-//25.
+//28.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -418,7 +418,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//26.
+//29.
  
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -434,7 +434,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//27.
+//30.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -450,7 +450,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//28.
+//31.
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
 
@@ -468,7 +468,7 @@ var db = mongojs('project',['hotel']);
 
 //Search by amenities, price and city:
 
-//29.
+//32.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -485,7 +485,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//30.
+//33.
 
 var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -501,7 +501,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//31.
+//34.
  
 var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -517,7 +517,7 @@ var db = mongojs('project',['hotel']);
 		console.log(res);
 		})
 
-//32.
+//35.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -536,7 +536,7 @@ var db = mongojs('project',['hotel']);
 
 //Search by hotel name, amenities, price and city:
 
-//33.
+//36.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -555,7 +555,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//34.
+//37.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -574,7 +574,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//35.
+//38.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -593,7 +593,7 @@ var db = mongojs('project',['hotel']);
 		})
 
 
-//36.
+//39.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -615,7 +615,7 @@ var db = mongojs('project',['hotel']);
 
 //*Sort according to price:
 
-//37.
+//40.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -630,7 +630,7 @@ var db = mongojs('project',['hotel']);
 	}],function(err,res){
 		console.log(res);
 		})
-//38.
+//41.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
@@ -647,7 +647,7 @@ var db = mongojs('project',['hotel']);
 
 //*Sort according to star rating:
 
-//39.
+//42.
 
  var mongojs = require('mongojs');
 var db = mongojs('project',['hotel']);
