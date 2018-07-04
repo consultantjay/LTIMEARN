@@ -74,12 +74,12 @@ db.res.aggregate({$match:{"city":"Bend","name":"Little Pizza Paradise"}},{$sort:
 });
 
 //Search by pizza name and restaurant name and sort by amount in ascending order
-db.res.aggregate([{$match:{"menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}}],{$sort:{"menus.amount":1}}],function(err,res){
+db.res.aggregate([{$match:{"menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}},{$sort:{"menus.amount":1}},function(err,res){
 	console.log(res);
 });
 
 //Search by pizza name and sort by amount in ascending order
-db.res.aggregate([{$match:{"city":"Bend","menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}}],{$sort:{"menus.amount":1}}],function(err,res){
+db.res.aggregate([{$match:{"city":"Bend","menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}},{$sort:{"menus.amount":1}}],function(err,res){
 	console.log(res);
 });
 
@@ -111,11 +111,11 @@ db.res.aggregate({$match:{"city":"Bend","name":"Little Pizza Paradise"}},{$sort:
 });
 
 //Search by pizza name and restaurant name and sort by amount in descending order
-db.res.aggregate([{$match:{"menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}}],{$sort:{"menus.amount":-1}}],function(err,res){
+db.res.aggregate([{$match:{"menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}},{$sort:{"menus.amount":-1}}],function(err,res){
 	console.log(res);
 });
 
 //Search by city, pizza name and retaurant name and sort by amount in descending order
-db.res.aggregate([{$match:{"city":"Bend","menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}}],{$sort:{"menus.amount":-1}}],function(err,res){
+db.res.aggregate([{$match:{"city":"Bend","menus.name":"Bianca Pizza","name":"Little Pizza Paradise"}},{$sort:{"menus.amount":-1}}],function(err,res){
 	console.log(res);
 });
