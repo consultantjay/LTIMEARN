@@ -1,10 +1,10 @@
 Search:
 
 By brand:
-db.flipkart.find({brand:/.*alisha.*/i},{product_name:1})
+db.flipkart.find({brand:/alisha/i},{product_name:1})
 
 By category:
-db.flipkart.find({product_category_tree:/.*clothing.*/i},{product_name:1})
+db.flipkart.find({product_category_tree:/clothing/i},{product_name:1})
 
 By product name:
 db.flipkart.find({product_name:/AW Bellies/i},{image:1})
@@ -13,22 +13,22 @@ db.flipkart.find({product_name:/AW Bellies/i},{image:1})
 Product Overview:
 
 Women:
-db.flipkart.find({"product_specifications.product_specification.value":/.*women.*/i},{product_name:1})
+db.flipkart.find({"product_specifications.product_specification.value":/^women/i},{product_name:1})
 
 Men:
-db.flipkart.find({"product_specifications.product_specification.value":/.*men.*/i},{product_name:1})
+db.flipkart.find({"product_specifications.product_specification.value":/^men/i},{product_name:1})
 
 Shoes:
-db.flipkart.find({"product_category_tree":/.*shoes.*/i},{product_name:1})
+db.flipkart.find({"product_category_tree":/shoes/i},{product_name:1})
 
 Clothing:
-db.flipkart.find({"product_category_tree":/.*clothing.*/i},{product_name:1})
+db.flipkart.find({"product_category_tree":/clothing/i},{product_name:1})
 
 Toys:
-db.flipkart.find({"product_category_tree":/.*toys.*/i},{product_name:1})
+db.flipkart.find({"product_category_tree":/toys/i},{product_name:1})
 
 Sports:
-db.flipkart.find({"product_category_tree":/.*sports.*/},{product_name:1})
+db.flipkart.find({"product_category_tree":/sports/},{product_name:1})
 
 ---------------------------------------------------------------------------------------------------------------
 Filters:
