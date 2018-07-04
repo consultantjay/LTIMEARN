@@ -1,0 +1,7 @@
+Steps for project development
+
+1 Getting queries of mongodb ready
+2 Creating a server 
+3 Routing requests using express
+4 Testing server manually using PostMan and applying automation testing using mocha and chai
+5 Creating UI using Angular 6
