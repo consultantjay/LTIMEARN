@@ -1,8 +1,8 @@
 A) Zomato Dataset:
 
 # Description of Dataset:
-Columns: 21
-Rows: 9542
+Fields: 21
+Documents: 9542
 
 ## Columns Description:
 1. _id
