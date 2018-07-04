@@ -5,7 +5,7 @@ var db = mongojs('Pro',['deb'])
 db.deb.find(function(err,res){
 console.log(res);});
 
-//2. Search all by SOUTHEAST-USing projections
+//2. Search all by uing projections
 
 var mongojs=require('mongojs');
 var db = mongojs('Pro',['deb'])
