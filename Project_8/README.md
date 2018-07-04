@@ -1,6 +1,6 @@
 ## Toyshop
 
-It is a Ecommerce based web application developed using MEAN stack(Mongo, Express, Angular, NodeJS). It allows user to purchase Toys online with the following features:
+It is a Ecommerce based web application developed using MEAN stack(Mongo, Express, Angular, NodeJS). It allows user to list Toys online with the following features:
 1) Search Toys by name and manufacturer
 2) Get a list of product in grid format
 3) Filter:<br>
