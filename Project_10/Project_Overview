@@ -1,0 +1,12 @@
+This is basically a Jobs Portal where users can browse and apply for various jobs.
+
+Features that will be delivered:
+1 Auto Complete Searching (on company name)
+2 Applying various filters while searching (location,package,skills)
+3 Plotting Jobs location on Google Map (using Angular Google Maps Component)
+4 Submitting or Uploading resume Online
+
+Future Scope(or features that will be included later)
+1. Complete Auto search on skills,company,location
+2 Admin Module that can view all jobs that a user had applied to
+3 User Dashboard that by which it can view his applied jobs
