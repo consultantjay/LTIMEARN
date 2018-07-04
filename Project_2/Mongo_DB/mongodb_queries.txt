@@ -1,7 +1,7 @@
 //MongoDB Queries
 
 /*
-Dataset "doctorpune.csv" is imported to mongodb as collection named "doctor".
+Dataset "punedoctor.csv" is imported to mongodb as collection named "doctor".
 database name: bookyourdoctor
 collection name (1): doctor
 collection name (2): appointment
