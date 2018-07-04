@@ -1,9 +1,8 @@
 
-* This site has pages devoted to individual locations, such as restaurants or schools,Where users can submit a reviews for their products or services from one to five star rating system.
-* Users can make restaurant reservations in Reservations category.
-* Features for ordering food and delivered were added to site as well as the ability to view hygiene inspection scores and make appointments at spas.
-* This site added features for ordering and scheduling manicures, flowers, golf and legal consultations, among other things, through website.
-*Hotel booking is also a added featured in this site.
+* This site has pages devoted to individual locations, such as restaurants or schools,Where users can submit reviews for their products or services from one to five star rating system.
+* Users can view restaurant reservations in Reservations category.
+* This site added features for exploring and scheduling manicures, flowers, golf and legal consultations, among other things, through    website.
+* Exploring Hotels is also a added featured in this site.
 * This dataset have one collection containing described below fields:
 
   1. buisness_id : primary key to the collection 
@@ -18,5 +17,5 @@
   10.stars: it is a rating between 1 to 5 updated by user
   11.review_count: count of reviews for this shop
   12.is_open: it tells that the shop is open or not. 0 for closed and 1 for open
-  13.categories: it will be our search criteria according to categories which are spa,bars,restaurant,hotels,outdoors,schools,
+  13.categories: it will be our search criteria according to categories which include spa,bars,restaurant,hotels,outdoors,schools,
      college,hospitals,crockery,stationary,air conditioning and many more daily life events.
