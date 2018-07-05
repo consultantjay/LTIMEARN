@@ -8,7 +8,7 @@ fields : 11
 Field Details:
 1.address:-Restaurant address
 2.City:-City of Restaurant
-3.Zonal Region:-Zone in which Restaurant is located
+3.zonal_area:-Zone in which Restaurant is located
 4.Province:-State of Restaurant
 5.Country:-Country of Restaurant
 6.latitude:-Latitude of Restaurant Location
