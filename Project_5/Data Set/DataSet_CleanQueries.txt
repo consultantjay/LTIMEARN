@@ -1,0 +1,28 @@
+//Queries used to clean Data Set
+
+
+1.>Removing Unused fields from the Data Set:
+
+
+	>db.hotel.update({}, {$unset: {zone:1}} , {multi: true});
+
+	>db.hotel.update({}, {$unset: {uniq_id:1}} , {multi: true});
+
+	>db.hotel.update({}, {$unset: {qts:1}} , {multi: true});
+
+	>db.hotel.update({}, {$unset: {province:1}} , {multi: true});
+
+	>db.hotel.update({}, {$unset: {hotel_brand:1}} , {multi: true});
+
+	>db.hotel.update({}, {$unset: {image_count:1}} , {multi: true});
+
+
+
+2.>To remove null Hotel Name values from the previous Data Set version:
+
+
+	> db.hotel.remove({property_name:" "},{multi:true})
+	
+	> db.hotel.remove({property_name:""},{multi:true})
+
+
