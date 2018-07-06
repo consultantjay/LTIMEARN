@@ -1,22 +1,33 @@
 1.search hotel on the basis of property name:-
 db.cleartrip.find({property_name:"Hotel Jivan Jyoti"},{_id:0})
---------------------------------------------------------
-2.search hotel on the basis of locality:-
-db.cleartrip.find({locality:"Paota"}).count()
---------------------------------------------------------
-3.search hotel on the basis of rating:- 
-db.cleartrip.find(rating:2)
--------------------------------------------------------
+--------------------------------------------------
+2.search hotel on the basis of rating:-
+db.cleartrip.find({rating:1}).count()
+-----------------------------------------------
+3. search on the basis of rating and city:-
+db.cleartrip.aggregate([
+{$match:
+
+{
+	$and:
+	[{city:	/Jodhpur/}
+	,	
+	{rating:2}
+	]
+	}
+	},
+	{$project:{_id:0,property_name:1,room_type:1}}
+	])
+--------------------------------------------------
+ 
 4.search hotel on the basis of city:-
 db.cleartrip.find({city:"Jodhpur"})
---------------------------------------------------------
-5.search hotel on the basis of property address-
-db.cleartrip.find({address:"High Court Colony, Jodhpur. Rajasthan (India)."})
----------------------------------------------------------
-6.search hotel on the basis of room type:-
+-----------------------------------------------
+
+5.search hotel on the basis of room type:-
 db.cleartrip.find({room_type:"Business Room"})
--------------------------------------------------------
-7. Search hotel on the basis of city and hotel name:-
+--------------------------------------------------
+6. Search hotel on the basis of city and hotel name:-
 db.cleartrip.aggregate([
 {$match:
 
@@ -30,8 +41,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
-----------------------------------------------------
-8.search on the basis of room type and city:-
+--------------------------------------------------------
+7.search on the basis of room type and city:-
 db.cleartrip.aggregate([
 {$match:
 
@@ -46,8 +57,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
--------------------------------------------------------
-9.search on the basis of property name and room type:-
+----------------------------------------------------------
+8.search on the basis of property name and room type:-
 db.cleartrip.aggregate([
 {$match:
 
@@ -62,8 +73,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
-------------------------------------------------------
-10.search on the basis of property name , room type and city:-
+---------------------------------------------------------
+9.search on the basis of property name , room type and city:-
 db.cleartrip.aggregate([
 {$match:
 
@@ -80,8 +91,9 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
----------------------------------------------------
-11. search on the basis of property name,room type,city and rating
+-------------------------------------------------------
+10. search on the basis of property name,room type,city and rating
+
 db.cleartrip.aggregate([
 {$match:
 
@@ -99,8 +111,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
------------------------------------------------------
-12. search on the basis of property name and rating
+----------------------------------------------------------
+11. search on the basis of property name and rating
 	db.cleartrip.aggregate([
 {$match:
 
@@ -115,8 +127,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
----------------------------------------------------------
-13. search on the basis of city and rating
+----------------------------------------------------
+12. search on the basis of city and rating
 	db.cleartrip.aggregate([
 {$match:
 
@@ -131,8 +143,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
------------------------------------------------------
-14. search on the basis of room type and rating
+---------------------------------------------------------
+13. search on the basis of room type and rating
 	db.cleartrip.aggregate([
 {$match:
 
@@ -147,8 +159,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
-------------------------------------------------------
-15. search on the basis of property name, room type and rating
+---------------------------------------------------------
+14. search on the basis of property name, room type and rating
 	db.cleartrip.aggregate([
 {$match:
 
@@ -164,8 +176,8 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
-----------------------------------------------------------
-16. search on the basis of property name, city and rating
+--------------------------------------------------------------
+15. search on the basis of property name, city and rating
 db.cleartrip.aggregate([
 {$match:
 
@@ -181,4 +193,4 @@ db.cleartrip.aggregate([
 	},
 	{$project:{_id:0,property_name:1,room_type:1}}
 	])
-----------------------------------------------------------
+
