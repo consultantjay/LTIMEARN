@@ -1,4 +1,4 @@
-Project Description:-Clear Trip will provide you the clear vision of the hotel description on the basis various Attibutes and Ratings given by the various users.
+Project Description:-Comfort Stay will provide you the clear vision of the hotel description on the basis various Attibutes and Ratings given by the various users.
 
 Documents:5001
 fields : 29
