@@ -8,7 +8,7 @@ db.cleartrip.aggregate([
 	$and:
 	[{rating:1}
 	,	
-	{room_type:"Deluxe"/i},
+	{room_type:"Double Room"/i},
 	{city:/Jodhpur/}
 	]
 	}
