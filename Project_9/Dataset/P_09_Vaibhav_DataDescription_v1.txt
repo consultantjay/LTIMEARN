@@ -1,0 +1,21 @@
+
+--E-commerce  product data
+--Format-JSON
+--Attributes-14
+--Records-19930
+--Data Types-String,Number,Objects,Arrays,Date
+
+1."uniq_id"-Unique attribute for each product.(String)
+2."crawl_timestamp"-Date on which product was published.(Date)
+3."product_url"-URL for landing to the actual site where product is published.(String)
+4."product_name"-Name of the product in the website.(String)
+5."product_category_tree"-A linked representation of categories in depth.(Array)
+6."pid"-Product id.(String)
+7."retail_price"- Actual price the retailer is offering in rupees.(Number)
+8."discounted_price"- Discounted offer that website is offeringin rupees.(Number)
+9."image"-URLs of product's images.(Array)
+10."description"-Product specifications in a paragraph format.(String)
+11."product_rating"-Rating of a product individually out of 5.(Number) 
+12."overall_rating"-Rating of a product among all products on website out of 5.(Number)
+13."brand"-The corresponding brand for each product i.e. p_id.(String)
+14."product_specifications"- Nested specifications of a product in "key:value" 	representation.(Object)

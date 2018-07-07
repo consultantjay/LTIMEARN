@@ -1,0 +1,25 @@
+**********DATASET INFO**********
+
+--> Format: csv/json
+
+--> Total Fields: 15
+
+--> Total Records: 22000
+
+--> Dataset Content:
+This dataset has following fields:
+1. jobs ID
+2. site URL
+3. company name
+4. job location
+5. post date
+6. skills
+7. education
+8. experience
+9. _id
+10. job title
+11. payrate
+12. post date
+13. jobs desc
+14. industry
+15. Uniq Id

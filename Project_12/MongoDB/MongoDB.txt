@@ -1,0 +1,126 @@
+
+# Searches in the project:
+
+There are mainly 5 search filters available in the project:
+
+1. Country
+2. City
+3. Name
+4. Cuisines
+5. Delivery
+
+Considering mainly these criterias, there can be more combinations for the searches which can be briefed as:
+
+In the drop down of the Country and the City, firstly there will be all the options that are present in the database for both the fields respectively.
+Cuisines and Delivery will be hidden until and unless the City and Country or at least City is selected.
+
+1. Country: 
+	i). If only Country is selected, results will be displayed according to it.
+
+2. City:
+	Will check if Country is selected or not.
+	i). If Country is not selected, search according to only City.
+	ii). If Country is selected, Search according to Country & City.
+
+3. Name:
+	i). If only Name is selected, search according to only Name.
+	ii). If Country is selected and City not selected, search according to Country and Name.
+	iii). If City is selected and Country not selected, seach according to City and Name
+	iv). If Country and City both are selected, then search according to Country, City and Name.
+
+Now, if City is selected, check if Country is selected and display two more fields:
+
+4. Cuisines:
+	i). Country, City & Cuisine
+	
+5. Delivery
+	i). Country, City & Delivery
+	ii). If Cuisine is also selected, search according to Country, City, Cuisines and Delivery 
+
+
+
+************************************************************************************************************************************************************************************************************
+************************************************************************************************************************************************************************************************************
+
+
+1). According to Country:
+    This query will be fired when the user selects only a Country as his/her Search criteria.
+	> db.zomato_code.find({"Country_code.0.Country":"Phillipines"}).pretty()
+
+    With Sort according to Rating:
+	> db.zomato_code.find({"Country_code.0.Country":"Phillipines"}).sort({"Aggregate rating": -1 })
+
+
+2). According to City:
+    This query will be fired when the user selects only a City as his/her Search criteria.
+	> db.zomato_code.find({"City":"Pune"}).pretty()
+
+    With Sort according to Rating:
+	> db.zomato_code.find({"City":"Pune"}).pretty().sort({"Aggregate rating": -1 })
+
+
+3). According to Country and City both:
+    This query will be fired when the user selects only a Country and a City as his/her Search criteria.
+	> db.zomato_code.find({"Country_code.0.Country":"India","City":"Pune"}).pretty()
+
+    With Sort according to Rating:
+	> db.zomato_code.find({"Country_code.0.Country":"India","City":"Pune"}).pretty().sort({"Aggregate rating": -1 })
+
+
+4). According to Name:
+    This query will be fired when the user selects only the name of a restaurant as his/her Search criteria.
+	> db.zomato_code.find({"Restaurant Name":"Gopala Hari"}).pretty()
+
+    With Sort according to Rating:
+	> db.zomato_code.find({"Restaurant Name":"Gopala Hari"}).pretty().sort({"Aggregate rating": -1 })
+
+
+5). According to Country and Name both:
+    This query will be fired when the user selects only a Country and a Cuisine as his/her Search criteria.                                                                                    
+	> db.zomato_code.find({"Country":"India","Restaurant Name":"Gopala Hari"}).pretty()
+
+    With Sort according to Rating:
+	> db.zomato_code.find({"Country":"India","Restaurant Name":"Gopala Hari"}).pretty().sort({"Aggregate rating": -1 })
+
+
+6). According to City and Name both:
+    This query will be fired when the user selects only a Country and a Cuisine as his/her Search criteria.                                                                                    
+	> db.zomato_code.find({"City":"Pune","Restaurant Name":"Mineority By Saby"}).pretty()
+
+    With Sort according to Rating:
+	> db.zomato_code.find({"City":"Pune","Restaurant Name":"Mineority By Saby"}).pretty().sort({"Aggregate rating": -1 })
+
+
+7). According to Country, City and Name: 
+     This query will be fired when the user selects Country, City and Name as his/her Search criteria.                                                                                    
+	> db.zomato_code.find({"Country":"India","City":"Pune","Restaurant Name":"Mineority By Saby"}).pretty()
+
+     With Sort according to Rating:
+	> db.zomato_code.find({"Country":"India","City":"Pune","Restaurant Name":"Mineority By Saby"}).pretty().sort({"Aggregate rating": -1 })
+
+
+8). According to Country, City and Cuisines: 
+     This query will be fired when the user selects Country, City and Cuisine as his/her Search criteria.                                                                                    
+	> db.zomato_code.find({"Country":"India","City":"Pune","Cuisines":"North Indian"}).pretty()
+
+     With Sort according to Rating:
+	> db.zomato_code.find({"Country":"India","City":"Pune","Cuisines":"North Indian"}).pretty().sort({"Aggregate rating": -1 })
+
+
+9). According to Country, City and Delivery: 
+     This query will be fired when the user selects Country, City and has delivery or not as his/her Search criteria.                                                                                    
+	> db.zomato_code.find({"Country":"India","City":"Pune","Has Online delivery":"Yes"}).pretty()
+
+     With Sort according to Rating:
+	> db.zomato_code.find({"Country":"India","City":"Pune","Has Online delivery":"Yes"}).pretty().sort({"Aggregate rating": -1 })
+
+
+10). According to Country, City, Cuisines and Delivery: 
+     This query will be fired when the user selects Country, City, Name of the restaurant and has delivery or not as his/her Search criteria.                                                                                    
+	> db.zomato_code.find({"Country":"India", "City":"Pune","Cuisines":"North Indian", "Has Online delivery":"Yes"}).pretty()
+
+     With Sort according to Rating:
+	> db.zomato_code.find({"Country":"India","City":"Pune", "Cuisines":"North Indian", "Has Online delivery":"Yes"}).pretty().sort({"Aggregate rating": -1 })
+
+
+

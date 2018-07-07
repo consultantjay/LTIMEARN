@@ -1,0 +1,20 @@
+Steps for project development
+
+1 Getting queries of mongodb ready
+ 1.1 Making a database(chosing appropriate fields )
+ 1.2 Creating queries for fetching data
+
+2 Creating a server 
+  2.1 Integrating server with Node Js
+  2.2 Routing requests using express
+
+3 Testing
+3.1 Applying automation testing using mocha and chai
+3.2 Making excel file having all the testcases
+
+4 Creating UI using Angular 6
+ 4.1 Creating Basic searching (show list of jobs)
+ 4.2 Decoupling app in various component
+ 4.3 Integrating Google Map Component with Jobs Portal
+ 4.4 Uploading resumes(uploading data using angular)
+ 

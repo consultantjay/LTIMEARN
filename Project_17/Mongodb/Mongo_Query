@@ -1,0 +1,153 @@
+                                               //  Mongodb query of project
+
+//**************************Search Query******************************
+
+//1. Fetch 6 documents to show on landing page
+
+     db.rest.aggregate([{
+			$limit:6	
+			}
+		      ]);
+
+
+//2. Fetch Document of Particular id (unique id)
+
+     db.rest.aggregate([{$match:{
+                                  _id:ObjectId("5b36fa997407c5bd9f5c62f2")
+                                 } 
+                        }
+                      ]);
+
+
+
+//3. Fetch documents of particular country name 
+
+      db.rest.aggregate([{$match:{
+				    country:"US-zone-3"
+				  }
+                          }
+                       ]);
+
+//4. Fetch documents of particular country name and city name
+
+      db.rest.aggregate([{$match:{
+		                 country:"US-zone-1",city:"Oxford" 
+                                  }
+                          }
+                       ]);
+
+
+//5. Fetch document of particular country name,city name and restaurant name
+      db.rest.aggregate([{$match:{
+                                 country:"US-zone-1",city:"Oxford",name:"Corner Grill Drinkery"
+                                  }
+                         }
+                        ]);
+
+
+//***************************Sorting Query*************************************
+   
+//6.  Fetch documents of particular country name sort by rating in low to high order
+      db.rest.aggregate([{$match:{
+                                  country:"US-zone-3"
+                                  }
+                         },
+                         {
+                          $sort:{
+                                 rating:1
+                                 }
+                          }
+                        ])
+
+//7.  Fetch documents of particular country name sort by rating in high to low order
+
+       db.rest.aggregate([{$match:{
+                                  country:"US-zone-3"
+                                  }
+                         },
+                         {
+                          $sort:{
+                                 rating:-1
+                                 }
+                          }
+                        ])
+
+
+//8.  Fetch documents of particular country name sort by price-range in ascending order
+      db.rest.aggregate([{$match:{
+                                  country:"US-zone-3"
+                                  }
+                         },
+                         {
+                          $sort:{
+                                 priceRange:1
+                                 }
+                          }
+                        ])
+
+//9.  Fetch documents of particular country name sort by price-range in descending order
+
+       db.rest.aggregate([{$match:{
+                                  country:"US-zone-3"
+                                  }
+                         },
+                         {
+                          $sort:{
+                                 priceRange:-1
+                                 }
+                          }
+                        ])
+
+
+//10.  Fetch documents of particular country name and city name sort by rating in low to high order 
+ 
+      db.rest.aggregate([{$match:{
+                                  country:"US-zone-1",city:"Oxford"
+                                  }
+                         },
+                         {$sort:{
+                                 rating:1
+                                 }
+                         }
+                        ])
+
+//11.  Fetch documents of particular country name and city name sort by rating in high to low order
+
+      db.rest.aggregate([{$match:{
+                                  country:"US-zone-1",city:"Oxford"
+                                  }
+                         },
+                         {$sort:{
+                                 rating:-1
+                                 }
+                         }
+                        ])
+
+//12.  Fetch documents of particular country name and city name sort by price-range in ascending order
+ 
+      db.rest.aggregate([{$match:{
+                                  country:"US-zone-1",city:"Oxford"
+                                  }
+                         },
+                         {$sort:{
+                                 priceRange:1
+                                 }
+                         }
+                        ])
+
+//13.  Fetch documents of particular country name and city name sort by price-range in descending order
+
+      db.rest.aggregate([{$match:{
+                                  country:"US-zone-1",city:"Oxford"
+                                  }
+                         },
+                         {$sort:{
+                                 priceRange:-1
+                                 }
+                         }
+                        ])
+
+
+
+
+

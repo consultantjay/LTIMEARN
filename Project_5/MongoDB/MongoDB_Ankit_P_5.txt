@@ -1,0 +1,87 @@
+MongoDB Queries:
+'''''''''''''''
+
+*My search bar has four fields including:
+
+1.City (In which hotel is situated)
+2.Hotel Star Rating (Given from 1-5)
+3.Hotel Name (Name of the Property)
+4.Room Count (No. of required Rooms)
+
+Search Queries:
+--------------
+
+1>User input is City and Hotel star rating.
+
+>db.hotel.find({$and:[{city:"gurgaon"},{hotel_star_rating:{$gte:3}}]},{_id:0,property_name:1,hotel_description:1}).pretty()
+
+2>User input is City.
+
+>db.hotel.find({city:"gurgaon"},{_id:0,property_name:1,hotel_description:1})
+
+3>User requirement is on the basis of Hotel Star Rating
+
+>db.hotel.find({hotel_star_rating:{$gte:3}},{_id:0,property_name:1,hotel_description:1})
+
+4>User want to search for a particular hotel.
+
+>db.hotel.find({property_name:"Global Village Ooty"},{_id:0,property_name:1,city:1,state:1,hotel_description:1})
+
+5>Atleast 2 rooms available in the same hotel.
+
+>db.hotel.find({room_count:{$gte:2}},{_id:0,property_name:1,hotel_description:1})
+
+6>User input is City and hotel Name.
+
+>db.hotel.find({$and:[{city:"manali"},{property_name:"Hotel Mountain Face"}]},{_id:0,hotel_star_rating:1,property_name:1,hotel_description:1}).pretty()
+
+7>User input is City and Rooms required.
+
+>db.hotel.find({$and:[{city:"manali"},{room_count:{$gte:2}}]},{_id:0,hotel_star_rating:1,property_name:1,hotel_description:1})
+
+8>On the basis of Hotel Star Rating and hotel name.
+
+>db.hotel.find({$and:[{hotel_star_rating:{$gte:2}},{property_name:"Hotel Mountain Face"}]},{_id:0,hotel_star_rating:1,property_name:1,hotel_description:1})
+
+9>Hotel star Rating and Room Count.
+
+>db.hotel.find({$and:[{hotel_star_rating:{$gte:2}},{room_count:{$gte:2}}]},{_id:0,hotel_star_rating:1,property_name:1,hotel_description:1})
+
+10>Fills All the requirement columns.
+
+>db.hotel.find({$and:[{city:"gurgaon"},{room_count:{$gte:2}},{hotel_star_rating:{$gte:2}},{property_name:"Hotel Mountain Face"}]},{_id:0,hotel_star_rating:1,property_name:1,hotel_description:1})
+
+
+Filters:
+--------
+
+
+*Machine also includes queries to provide filters for the customers ease. Filter includes :
+
+1.City wise sorting
+2.Available Rooms wise sorting
+3.Hotel Star Rating wise sorting
+4.No. of reviews on the Hotel
+
+
+1>Hotel Star Rating wise Sorting.
+
+>db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},{$project:{room_type:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:+1}}])
+>db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},{$project:{room_type:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}])
+
+2>No. of reviews wise Sorting.
+
+>db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},{$project:{room_type:1,property_name:1,_id:0}},{$sort:{site_review_count:+1}}])
+>db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},{$project:{room_type:1,property_name:1,_id:0}},{$sort:{site_review_count:-1}}])
+
+3>Available rooms.
+
+>db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},{$project:{room_type:1,property_name:1,_id:0}},{$sort:{room_count:+1}}])
+>db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},{$project:{room_type:1,property_name:1,_id:0}},{$sort:{room_count:-1}}])
+
+4>City wise Alphabetical sorting.
+
+>db.hotel.aggregate([{$match:{$and:[{hotel_star_rating:5}]}},{$project:{property_name:1,room_type:1,_id:0}},{$sort:{city:-1}}])
+>db.hotel.aggregate([{$match:{$and:[{hotel_star_rating:5}]}},{$project:{property_name:1,room_type:1,_id:0}},{$sort:{city:+1}}])
+
+

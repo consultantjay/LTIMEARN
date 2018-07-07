@@ -1,0 +1,67 @@
+1. Search all
+db.deb.find().pretty()                        
+
+2. Search all by using projections
+db.deb.find({},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()                   
+
+3. Search by zonal_area
+db.deb.find({zonal_area:"SOUTHEAST-US"},
+ {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+4. Search by city                                 
+db.deb.find({city:"Leland"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+5. Search by name
+db.deb.find({name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+6. Search by zonal_area and city
+db.deb.find({zonal_area:"SOUTHEAST-US",city:"Leland"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+7. Search by zonal_area and name
+db.deb.find({zonal_area:"SOUTHEAST-US",name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+8. Search by city and name
+db.deb.find({city:"Leland",name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+9. Search by zonal_area,city and name
+db.deb.find({zonal_area:"SOUTHEAST-US",city:"Leland",name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty()
+
+10.  Search all by using projections and sort by ratings
+db.deb.find({},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+11.Search by zonal_area and sort by ratings
+db.deb.find({zonal_area:"SOUTHEAST-US"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+12. Search by city and sort by ratings
+db.deb.find({city:"Leland"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+13. Search by name and sort by ratings
+db.deb.find({name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+14. Search by zonal_area and city and sort by ratings
+db.deb.Search({zonal_area:"SOUTHEAST-US",city:"Leland"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+15. Search by zonal_area and name and sort by ratings
+db.deb.find({zonal_area:"SOUTHEAST-US",name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+16. Search by city and name and sort by ratings
+db.deb.find({city:"Leland",name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort( {Rating: -1 } )
+
+17. Search by zonal_area,city and name and sort by ratings
+db.deb.find({zonal_area:"SOUTHEAST-US",city:"Leland",name:"McDonald's"},
+{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}).pretty().sort({Rating: -1})
+

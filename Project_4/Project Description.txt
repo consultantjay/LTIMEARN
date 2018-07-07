@@ -1,0 +1,36 @@
+Project Description:-Clear Trip will provide you the clear vision of the hotel description on the basis various Attibutes and Ratings given by the various users.
+
+Documents:5001
+fields : 29
+
+Fields Details:-
+1.address:-Hotel address
+2.Area:-Hotel near by area
+3.City:-City of hotel
+4.Country:-Country of Hotel
+5.Date:-Date of Booking
+6.hotel_description:-It will provide detailed description of hotel
+7.hotel_facilities:-Facilities provided by the hotel
+8.Rating:-Rating by the users
+9.image_count:- number of images
+10.image_urls:-Image url of hotel
+11.landmark:-near by landmark of hotel
+12.Latitute:-Latitude of the hotel location
+13.Locality:-Locality of hotel
+14.Longitude:-Longitude of the hotel location
+15.page_url:-Hotel Url
+16.Property_id:-property id of different hotels
+17. Property_name:-Hotel name
+18.property_type:-Lounge,Resort,Hotel,etc
+19.province:-State
+20.room_count:-No of rooms available
+21.room_facilities:-Facilities provided by the room
+22.similar_hotel:-Similar hotel
+23.site_name:-website name
+24.state:-State
+25.tad_review_count:-tad review
+26.tad_review_rating:-tad review rating
+27.tad_stay_review_rating:-stay review rating by the customers
+28.tripadvisor_seller_rating:-Seller Rating provided by the seller
+29.unique_id:-unique id of every field
+

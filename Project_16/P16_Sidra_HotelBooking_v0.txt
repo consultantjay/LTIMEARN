@@ -1,0 +1,25 @@
+Travante is intended for searching hotels according to city, area and rating. It will automate various operations like providing hotel name according to rating and provide available room type information.  
+**********DATASET INFO**********
+
+--> Format: csv/json
+
+--> Total Fields: 17 columns 
+
+--> Total Records: 20,000 rows
+
+--> Dataset Content:
+This dataset has following fields:
+1.  area-                  It contains area of hotel
+2.  city-                  It contains city of hotel
+3.  country-               It contains country of hotel.(India)
+4.  hotel_overview-        It contains hotel's description
+5.  hotel_star_rating-     It contains rating of hotel
+6   latitude-              It gives latitude of hotel's location
+7.  longitude-             It gives longitude of hotel's location
+8.  location-              It gives location of hotel
+9.  property_address-      It gives address of hotel
+10. property_id-           It contains unique property id of hotel
+11. property_name-         It contains hotel name
+12. room_types-            It contains type of room available
+13. state-                 It gives state of hotel
+14. uniq_id-               It contains unique id of each record
