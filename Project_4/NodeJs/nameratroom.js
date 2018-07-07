@@ -9,7 +9,7 @@ db.cleartrip.aggregate([
 	[{rating:1}
 	,	
 	{property_name:/Mohan Niwas/i},
-	{room_type:/Deluxe/}
+	{room_type:/Double Room/}
 	]
 	}
 	},
