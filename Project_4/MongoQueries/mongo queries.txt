@@ -25,7 +25,7 @@ db.cleartrip.find({city:"Jodhpur"})
 -----------------------------------------------
 
 5.search hotel on the basis of room type:-
-db.cleartrip.find({room_type:"Business Room"})
+db.cleartrip.find({room_type:"Double Room"})
 --------------------------------------------------
 6. Search hotel on the basis of city and hotel name:-
 db.cleartrip.aggregate([
@@ -51,7 +51,7 @@ db.cleartrip.aggregate([
 	[{city:/Jodhpur/
 	}
 	,	
-	{room_type:"Business Room"}
+	{room_type:"Double Room"}
 	]
 	}
 	},
@@ -67,7 +67,7 @@ db.cleartrip.aggregate([
 	[{property_name:/Mohan Niwas/
 	}
 	,	
-	{room_type:"Business Room"}
+	{room_type:"Double Room"}
 	]
 	}
 	},
@@ -83,7 +83,7 @@ db.cleartrip.aggregate([
 	[{property_name:/Mohan Niwas/
 	}
 	,	
-	{room_type:/Deluxe Ac Room/}
+	{room_type:/Double Room/}
 	,
 	{City:"Jodhpur"}
 	]
@@ -102,7 +102,7 @@ db.cleartrip.aggregate([
 	[{property_name:/Mohan Niwas/
 	}
 	,	
-	{room_type:/Deluxe Ac Room/}
+	{room_type:/Double Room/}
 	,
 	{City:"Jodhpur"},
 	{rating:1}
@@ -153,7 +153,7 @@ db.cleartrip.aggregate([
 	[{rating:2
 	}
 	,	
-	{room_type:"Business Room"}
+	{room_type:"Double Room"}
 	]
 	}
 	},
@@ -169,7 +169,7 @@ db.cleartrip.aggregate([
 	[{property_name:/Mohan Niwas/
 	}
 	,	
-	{room_type:"Business Room"},
+	{room_type:"Double Room"},
 	{rating:2}
 	]
 	}
