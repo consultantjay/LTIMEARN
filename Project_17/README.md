@@ -1,6 +1,6 @@
 # LTIMEARN
-*************************Project Details*************************
-
+*************************Product Details*************************
+Product name : FOODIES
 This is restaurant searching website which provide following search options for restaurant:
 1) Search restaurant on the country(US) ,city and  restaurant name
 2) Provide filters to get specific result
