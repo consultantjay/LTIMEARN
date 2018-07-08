@@ -1,8 +1,8 @@
-# FOODEXPRESS
+# RESTOPEDIA
 
--> FOODEXPRESS is a restaurant search and discovery service website. 
+-> RESTOPEDIA is a restaurant search and discovery service website. 
 
--> It provides information, location on Google Map and reviews of restaurants, including images where the restaurant does not have its own website. 
+-> It provides information, location on Google Map and reviews of restaurants where the restaurant does not have its own website. 
 
 -> Restaurants can be searched on FoodExpress on the basis of following search criterias:
 1. Name
