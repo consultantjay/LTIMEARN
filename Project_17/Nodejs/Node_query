@@ -3,6 +3,7 @@
 /*Setup:
 import modules in your js file using:
 Here 'mongojs' is predefined package
+Product name:FOODIES
 database name: pro
 collection name: rest*/
 
@@ -14,29 +15,29 @@ var db=mongojs('pro',['rest']);
 //1. Fetch 6 documents to show on landing page
 
       db.rest.aggregate([{
-			$limit:6	
+			$limit:6
 			}
 		        ],function(err,res){
                                           console.log(JSON.stringify(res));
                                                 }
-                       );   
+                       );
 
 
 //2. Fetch Document of Particular id (unique id)
 
 	db.rest.aggregate([{$match:{
                                   _id:ObjectId("5b36fa997407c5bd9f5c62f2")
-                                 } 
+                                 }
                         }
                       ],function(err,res){
                                           console.log(JSON.stringify(res));
                                          }
-                       );   
-  
+                       );
 
 
 
-//3. Fetch documents of particular country name 
+
+//3. Fetch documents of particular country name
 	db.rest.aggregate([{$match:{
 					country:"US-zone-3"
 				   }
@@ -45,9 +46,54 @@ var db=mongojs('pro',['rest']);
                                                 }
                          );
 
-     
 
-//4. Fetch documents of particular country name and city name
+
+
+//4. Fetch documents of particular city name
+	 db.rest.aggregate([{$match:{
+ 	                           city:"Oxford"
+                            }
+     	                       }],function(err,res){
+        	                                   console.log(JSON.stringify(res));
+                	                                 }
+                        	  );
+
+
+//5.  Fetch document of particular restaurant
+	db.rest.aggregate([{$match:{
+        	                    name:"Corner Grill Drinkery"
+                	          }
+                  	}],function(err,res){
+                        	         console.log(JSON.stringify(res));
+                                	       }
+                	);
+
+//6. Fetch Cities of particular country
+db.rest.aggregate([{$match:{
+                        country:"US-zone-1"
+                         }
+                         },{$project:{
+                                      city:1,_id:0
+                           }}
+                          ],function(err,res){
+                                         console.log(JSON.stringify(res));
+                                               }
+                        );
+
+//7. Fetch all restautant of particular city
+ db.rest.aggregate([{$match:{
+        			city:"Oxford"
+                         }
+                           },{$project:{
+                                       name:1,_id:0
+                                       }}
+                                    ],function(err,res){
+                                                   console.log(JSON.stringify(res));
+                                                         }
+                                  );
+
+
+//8. Fetch documents of particular country name and city name
 
 	db.rest.aggregate([{$match:{
 					country:"US-zone-1",city:"Oxford"
@@ -58,19 +104,19 @@ var db=mongojs('pro',['rest']);
 			);
 
 
-//5. Fetch document of particular country name,city name and restaurant name
+//9. Fetch document of particular country name,city name and restaurant name
 	db.rest.aggregate([{$match:{
                                       country:"US-zone-1",city:"Oxford",name:"Corner Grill Drinkery"
                                    }
                           }],function(err,res){
                                       console.log(JSON.stringify(res));
                                               }
-                          );  
+                          );
 
 
 //***************************Sorting Queries*************************************
-   
-//6.  Fetch documents of particular country name sort by rating in low to high order
+
+//10.  Fetch documents of particular country name sort by rating in low to high order
 	db.rest.aggregate([{$match:{
                                     country:"US-zone-1"
                                    }
@@ -84,10 +130,10 @@ var db=mongojs('pro',['rest']);
                                       console.log(JSON.stringify(res));
                                                }
                          );
-    
 
-//7.  Fetch documents of particular country name sort by rating in high to low order
-	db.rest.aggregate([{$match:{
+
+//11.  Fetch documents of particular country name sort by rating in high to low order
+	     db.rest.aggregate([{$match:{
                                     country:"US-zone-1"
                                    }
                             },
@@ -100,47 +146,50 @@ var db=mongojs('pro',['rest']);
                                       console.log(JSON.stringify(res));
                                                }
                          );
- 
+
+  //12. Fetch data of city sort by rating in low to high order
+
+       db.rest.aggregate([{$match:{
+                         	city:"Oxford"
+                         	   }},
+                                     {$sort:{
+                                              rating:1
+                                            }
+                                          }],{
+                                              allowDiskUse: true
+                                              },function(err,res){
+                                                        console.log(JSON.stringify(res));
+                                                                 }
+                               );
 
 
-//8.  Fetch documents of particular country name sort by price-range in ascending order
-	db.rest.aggregate([{$match:{
-					country:"US-zone-1"
-				   }
-			   },
-			   {$sort:{
-				   priceRange:1
-				  }
-                           }],
-			   {allowDiskUse: true
-		           },
-                           function(err,res){
-                                   console.log(JSON.stringify(res));
-			});
-      
-     
 
-//9.  Fetch documents of particular country name sort by price-range in descending order
-	db.rest.aggregate([{$match:{
-					country:"US-zone-1"
-				   }
-			   },
-			   {$sort:{
-				   priceRange:-1
-				  }
-                           }],
-			   {allowDiskUse: true
-		           },
-                           function(err,res){
-                                   console.log(JSON.stringify(res));
-			});
-      
+ //13. Fetch data of city sort by rating in high to low order
+          db.rest.aggregate([{$match:{
+                         		city:"Oxford"
+                         		   }},
+                                     {$sort:{
+                                            rating:-1
+                                            }
+                                            }],{
+                                                allowDiskUse: true
+                                               },function(err,docs){
+                                                                console.log(JSON.stringify(res))
+                                                                   }
+                                      );
 
 
-//10.  Fetch documents of particular country name and city name sort by rating in low to high order 
 
-	db.rest.aggregate([{$match:{
-					country:"US-zone-1",city:"Oxford"
+
+
+
+
+
+
+//14.  Fetch documents of particular country name and city name sort by rating in low to high order
+
+    	db.rest.aggregate([{$match:{
+					   country:"US-zone-1",city:"Oxford"
 				    }
 			   },
 			   {
@@ -151,10 +200,10 @@ var db=mongojs('pro',['rest']);
                           ],
                              function(err,res){
 		                     console.log(JSON.stringify(res));
-                         }); 
-      
+                         });
 
-//11.  Fetch documents of particular country name and city name sort by rating in high to low order
+
+//15.  Fetch documents of particular country name and city name sort by rating in high to low order
 	db.rest.aggregate([{$match:{
 					country:"US-zone-1",city:"Oxford"
 				    }
@@ -168,38 +217,3 @@ var db=mongojs('pro',['rest']);
                              function(err,res){
 		                     console.log(JSON.stringify(res));
                          });
-
-      
-
-//12.  Fetch documents of particular country name and city name sort by price-range in ascending order
- 
-	db.rest.aggregate([{$match:{
-					country:"US-zone-1",city:"Oxford"
-				   }
-			   },
-  			   {$sort:{
-                                    priceRange:1
-                                  }
-			  }],function(err,res){
- 				   console.log(JSON.stringify(res)
-                         );    
-
-//13.  Fetch documents of particular country name and city name sort by price-range in descending order
-	db.rest.aggregate([{$match:{
-					country:"US-zone-1",city:"Oxford"
-				   }
-			   },
-  			   {$sort:{
-                                    priceRange:1
-                                  }
-			  }],function(err,res){
- 				   console.log(JSON.stringify(res)
-                         );  
-      
-
-
-
-
-
-
-

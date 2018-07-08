@@ -1,0 +1,254 @@
+/* module to be import are: express,body-parser,mongojs
+   Product name: FOODIES
+   database name:pro
+   collection name:rest
+*/
+
+
+var express=require('express');
+var app=express();
+var bodyParser=require('body-parser');
+app.use(bodyParser.json());
+var mongojs=require('mongojs');
+var db=mongojs('pro',['rest']);
+app.use(express.static(__dirname));
+
+//**********************************Search services**********************************
+//1. Records for landing page
+
+	app.get('/landing',function(req,res){
+      		db.rest.aggregate([{
+				   $limit:6
+				   }
+		       		   ],function(err,docs){
+                                          res.json(docs);
+                                                       }
+                                );
+                                           }
+               );
+
+
+
+
+//2. Record of particular country
+
+	app.get('/country/:country',function(req,res){
+   						     db.rest.aggregate([{$match:{
+										country:req.params.country
+				  						 }
+                          						 }],function(err,docs){
+                                         							res.json(docs);
+                                                					      }
+                         						);
+							}
+		);
+
+
+//3. Records of particular city
+
+	app.get('/city/:city',function(req,res){
+    						db.rest.aggregate([{$match:{
+				                                           city:req.params.city
+                                                                           }
+                                                                  }],function(err,docs){
+                                                                                       res.json(docs);
+                                                                                       }
+                                                                  );
+                                             }
+              );
+
+
+
+//4. Records of particular restaurant
+
+	 app.get('/restaurant/:restaurant',function(req,res){
+                                                          db.rest.aggregate([{$match:{
+				                                                      name:req.params.restaurant
+				                                                      }
+                                                                           }],function(err,docs){
+                                                                                                res.json(docs);
+                                                                                               }
+                                                                           );
+                                                          }
+                 );
+
+
+
+//5. Fetch name of all cities of particular country name
+
+	app.get('/country_allcity/:country',function(req,res){
+  		                                          db.rest.aggregate([{$match:{
+					                                             country:req.params.country
+		                                                                     }
+                                                           },{$project:{
+                                                                        city:1,_id:0
+																																			}}
+                                                                           ],function(err,docs){
+                                                                                                res.json(docs);
+                                                                                               }
+                                                                          );
+                                                               }
+                   );
+
+
+//6. Fetch name of all restaurant of particular city name
+
+	 app.get('/city_allrestaurant/:city',function(req,res){
+  							      db.rest.aggregate([{$match:{
+					city:req.params.city
+		             }
+                     },{$project:{
+                                       name:1,_id:0
+                                 }}
+                   ],function(err,docs){
+                                         res.json(docs);
+                                       }
+                    );
+});
+
+//7 Fetch all records of particular country and city
+
+	 app.get('/country_city/:country/:city',function(req,res){
+								db.rest.aggregate([{$match:{
+											   country:req.params.country,city:req.params.city
+				                                                           }
+                                                                                   }],function(err,docs){
+                                                                                                         res.json(docs);
+                                                                                                        }
+                                                                                   );
+                                                                });
+
+
+
+//8. Fetch record of Particular Restaurant by country name,city name ,restaurant name
+
+	app.get('/country_city_restaurant/:country/:city/:restaurant',function(req,res){
+	                                                                               db.rest.aggregate([{$match:{
+					                                                                         country:req.params.country,
+                                                                                                                 city:req.params.city,
+                                                                                                                 name:req.params.restaurant
+				                                                                                    }
+                                                                                                         }],function(err,docs){
+                                                                                                                              res.json(docs);
+                                                                                                                              }
+                                                                                                          );
+                                                     });
+
+
+//**********************************Sorting services**********************************
+
+//9.  Fetch data by country sort by rating low to high
+
+  	app.get('/country_sort_rating_Asce/:country',function(req,res){
+	                                                           db.rest.aggregate([{$match:{
+					                                                     country:req.params.country
+				                                                                }},
+                                                                                       {$sort:{
+                                                                                               rating:1
+                                                                                               }
+                                                                                                }],{
+                                                                                                   allowDiskUse: true
+                                                                                                   },function(err,docs){
+                                    										        res.json(docs);
+                                                                                                                        }
+                                                                                         );
+                                                                       });
+
+
+//10. Fetch data by country sort by rating high  to low
+
+  	app.get('/country_sort_rating_desce/:country',function(req,res){
+									db.rest.aggregate([{$match:{
+												country:req.params.country
+				   								    }},
+                            								{$sort:{
+                                   								rating:-1
+                                   								}
+                           								}],{
+                            								   allowDiskUse: true
+                            								    },function(err,docs){
+                                         									res.json(docs);
+                                               									 }
+                        								 );
+								});
+
+
+
+
+//11. Fetch data of city sort by rating in low to high order
+
+
+ 	 app.get('/city_sort_rating_Asce/:city',function(req,res){
+        							db.rest.aggregate([{$match:{
+											city:req.params.city
+				   							   }},
+                           								     {$sort:{
+                                   									rating:1
+                                   								}
+                          							 }],{
+                             								allowDiskUse: true
+                            							   },function(err,docs){
+                                        								 res.json(docs);
+                                             							       }
+                        							 );
+						});
+
+
+//12. Fetch data of city sort by rating in high to low order
+
+   	app.get('/city_sort_rating_desce/:city',function(req,res){
+      								 db.rest.aggregate([{$match:{
+				   							city:req.params.city
+				     							   }},
+                            							  {$sort:{
+                                   							  rating:-1
+                                   							  }
+                           							  }],{
+                             							      allowDiskUse: true
+                           							      },function(err,docs){
+                                         								  res.json(docs);
+                                                							  }
+                         							  );
+								});
+
+
+
+
+
+
+//13 Fetch data of particular city and country sort by rating in low to high order
+
+	app.get('/country_city_sort_rating_Asce/:country/:city',function(req,res){
+     										db.rest.aggregate([{$match:{
+													country:req.params.country,city:req.params.city
+				   									    }},
+                            											{$sort:{
+                                  											 rating:1
+                                   											}
+                           											}],{
+                            											    allowDiskUse: true
+                            											    },function(err,docs){
+                                         												res.json(docs);
+                                              												  }
+                         									);
+									});
+
+//14 Fetch data of particular city and country sort by rating high to low order
+
+	app.get('/country_city_sort_rating_desce/:country/:city',function(req,res){
+   										 db.rest.aggregate([{$match:{
+													   country:req.params.country,city:req.params.city
+				   									    }},
+                            									    {$sort:{
+                                   									    rating:-1
+                                   									    }
+                          									    }],{
+                             										allowDiskUse: true
+                            										},function(err,docs){
+                                        										    res.json(docs);
+                                               										    }
+                         										);
+										});
+
+app.listen(3000);
+console.log("server running on port 3000")
