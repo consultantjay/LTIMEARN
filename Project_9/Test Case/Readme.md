@@ -6,7 +6,7 @@
 **TestByDataType**--> It checks whether the data type of the result is valid or not.   
 **TestByProjectionLength**--> It checks for the number of fields retrieved for the query.  
 **TestSortAscending**--> It checks for the sorting pattern in ascending form.   
-**TestSortAscending**--> It checks for the sorting pattern in descending form.  
+**TestSortDescending**--> It checks for the sorting pattern in descending form.  
 
 ```
 NOTE:  
