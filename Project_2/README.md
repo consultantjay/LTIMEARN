@@ -2,7 +2,7 @@
 
 #Book My Doctor
 
-Project Description:
+Product Description:
 
 Details of Doctors across Pune city are listed.
 User can book an Appointment with the Doctor.
