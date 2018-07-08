@@ -671,12 +671,12 @@ app.use(express.static(__dirname)); //to tell server that this is root folder
 	app.get('/city/:city',function(req,res)
 	{
 		console.log(req.params.city);
-		db.hotel.aggregate([{$match:{$and:[{city:"gurgaon"}]}},
-												{$project:{room_type:1,property_name:1,hotel_star_rating:1,site_review_count:1,city:1,_id:0}},
-												{$sort:{site_review_count:-1}}],
-												function(err,docs){res.json(docs);
-												})
-											});
+		db.hotel.aggregate([{$match:{$and:[{"city":req.params.city}]}},
+					{$project:{room_type:1,property_name:1,hotel_star_rating:1,site_review_count:1,city:1,_id:0}},
+					{$sort:{site_review_count:-1}}],
+					function(err,docs){res.json(docs);
+					})
+				});
 app.listen(3000);
 console.log("Running on port 3000");
 
