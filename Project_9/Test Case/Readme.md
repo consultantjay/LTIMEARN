@@ -1,6 +1,6 @@
-#Test Cases for MongoDB Queries
+# Test Cases for MongoDB Queries
 
-TestByValue.js--> It checks whether the retrieved values from database are correct or not.
+TestByValue--> It checks whether the retrieved values from database are correct or not.
 TestByCount--> It checks for the number of documents retrieved after each condition.
 TestByDataType--> It checks whether the data type of the result is valid or not.
 TestByProjectionLength--> It checks for the number of fields retrieved for the query.
