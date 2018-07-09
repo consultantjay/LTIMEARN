@@ -25,6 +25,6 @@ describe('TestMongoDB 9',function(){
 
 	it('by city all restaurant name(length )',function(){
 		const result = count;
-		expect(result).to.equal(20);
+		expect(result).to.equal(19);
 	});
 });
