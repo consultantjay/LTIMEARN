@@ -61,7 +61,7 @@ app.get('/PriceL/:p1/PriceH/:p2',function(err,res){
                            {Price:{$lt:parseInt(req.params.p2)}}
                           ]
                     },
-                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                     function(err,docs)
                     {
                     res.send(docs);
@@ -80,7 +80,7 @@ app.get('/County/:county/City/:city',function(req,res){
   console.log(req.params.county);
   console.log(req.params.city);
   db.property.find({County:req.params.county,City:req.params.city},
-                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                     function(err,docs)
                     {
                     res.send(docs);
@@ -99,7 +99,7 @@ app.get('/County/:county/PriceL/:p1/PriceH/:p2',function(req,res){
   console.log(parseInt(req.params.p1));
   console.log(parseInt(req.params.p2));
   db.property.find({County:req.params.county,Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)} },
-                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                     function(err,docs)
                     {
                     res.send(docs);
@@ -119,7 +119,7 @@ app.get('/City/:city/PriceL/:p1/PriceH/:p2',function(req,res){
   console.log(parseInt(req.params.p1));
   console.log(parseInt(req.params.p2));
   db.property.find({City:req.params.city,Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)} },
-                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                     function(err,docs)
                     {
                      res.send(docs);
@@ -139,7 +139,7 @@ app.get('/County/:county/City/:city/PriceL/:p1/PriceH/:p2',function(req,res){
   console.log(parseInt(req.params.p1));
   console.log(parseInt(req.params.p2));
   db.property.find({County:req.params.county,City:req.params.city,Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}},
-                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                    {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                     function(err,docs)
                     {
                     res.send(docs);
@@ -157,7 +157,7 @@ app.get('/SortByPrice',function(req,res){
 
   db.property.aggregate([
                          {$match:{}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                          {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -178,8 +178,8 @@ app.get('/SortByYear',function(req,res){
 
   db.property.aggregate([
                          {$match:{}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                         {$sort:{'Year Built':-1}}
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                         {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -199,7 +199,7 @@ app.get('/County/:county/SortByPrice',function(req,res){
 
   db.property.aggregate([
   	                     {$match:{County:req.params.county}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                          {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -220,7 +220,7 @@ app.get('/City/:city/SortByPrice',function(req,res){
 
   db.property.aggregate([
   	                     {$match:{City:req.params.city}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                          {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -243,7 +243,7 @@ app.get('/PriceL/:p1/PriceH/:p2/SortByPrice',function(req,res){
 
   db.property.aggregate([
   	                     {$match:{Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                          {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -265,7 +265,7 @@ app.get('/County/:county/City/:city/SortByPrice',function(req,res){
 
   db.property.aggregate([
   	                      {$match:{County:req.params.county, City:req.params.city}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                           {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -289,7 +289,7 @@ app.get('/County/:county/PriceL/:p1/PriceH/:p2/SortByPrice',function(req,res){
 
   db.property.aggregate([
   	                      {$match:{County:req.params.county, Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                           {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -313,7 +313,7 @@ app.get('/City/:city/PriceL/:p1/PriceH/:p2/SortByPrice',function(req,res){
 
   db.property.aggregate([
   	                      {$match:{City:req.params.city, Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                           {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -338,7 +338,7 @@ app.get('/County/:county/City/:city/PriceL/:p1/PriceH/:p2/SortByPrice',function(
 
   db.property.aggregate([
   	                      {$match:{County:req.params.county,City:req.params.city, Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                           {$sort:{Price:1}}
                         ],
                         function(err,docs)
@@ -360,8 +360,8 @@ app.get('/County/:county/SortByYear',function(req,res){
 
   db.property.aggregate([
   	                     {$match:{County:req.params.county}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                         {$sort:{"Year Built":-1}}
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                         {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -383,8 +383,8 @@ app.get('/City/:city/SortByYear',function(req,res){
 
   db.property.aggregate([
   	                     {$match:{City:req.params.city}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                         {$sort:{"Year Built":-1}}
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                         {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -406,8 +406,8 @@ app.get('/PriceL/:p1/PriceH/:p2/SortByYear',function(req,res){
 
   db.property.aggregate([
   	                     {$match:{Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}},
-                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                         {$sort:{"Year Built":-1}}
+                         {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                         {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -429,8 +429,8 @@ app.get('/County/:county/City/:city/SortByYear',function(req,res){
 
   db.property.aggregate([
   	                      {$match:{County:req.params.county, City:req.params.city}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                          {$sort:{"Year Built":-1}}
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                          {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -453,8 +453,8 @@ app.get('/County/:county/PriceL/:p1/PriceH/:p2/SortByYear',function(req,res){
 
   db.property.aggregate([
   	                      {$match:{County:req.params.county, Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                          {$sort:{"Year Built":-1}}
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                          {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -477,8 +477,8 @@ app.get('/City/:city/PriceL/:p1/PriceH/:p2/SortByYear',function(req,res){
 
   db.property.aggregate([
   	                      {$match:{City:req.params.city, Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                          {$sort:{"Year Built":-1}}
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                          {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
@@ -502,8 +502,8 @@ app.get('/County/:county/City/:city/PriceL/:p1/PriceH/:p2/SortByYear',function(r
 
   db.property.aggregate([
   	                      {$match:{County:req.params.county, City:req.params.city, Price: { $gt:parseInt(req.params.p1), $lt:parseInt(req.params.p2)}}},
-                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                          {$sort:{"Year Built":-1}}
+                          {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                          {$sort:{Year_Built:-1}}
                         ],
                         function(err,docs)
                         {
