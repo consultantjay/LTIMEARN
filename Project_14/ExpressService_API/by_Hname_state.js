@@ -7,7 +7,7 @@ var db = mongojs('Project',['hospital']);
 app.use(express.static(__dirname));
 
 app.get('/:hname/:state',function(req,res){
-  db.hospital.find({"State":req.params.state,"Hospital Name":req.params.hname},function(err,docs){
+  db.hospital.find({"Hospital_Name":req.params.hname,"State":req.params.state},function(err,docs){
     res.json(docs);
   })
 });
