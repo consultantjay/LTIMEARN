@@ -6,17 +6,21 @@
  var mongojs = require('mongojs');
  var db = mongojs('project',['hotel']);
  app.use(express.static(__dirname));
+ var cors = require('cors');
+ app.use(cors())
 
 //1. list
-  app.get('/list',function(req,res){
-    db.hotel.find(function(err,docs){res.json(docs);})
-  });
+ app.get('/list',function(req,res){
+   db.hotel.find(function(err,docs){
+    res.json(docs);})
+});
 
-//2. Id
-  app.get('id/:id',function(req,res){
-    db.emp.find({"_id":parseInt(req.params.id)},function(err,docs){
-      res.json(docs);
-    });
+//Id
+app.get('/list/:id',function(req,res){
+  console.log(req.params.id);
+  db.hotel.find({"uniq_id":req.params.id},function(err,docs){
+    res.json(docs);
+
   });
 
 //3. Search by City
