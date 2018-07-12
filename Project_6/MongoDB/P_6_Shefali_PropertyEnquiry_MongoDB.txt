@@ -13,7 +13,7 @@ db.property.find().pretty()
 2.SEARCH BY COUNTY
 
 db.property.find({County:"NH-Grafton"},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
                 ).pretty()
 
 
@@ -23,7 +23,7 @@ db.property.find({County:"NH-Grafton"},
 3.SEARCH BY CITY
 
 db.property.find({City:"Lebanon"},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
                 ).pretty()
 
 ----------------------------------------------
@@ -35,7 +35,7 @@ db.property.find({$and: [
                      {Price:{$lt:200000}}
                     ]
                  },
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
                 ).pretty()
 
 
@@ -44,7 +44,7 @@ db.property.find({$and: [
 5.SEARCH BY COUNTY AND CITY
 
 db.property.find({County:"NH-Grafton",City:"Canaan"},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}).pretty()
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}).pretty()
 
 
 ---------------------------------------------
@@ -52,7 +52,7 @@ db.property.find({County:"NH-Grafton",City:"Canaan"},
 6.SEARCH BY COUNTY AND PRICE
 
 db.property.find({County:"NH-Grafton",Price: { $gt:150000, $lt:200000} },
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
                 );
 
 
@@ -61,7 +61,7 @@ db.property.find({County:"NH-Grafton",Price: { $gt:150000, $lt:200000} },
 7. SEARCH BY CITY & PRICE
 
 db.property.find({City:"Cannan", Price: { $gt:150000, $lt:200000}},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
                 );
 
 
@@ -70,7 +70,7 @@ db.property.find({City:"Cannan", Price: { $gt:150000, $lt:200000}},
 8.SEARCH BY COUNTY, CITY & PRICE
 
 db.property.find({County:"NH-Grafton",City:"Canaan",Price: { $gt:150000, $lt:200000}},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
                 );
 
 --------------------------------------------
@@ -79,7 +79,7 @@ db.property.find({County:"NH-Grafton",City:"Canaan",Price: { $gt:150000, $lt:200
 
 db.property.aggregate([
                        {$match:{}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ]);
 
@@ -89,8 +89,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                        {$match:{}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                       {$sort:{'Year Built':-1}}
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Year_Built:-1}}
                       ]);
 
 
@@ -100,7 +100,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                        {$match:{County:"NH-Grafton"}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ]);
 
@@ -111,7 +111,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{City:"Lebanon"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ]);
 
@@ -121,7 +121,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                        {$match:{Price: { $gt:150000, $lt:200000}}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ]);
 
@@ -132,7 +132,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ]);
 
@@ -142,7 +142,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ]);
 
@@ -152,7 +152,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ]);
 
@@ -162,7 +162,7 @@ db.property.aggregate([
 
 db.property.aggregate([
                        {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ]);
 
@@ -172,8 +172,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{County:"NH-Grafton"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 
@@ -183,8 +183,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 ---------------------------------------------
@@ -193,8 +193,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 
@@ -205,8 +205,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 ---------------------------------------------
@@ -215,8 +215,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 ---------------------------------------------
@@ -225,8 +225,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 ---------------------------------------------
@@ -235,8 +235,8 @@ db.property.aggregate([
 
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ]);
 
 
