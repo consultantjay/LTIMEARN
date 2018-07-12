@@ -21,7 +21,7 @@ db.property.find({},
 var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.find({County:"NH-Grafton"},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                   console.log(res);
@@ -36,7 +36,7 @@ db.property.find({County:"NH-Grafton"},
 var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.find({City:"Lebanon"},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                   console.log(res);
@@ -55,7 +55,7 @@ db.property.find({$and:[
                         {Price:{$lt:200000}}
                        ]
                  },
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                   console.log(res);
@@ -69,7 +69,7 @@ db.property.find({$and:[
 var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.find({County:"NH-Grafton",City:"Canaan"},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                   console.log(res);
@@ -84,7 +84,7 @@ db.property.find({County:"NH-Grafton",City:"Canaan"},
 var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.find({County:"NH-Grafton",Price: { $gt:150000, $lt:200000}},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                   console.log(res);
@@ -98,7 +98,7 @@ db.property.find({County:"NH-Grafton",Price: { $gt:150000, $lt:200000}},
 var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.find({City:"Cannan", Price: { $gt:150000, $lt:200000}},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                   console.log(res);
@@ -113,7 +113,7 @@ db.property.find({City:"Cannan", Price: { $gt:150000, $lt:200000}},
 var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.find({County:"NH-Grafton",City:"Canaan",Price: { $gt:150000, $lt:200000}},
-                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1},
                  function(err,res)
                  {
                    console.log(res);
@@ -128,7 +128,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                        {$match:{}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ], function(err,res){
                          console.log(res);
@@ -143,8 +143,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                        {$match:{}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                       {$sort:{'Year Built':-1}}
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Year_Built:-1}}
                       ],function(err,res){
                          console.log(res);
                        }
@@ -158,7 +158,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ],function(err,res){
                          console.log(res);
@@ -173,8 +173,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                        {
                         console.log(res);
@@ -190,7 +190,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                        {$match:{Price: { $gt:150000, $lt:200000}}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ],function(err,res)
                         {
@@ -207,7 +207,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ],function(err,res)
                         {
@@ -223,7 +223,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                         {$sort:{Price:1}}
                       ],function(err,res)
                         {
@@ -240,7 +240,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                        {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ],function(err,res)
                         {
@@ -257,7 +257,7 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                        {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
                        {$sort:{Price:1}}
                       ],function(err,res)
                         {
@@ -274,8 +274,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
@@ -291,8 +291,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
@@ -308,8 +308,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
@@ -325,8 +325,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", City:"Canaan"}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
@@ -342,8 +342,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
@@ -359,8 +359,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
@@ -376,8 +376,8 @@ var mongojs=require('mongojs');
 var db = mongojs('Project',['property']);
 db.property.aggregate([
                         {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
-                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,"Year Built":1}},
-                        {$sort:{'Year Built':-1}}
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
                       ],function(err,res)
                         {
                         console.log(res);
