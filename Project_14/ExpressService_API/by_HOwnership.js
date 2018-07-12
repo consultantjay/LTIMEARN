@@ -7,7 +7,7 @@ var db = mongojs('Project',['hospital']);
 app.use(express.static(__dirname));
 
 app.get('/:type',function(req,res){
-  db.hospital.find({"Hospital Ownership":req.params.type},function(err,docs){
+  db.hospital.find({"Hospital_Ownership":req.params.type},function(err,docs){
     res.json(docs);
   })
 });
