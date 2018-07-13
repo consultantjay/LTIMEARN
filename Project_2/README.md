@@ -4,7 +4,7 @@
 
 Product Description:
 
-BookMyDoctor will help the Pune City to book their appointment with the doctor.
+BookMyDoctor will help the Pune City to book their appointment with the doctor conveniently.
 Dataset of Doctors in Pune City with all essential detail is maintained.(for detail description visit Dataset Folder)  
 
 Features that will be delivered:
@@ -14,5 +14,8 @@ Features that will be delivered:
 
 Future Scope(features that will be included later)
 1. Live meeting with the Doctor over video call.
-2. Patient's Dashboard.
-3. Payment Gateway Integration.
+2. Dashboard for doctors where they can maintain their profiles.
+3. Dashboard for patient's activities.
+4. Payment Gateway Integration.
+5. Expanding dataset and covering more regions.
+
