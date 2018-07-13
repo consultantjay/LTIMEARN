@@ -1,3 +1,17 @@
+/*
+
+@author:Ruby Verma
+@version:1.0
+@DISCLAIMER:upcoming version may lead to complete makeover,more queries will be added in upcoming versions
+
+
+*/
+
+//DataBase name:Project
+//Collection name:deb
+****************************Queries*********************************
+
+
 1. Search all
 db.deb.find().pretty()                        
 
