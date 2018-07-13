@@ -6,7 +6,7 @@ var count = 0;
 describe('TestMongoDB',function(){
 
 	before(function (done){
-   		db.hospital.find({City:"HAMILTON","Hospital Ownership":"Voluntary non-profit - Private"}, function (err,res){ 
+   		db.hospital.find({City:"HAMILTON","Hospital_Ownership":"Voluntary non-profit - Private"}, function (err,res){ 
 				console.log(res.length); 
 				count=res.length;
 				done();
