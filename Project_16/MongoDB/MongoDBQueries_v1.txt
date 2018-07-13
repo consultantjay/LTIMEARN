@@ -1,0 +1,63 @@
+/*
+
+@author:Sidra Choudhary
+@version:1.1
+@DISCLAIMER:upcoming version may lead to complete makeover,more queries will be added in upcoming versions
+
+
+*/
+
+//DataBase name:pro
+//Collection name:trip
+
+
+1.To display 9 hotels names, area and city-
+  db.trip.find({},{_id:0,property_name:1,area:1,city:1}).limit(9)
+
+2.To search by hotel name 
+  db.trip.aggregate([{$match:{property_name:"Luxor Park"}},{$project:{_id:0}}])
+
+3.To display all hotels in city
+  db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}}])
+
+4.To display all hotels by star rating
+  db.trip.aggregate([{$match:{$and:[{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0}}])
+
+5.To search by hotel name and city
+  db.trip.aggregate([{$match:{$and:[{property_name:"Luxor Park"},{city:"Hyderabad"}]}},{$project:{area:1,property_name:1,_id:0,city:1}}])
+
+6.To search by hotel name and hotel star rating
+  db.trip.aggregate([{$match:{$and:[{property_name:"Luxor Park"},{hotel_star_rating:1}]}},{$project:{area:1,property_name:1,_id:0,city:1}}])
+
+7.To search by city name and hotel star rating
+  db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0,city:1}}])
+
+8.To search by city name ,hotel name and hotel star rating
+  db.trip.aggregate([{$match:{$and:[{city:"Hyderabad"},{hotel_star_rating:1},{property_name:"Luxor Park"}]}},{$project:{_id:0,hotel_overview:1,property_name:1}}])
+
+----------------------------
+Sort and filter
+
+9.To display all hotels in city by hotel star rating in descending order of rating
+  db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}])
+
+10.To display all hotels by star rating in descending order of rating
+  db.trip.aggregate([{$match:{$and:[{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}])
+
+11.To search by city all hotel name in descending order of mmt_tripadvisor_count
+ db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{mmt_tripadvisor_count:-1}}])
+
+12.To display all hotels by star rating in descending order of mmt_tripadvisor_count
+  db.trip.aggregate([{$match:{$and:[{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{mmt_tripadvisor_count:-1}}])
+
+13.To search by hotel name and city in descending order of mmt_tripadvisor_count
+  db.trip.aggregate([{$match:{$and:[{property_name:"Hotel Kalika Palace"},{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{mmt_tripadvisor_count:-1}}])
+
+14.To search by hotel name and hotel star rating in descending order of mmt_tripadvisor_count
+  db.trip.aggregate([{$match:{$and:[{property_name:"Hotel Kalika Palace"},{hotel_star_rating:1}]}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{mmt_tripadvisor_count:-1}}])
+
+15.To search by city name and hotel star rating in descending order of mmt_tripadvisor_count
+  db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:1}]}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{mmt_tripadvisor_count:-1}}])
+
+16.To search by city name ,hotel name and hotel star rating in descending order of mmt_tripadvisor_count
+  db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:1},{property_name:"Hotel Sunder"}]}},{$project:{_id:0,hotel_overview:1,property_name:1}},{$sort:{mmt_tripadvisor_count:-1}})

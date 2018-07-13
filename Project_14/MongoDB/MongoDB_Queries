@@ -2,67 +2,67 @@
 
 //1. Search by Hospital Name
 
-db.hos.find({"Hospital Name":"CLAY COUNTY HOSPITAL"}).pretty()
+db.hospital.find({"Hospital_Name":"CLAY COUNTY HOSPITAL"}).pretty()
 
 //2. Search by City name
 
-db.hos.find({City:"EUFAULA"}).pretty()
+db.hospital.find({City:"EUFAULA"}).pretty()
 
 //3. Search by Hospital Ownership
 
-db.hos.find({"Hospital Ownership":"Government - Hospital District or Authority"}).pretty()
+db.hospital.find({"Hospital_Ownership":"Government - Hospital District or Authority"}).pretty()
 
 //4. Search by Hospital Name and City
 
-db.hos.find({"Hospital Name":"HIGHLANDS MEDICAL CENTER",City:"SCOTTSBORO"}).pretty()
+db.hospital.find({"Hospital_Name":"HIGHLANDS MEDICAL CENTER",City:"SCOTTSBORO"}).pretty()
 
 //5. Search by Hospital name and Hospital ownership
 
-db.hos.find({"Hospital Name":"ST VINCENT'S BIRMINGHAM","Hospital Ownership":"Voluntary non-profit - Private"}).pretty()
+db.hospital.find({"Hospital_Name":"ST VINCENT'S BIRMINGHAM","Hospital_Ownership":"Voluntary non-profit - Private"}).pretty()
 
 //6. Search by City and Hospital ownership
 
-db.hos.find({"City":"HAMILTON","Hospital Ownership":"Voluntary non-profit - Private"}).pretty()
+db.hospital.find({"City":"HAMILTON","Hospital Ownership":"Voluntary non-profit - Private"}).pretty()
 
 //7. Search by Hospital name , city and Hospital ownership
 
-db.hos.find({"Hospital Name":"ROBERT WOOD JOHNSON UNIVERSITY HOSPITAL HAMILTON","City":"HAMILTON","Hospital Ownership":"Voluntary non-profit - Private"}).pretty()
+db.hospital.find({"Hospital_Name":"ROBERT WOOD JOHNSON UNIVERSITY HOSPITAL HAMILTON","City":"HAMILTON","Hospital_Ownership":"Voluntary non-profit - Private"}).pretty()
 
 //8. Search by State
 
-db.hos.find({State:"AZ"}).pretty()
+db.hospital.find({State:"AZ"}).pretty()
 
 //9. Search by Hospital Name and State
 
-db.hos.find({"Hospital Name":"MANCHESTER MEMORIAL HOSPITAL",State:"CT"}).pretty()
+db.hospital.find({"Hospital_Name":"MANCHESTER MEMORIAL HOSPITAL",State:"CT"}).pretty()
 
 //10. Search by City and State
 
-db.hos.find({"City":"KAMUELA",State:"HI"}).pretty()
+db.hospital.find({"City":"KAMUELA",State:"HI"}).pretty()
 
 //11. Search by State and Hospital Ownership
 
-db.hos.find({State:"AZ","Hospital Ownership":"Voluntary non-profit - Private"}).pretty()
+db.hospital.find({State:"AZ","Hospital_Ownership":"Voluntary non-profit - Private"}).pretty()
 
 //12. Search by Hospital name , city, State and Hospital ownership
 
-db.hos.find({"Hospital Name":"ROBERT WOOD JOHNSON UNIVERSITY HOSPITAL HAMILTON","City":"HAMILTON",State:"NJ","Hospital Ownership":"Voluntary non-profit - Private"}).pretty()
+db.hospital.find({"Hospital_Name":"ROBERT WOOD JOHNSON UNIVERSITY HOSPITAL HAMILTON","City":"HAMILTON",State:"NJ","Hospital_Ownership":"Voluntary non-profit - Private"}).pretty()
 
 //13. Search by Keyword for Hospital Name
 
-db.hos.find({"Hospital Name":/.*medical center.*/gi}).pretty()
+db.hospital.find({"Hospital_Name":/.*medical center.*/gi}).pretty()
 
 //14. when no search applied
 
-db.hos.find().pretty()
+db.hospital.find().pretty()
 
 
 ------------------------------------------SORT------------------------------------------------------
 
 // Sorting on the basis of Rating in ascending order
 
-db.hos.find().sort({"Hospital overall rating":1})
+db.hospital.find().sort({"Hospital_overall_rating":1})
 
 // Sorting on the basis of Rating in descending order
 
-db.hos.find().sort({"Hospital overall rating":-1})
+db.hospital.find().sort({"Hospital_overall_rating":-1})

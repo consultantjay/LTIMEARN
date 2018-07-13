@@ -1,0 +1,243 @@
+[SHORTLISTING CRITERION]
+
+Database Name: 'Project'
+Collection Name: 'property'
+
+
+1. SEARCH BY ALL
+
+db.property.find().pretty()
+
+------------------------------------------------
+
+2.SEARCH BY COUNTY
+
+db.property.find({County:"NH-Grafton"},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
+                ).pretty()
+
+
+
+-----------------------------------------------
+
+3.SEARCH BY CITY
+
+db.property.find({City:"Lebanon"},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
+                ).pretty()
+
+----------------------------------------------
+
+4.SEARCH BY PRICE
+
+db.property.find({$and: [
+                     {Price:{$gt:150000}},
+                     {Price:{$lt:200000}}
+                    ]
+                 },
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
+                ).pretty()
+
+
+----------------------------------------------
+
+5.SEARCH BY COUNTY AND CITY
+
+db.property.find({County:"NH-Grafton",City:"Canaan"},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}).pretty()
+
+
+---------------------------------------------
+
+6.SEARCH BY COUNTY AND PRICE
+
+db.property.find({County:"NH-Grafton",Price: { $gt:150000, $lt:200000} },
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
+                );
+
+
+--------------------------------------------
+
+7. SEARCH BY CITY & PRICE
+
+db.property.find({City:"Cannan", Price: { $gt:150000, $lt:200000}},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
+                );
+
+
+--------------------------------------------
+
+8.SEARCH BY COUNTY, CITY & PRICE
+
+db.property.find({County:"NH-Grafton",City:"Canaan",Price: { $gt:150000, $lt:200000}},
+                 {_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}
+                );
+
+--------------------------------------------
+
+9.SEARCH ALL & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                       {$match:{}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Price:1}}
+                      ]);
+
+--------------------------------------------
+
+10. SEARCH ALL & SORT BY YEAR BUILT(NEWEST to OLDEST)
+
+db.property.aggregate([
+                       {$match:{}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Year_Built:-1}}
+                      ]);
+
+
+--------------------------------------------
+
+11.SEARCH BY COUNTY & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                       {$match:{County:"NH-Grafton"}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Price:1}}
+                      ]);
+
+
+-------------------------------------------
+
+12.SEARCH BY CITY & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                        {$match:{City:"Lebanon"}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Price:1}}
+                      ]);
+
+---------------------------------------------
+
+13. SEARCH BY PRICE & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                       {$match:{Price: { $gt:150000, $lt:200000}}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Price:1}}
+                      ]);
+
+
+---------------------------------------------
+
+14.SEARCH BY COUNTY, CITY & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                        {$match:{County:"NH-Grafton", City:"Canaan"}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Price:1}}
+                      ]);
+
+---------------------------------------------
+
+15.SEARCH BY COUNTY,PRICE & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                        {$match:{County:"NH-Grafton", Price: { $gt:150000, $lt:200000}}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Price:1}}
+                      ]);
+
+---------------------------------------------
+
+16.SEARCH BY CITY,PRICE & SORT BY PRICE(LOW to HIGH)
+
+db.property.aggregate([
+                        {$match:{City:"Canaan", Price: { $gt:150000, $lt:200000}}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Price:1}}
+                      ]);
+
+---------------------------------------------
+
+17.SEARCH BY COUNTY, CITY, PRICE & SORT BY PRICE(LOW TO HIGH)
+
+db.property.aggregate([
+                       {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
+                       {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                       {$sort:{Price:1}}
+                      ]);
+
+---------------------------------------------
+
+18.SEARCH BY COUNTY & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{County:"NH-Grafton"}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+
+---------------------------------------------
+
+19.SEARCH BY CITY & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{City:"Canaan"}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+---------------------------------------------
+
+20.SEARCH BY PRICE & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{Price: { $gt:150000, $lt:200000}}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+
+
+---------------------------------------------
+
+21.SEARCH BY COUNTY, CITY & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{County:"NH-Grafton", City:"Canaan"}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+---------------------------------------------
+
+22.SEARCH BY COUNTY,PRICE & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{County:"NH-Grafton", Price: { $gt:150000, $lt:200000}}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+---------------------------------------------
+
+23.SEARCH BY CITY,PRICE & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{City:"Canaan", Price: { $gt:150000, $lt:200000}}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+---------------------------------------------
+
+24.SEARCH BY COUNTY, CITY, PRICE & SORT BY YEAR BUILT(NEWEST)
+
+db.property.aggregate([
+                        {$match:{County:"NH-Grafton", City:"Canaan", Price: { $gt:150000, $lt:200000}}},
+                        {$project:{_id:0,County:1,City:1,Address:1,Price:1,Bedrooms:1,Bathrooms:1,Year_Built:1}},
+                        {$sort:{Year_Built:-1}}
+                      ]);
+
+
+---------------------------------------------

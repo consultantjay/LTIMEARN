@@ -1,24 +1,23 @@
-Project Description: CareVault will provide the details and ratings of the hospital for the people in search of good hospital.
+Project Description: WeCare will provide the details and ratings of the hospital for the people in search of good hospital.
 Documents: 4813
 Fields: 20
 
-1.  Hospital ID (Integer) : It is the ID of the hospital.														
-2.  Hospital Name (String) : It is the name of the hospital. 									
+1.  Provider_ID (Integer) : It is the ID of the provider.														
+2.  Hospital_Name (String) : It is the name of the hospital. 									
 3.  Address (String) : It is the address of the hospital.										
 4.  City (String) : Name of city in which hospital is located.										
 5.  State (String) : Name of state in which hospital is located.										
-6.  ZIP Code (Integer) : It is the zipcode of the city.													
-7.  County Name (String) : It is the name of the county.															
-8.  Phone Number (Integer) : It is the phone number of the hospital.									
-9.  Hospital Type (String) : It is the type of hospital service.									
-10. Hospital Ownership (String) : It gives the ownership of the hospital.								
-11. Emergency Services (String) : It tells whether hospital provides emergency services or not.								
-12. Meets criteria for meaningful use of EHR (String) : It tells whether the hospital meets the EHR requirements.					
-13. Hospital overall rating (Integer) : It gives the hospital rating.								
-14. Mortality national comparison (String) : It gives the mortality rate average compared to national average.					
-15. Safety of care national comparison (String) : It gives the average of safety care compared to national average.						
-16. Readmission national comparison (String) : It gives the average of Readmission compared to national average.						
-17. Patient experience national comparison (String) : It gives the average of Patient experience compared to national average.						
-18. Effectiveness of care national comparison (String) : It gives the average of effectiveness of care compared to national average.				
-19. Timeliness of care national comparison (String) : It gives the average of timeliness of care compared to national average.						
-20. Efficient use of medical imaging national comparison (String) : It gives the average of efficient use of medical imaging compared to national average.				
+6.  ZIP_Code (Integer) : It is the zipcode of the city.													
+7.  County_Name (String) : It is the name of the county.															
+8.  Phone_Number (Integer) : It is the phone number of the hospital.									
+9.  Hospital_Type (String) : It is the type of hospital service.									
+10. Hospital_Ownership (String) : It gives the ownership of the hospital.								
+11. Emergency_Services (String) : It tells whether hospital provides emergency services or not.								
+12. Meets_criteria_for_meaningful_use_of_EHR (String) : It tells whether the hospital meets the EHR requirements.					
+13. Hospital_overall_rating (Integer) : It gives the hospital rating.								
+14. Mortality_national_comparison (String) : It gives the mortality rate average compared to national average.					
+15. Safety_of_care_national_comparison (String) : It gives the average of safety care compared to national average.						
+16. Readmission_national_comparison (String) : It gives the average of Readmission compared to national average.						
+17. Patient_experience_national_comparison (String) : It gives the average of Patient experience compared to national average.						
+18. Effectiveness_of_care_national_comparison (String) : It gives the average of effectiveness of care compared to national average.			19. Timeliness_of_care_national_comparison (String) : It gives the average of timeliness of care compared to national average.						
+20. Efficient_use_of_medical_imaging_national_comparison (String) : It gives the average of efficient use of medical imaging compared to national average.				

@@ -1,0 +1,116 @@
+/*
+This module help us to retrive data from mongodb.This module contains integration of mongodb and node js.
+@author:Sidra Choudhary
+@version:1.1
+@DISCLAIMER:Following versions may undergo complete makeover
+*/
+
+//1. To display 9 hotels names, area and city-
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$project:{_id:0,property_name:1,area:1,city:1}},{$limit:9}],function(err,res){
+console.log(res)})
+
+
+
+
+
+//2.To search by hotel name 
+
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{property_name:"Luxor Park"}},{$project:{_id:0}}],function(err,res){
+console.log(res)})
+
+
+//3.To display all hotels in city
+
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}}],function(err,res){
+console.log(res)})
+
+
+//4.To display all hotels by star rating
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0}}],function(err,res){
+console.log(res)})
+
+
+//5 .To search by hotel name and city 
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{property_name:"Luxor Park"},{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0,city:1}}],function(err,res){
+console.log(res)})
+
+//6. To search by hotel name and hotel star rating
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{property_name:"Luxor Park"},{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0,city:1}}],function(err,res){
+console.log(res)})
+
+//7  To search by city name and hotel star rating
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0,city:1}}],function(err,res){
+console.log(res)})
+
+
+//8 To search by city name ,hotel name and hotel star rating
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:4},{property_name:"Luxor Park"}]}},{$project:{_id:0,hotel_overview:1}}],function(err,res){
+console.log(res)})
+
+
+//9 To display all hotels in city by hotel star rating in descending order of rating
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}],function(err,res){
+console.log(res)})
+
+//10 To display all hotels by star rating in descending order of rating
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}],function(err,res){
+console.log(res)})
+
+
+//11. To search by city all hotel name in descending order of mmt_tripadvisor_count
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{mmt_tripadvisor_count:-1}}],function(err,res){
+console.log(res)})
+
+//12 To display all hotels by star rating in descending order of mmt_tripadvisor_count
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{mmt_tripadvisor_count:-1}}],function(err,res){
+console.log(res)})
+
+
+//13 To search by hotel name and city in descending order of mmt_tripadvisor_count
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{property_name:"Luxor Park"},{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{mmt_tripadvisor_count:-1}}],function(err,res){
+console.log(res)})
+
+//14 To search by hotel name and hotel star rating in descending order of mmt_tripadvisor_count
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{property_name:"Luxor Park"},{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{mmt_tripadvisor_count:-1}}],function(err,res){
+console.log(res)})
+
+
+//15 To search by city name and hotel star rating in descending order of mmt_tripadvisor_count
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:4}]}},{$project:{area:1,property_name:1,_id:0,city:1}},,{$sort:{mmt_tripadvisor_count:-1}}],function(err,res){
+console.log(res)})
+
+//16.To search by city name ,hotel name and hotel star rating in descending order of mmt_tripadvisor_count
+var mongojs=require('mongojs');
+var db = mongojs('pro',['trip'])
+db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:4},{property_name:"Luxor Park"}]}},{$project:{_id:0,hotel_overview:1}},{$sort:{mmt_tripadvisor_count:-1}}],function(err,res){
+console.log(res)})

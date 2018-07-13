@@ -1,14 +1,20 @@
+/*
+This module help us to retrive data from mongodb.This module contains integration of mongodb and node js.
+@author:Ruby Verma
+@version:1.0
+@DISCLAIMER:Following versions may undergo complete makeover
+*/
 //1.Search all
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find(function(err,res){
 console.log(res);});
 
 //2. Search all by using projections
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},function(err,res){
             console.log(res);});
@@ -16,7 +22,7 @@ db.deb.find({},
 //3.Search by zonal_area
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({zonal_area:"SOUTHEAST-US"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -25,7 +31,7 @@ db.deb.find({zonal_area:"SOUTHEAST-US"},
 //4.Search by city
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({city:"Leland"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -34,7 +40,7 @@ db.deb.find({city:"Leland"},
 //5.Search by name
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({name:"McDonald's"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -43,7 +49,7 @@ db.deb.find({name:"McDonald's"},
 //6.Search by zonal_area and city
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({city:"Leland",zonal_area:"SOUTHEAST-US"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -52,7 +58,7 @@ db.deb.find({city:"Leland",zonal_area:"SOUTHEAST-US"},
 //7.Search by zonal_area and name
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({zonal_area:"SOUTHEAST-US",name:"McDonald's"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -61,7 +67,7 @@ db.deb.find({zonal_area:"SOUTHEAST-US",name:"McDonald's"},
 //8.Search by city and name
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({name:"McDonald's",city:"Leland"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -70,7 +76,7 @@ db.deb.find({name:"McDonald's",city:"Leland"},
 //9.Search by zonal_area,city and name
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.find({zonal_area:"SOUTHEAST-US",city:"Leland",name:"McDonald's"},
             {address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1},
             function(err,res){
@@ -80,7 +86,7 @@ db.deb.find({zonal_area:"SOUTHEAST-US",city:"Leland",name:"McDonald's"},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],function(err,res){
@@ -90,7 +96,7 @@ db.deb.aggregate([{$match:{}},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{zonal_area:"SOUTHEAST-US"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],function(err,res){
@@ -100,7 +106,7 @@ db.deb.aggregate([{$match:{zonal_area:"SOUTHEAST-US"}},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{city:"Leland"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],
@@ -111,7 +117,7 @@ db.deb.aggregate([{$match:{city:"Leland"}},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{name:"McDonald's"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],
@@ -122,7 +128,7 @@ db.deb.aggregate([{$match:{name:"McDonald's"}},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{city:"Leland",zonal_area:"SOUTHEAST-US"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],
@@ -134,7 +140,7 @@ db.deb.aggregate([{$match:{city:"Leland",zonal_area:"SOUTHEAST-US"}},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{zonal_area:"SOUTHEAST-US",name:"McDonald's"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],
@@ -145,7 +151,7 @@ db.deb.aggregate([{$match:{zonal_area:"SOUTHEAST-US",name:"McDonald's"}},
 //and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{name:"McDonald's",city:"Leland"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],
@@ -156,7 +162,7 @@ db.deb.aggregate([{$match:{name:"McDonald's",city:"Leland"}},
 //and name and sort by ratings
 
 var mongojs=require('mongojs');
-var db = mongojs('Pro',['deb'])
+var db = mongojs('Proj',['deb'])
 db.deb.aggregate([{$match:{zonal_area:"SOUTHEAST-US",city:"Leland",name:"McDonald's"}},
                   {$project:{address:1,city:1,zonal_area:1,name:1,Rating:1,_id:0,postalCode:1,websites:1}},
                   {$sort:{Rating:-1}}],

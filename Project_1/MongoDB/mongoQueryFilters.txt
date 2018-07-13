@@ -1,0 +1,401 @@
+Project Name : OnClick
+Database Name: yelp
+Collection Name: yelp
+
+// to split field categories into array
+> db.yelp.find({},{categories:1}).forEach(function(doc){db.yelp.update({_id:doc.
+_id},{$set:{categories:doc.categories.split(";")}})})
+> var res = db.yelp.find()
+> res[50].categories
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Home:
+//1. Fetch 12 Product to display on Home Page
+     db.yelp.aggregate([
+                       {$match:{}},
+                       {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1,categories:1}}
+                       ])
+
+// 2. search by keyword only.
+      db.yelp.aggregate([
+                        {$match:{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Filter:
+// 1. search by keyword only. Here Keyword is Salon which will be fetched from categories field and Salon keyword will be fetched from
+      name field from database.Query will Suggest you name or categories having Salon or hair in it.
+       db.yelp.aggregate([
+                        {$match:{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+// 2. search by city only.Here city is Phoenix.
+      db.yelp.aggregate([
+                        {$match:{city:"Phoenix"}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+//3. search by state only.Here state is AZ
+     db.yelp.aggregate([
+                       {$match:{state:"AZ"}},
+                       {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                       ])
+
+//4. search by categories only.here categories have string burger in it
+    db.yelp.aggregate([
+                      {$match:{categories:/.*burger.*/i}},
+                      {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                      ])
+
+
+/******************* dual combination with keywords *******************/
+
+// 5. search by keyword and state.Here state is AZ and keyword has Salon and hair in it.
+      db.yelp.aggregate([
+                        {$match:{$and:[{state:"AZ"},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+// 6. search by keyword and city.Here city is Phoenix and keyword has hair and salon in it.
+      db.yelp.aggregate([
+                        {$match:{$and:[{city:"Phoenix"},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+// 7. search by keyword and categories. Here keyword has Salon and hair in it and categories has hair in it.
+       db.yelp.aggregate([
+                         {$match:{$and:[{categories:/.*hair.*/i},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                         {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                         ])
+
+////**************dual combination with states ********************////
+
+// 8. search by  state and categories. Here state is NC and categories has food in it.
+      db.yelp.aggregate([
+                        {$match:{$and:[{state:"NC"},{categories:/.*food.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+// 9. search by state and city. Here state is NC and city is Phoenix
+     db.yelp.aggregate([
+                       {$match:{$and:[{state:"NC"},{city:"Phoenix"}]}},
+                       {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                       ])
+
+/*******************  dual combination with city *********************/
+
+//10. saerch by city and categories.Here city is Phoenix and Categories has food in it.
+
+      db.yelp.aggregate([
+                        {$match:{$and:[{city:"Phoenix"},{categories:/.*food.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+/*********************** Triple combination with keywords and state *******************/
+
+//11. search by keyword,state and city. Here keyword has salon and hair in it and state is AZ and city is Phoenix.
+
+      db.yelp.aggregate([
+                        {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{city:"Phoenix"}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+//12. search by keyword,state and categories. Here keyword has Salon and hair in it and state is AZ and categories is in hair.
+
+      db.yelp.aggregate([
+                        {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{categories:/.*hair.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1}}
+                        ])
+
+/*********************** Triple combination with keywords and city *******************/
+//13. search by keyword,city,categories.Here keyword has Salon and hair in it, city is Phoenix and categories has hair in it.
+
+      db.yelp.aggregate([
+                        {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{city:"Phoenix"},{categories:/.*hair.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1}}
+                        ])
+
+/************************** triple combination with state and city ******************/
+//14. search by state,city and categories. Here state is NC, city is Charlotte and categories has food in it.
+
+      db.yelp.aggregate([
+                        {$match:{$and:[{state:"NC"},{city:"Charlotte"},{categories:/.*food.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                        ])
+
+/************************** four combination with keyword, state and city ******************/
+
+//15. search by keyword,state,city and categories. Here Keyword has Salon and Hair in it,state is AZ, city is Phoenix and categories has hair in it.
+
+    db.yelp.aggregate([
+                      {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{city:"Phoenix"},{categories:/.*hair.*/i}]}},
+                      {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}}
+                      ])
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Sorting:
+
+  /*********************************************for sorting by stars high to low********************************************/
+
+
+  // 1. search by keyword only. Here Keyword is Salon which will be fetched from categories field and Salon keyword will be fetched from
+        name field from database.Query will Suggest you name or categories having Salon or hair in it.
+        db.yelp.aggregate([
+                          {$match:{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  // 2. search by city only.Here city is Phoenix.
+        db.yelp.aggregate([
+                          {$match:{city:"Phoenix"}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  //3. search by state only.Here state is AZ
+       db.yelp.aggregate([
+                         {$match:{state:"Phoenix"}},
+                         {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                         {$sort:{stars:-1}}
+                         ])
+
+  //4. search by categories only.here categories have string burger in it
+       db.yelp.aggregate([
+                         {$match:{categories:/.*burger.*/i}},
+                         {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                         {$sort:{stars:-1}}])
+
+  /*********************** dual combination with keywords *******************/
+
+  // 5. search by keyword and state.Here state is AZ and keyword has Salon and hair in it.
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"AZ"},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  // 6. search by keyword and city.Here city is Phoenix and keyword has hair and salon in it.
+        db.yelp.aggregate([
+                          {$match:{$and:[{city:"Phoenix"},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  // 7. search by keyword and categories. Here keyword has Salon and hair in it and categories has hair in it.
+        db.yelp.aggregate([
+                          {$match:{$and:[{categories:/.*hair.*/i},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  /*******************dual combination with states ************************/
+
+  // 8. search by  state and categories
+        db.yelp.aggregate([
+                        {$match:{$and:[{state:"NC"},{categories:/.*food.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                        {$sort:{stars:-1}}
+                        ])
+
+  // 9. search by state and city
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"NC"},{city:"Phoenix"}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  /************************  dual combination with city *********************/
+
+  //10. serch by city and categories
+
+        db.yelp.aggregate([
+                          {$match:{$and:[{city:"Phoenix"},{categories:/.*food.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+
+  /*********************** Triple combination with keywords and state *******************/
+
+  //11. search by keyword , state and city
+        db.yelp.aggregate([
+                          {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{city:"Phoenix"}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  //12. search by keyword , state and categories
+
+        db.yelp.aggregate([
+                          {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{categories:/.*hair.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  /*********************** Triple combination with keywords and city *******************/
+
+  //13. search by keyword,city,categories
+
+     db.yelp.aggregate([
+                       {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{city:"Phoenix"},{categories:/.*hair.*/i}]}},
+                       {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1}},
+                       {$sort:{stars:-1}}
+                       ])
+
+  /************************** triple combination with state and city ******************/
+
+  //14. search by state,city and categories
+
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"NC"},{city:"Charlotte"},{categories:/.*food.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  /************************** four combination with keyword, state and city ******************/
+
+  //15. search by keyword,state,city and categories.
+        db.yelp.aggregate([
+                          {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{city:"Phoenix"},{categories:/.*hair.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])
+
+  /_________________________________________________________ sort by low to high _____________________________________________________________________/
+
+  //16. sort without choosing any category.
+        db.yelp.aggregate([
+                          {$match:{}},
+                          {$project:{name:1,city:1,address:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}])
+
+  // 1. search by keyword only.
+        db.yelp.aggregate([
+                          {$match:{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}])
+
+  //2. search by city only.
+       db.yelp.aggregate([
+                         {$match:{city:"Phoenix"}},
+                         {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                         {$sort:{stars:1}}
+                         ])
+
+  //3. search by state only
+       db.yelp.aggregate([
+                         {$match:{state:"Phoenix"}},
+                         {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                         {$sort:{stars:1}}
+                         ])
+
+  //4. search by categories only
+       db.yelp.aggregate([
+                        {$match:{categories:/.*burger.*/i}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                        {$sort:{stars:1}}
+                        ])
+
+  ////******************* dual combination with keywords *******************///
+
+  // 5. search by keyword and state
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"AZ"},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  // 6. search by keyword and city
+        db.yelp.aggregate([
+                          {$match:{$and:[{city:"Phoenix"},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  // 7. search by keyword and categories
+        db.yelp.aggregate([
+                          {$match:{$and:[{categories:/.*hair.*/i},{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  /************** dual combination with states ********************/
+
+  // 8. search by  state and categories
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"NC"},{categories:/.*food.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  // 9. search by state and city
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"NC"},{city:"Phoenix"}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  /*******************  dual combination with city *********************/
+
+  //10. search by city and categories
+
+        db.yelp.aggregate([
+                          {$match:{$and:[{city:"Phoenix"},{categories:/.*food.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  /*********************** Triple combination with keywords and state *******************/
+
+  //11. search by keyword , state and city
+
+       db.yelp.aggregate([
+                         {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{city:"Phoenix"}]}},
+                         {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                         {$sort:{stars:1}}
+                         ])
+
+  //12. search by keyword , state and categories
+
+       db.yelp.aggregate([
+                        {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{categories:/.*hair.*/i}]}},
+                        {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1}},
+                        {$sort:{stars:1}}
+                        ])
+
+  /*********************** Triple combination with keywords and city *******************/
+
+  //13. search by keyword,city,categories
+
+        db.yelp.aggregate([
+                          {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{city:"Phoenix"},{categories:/.*hair.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  /************************** triple combination with state and city ******************/
+
+  //14. search by state,city and categories
+
+        db.yelp.aggregate([
+                          {$match:{$and:[{state:"NC"},{city:"Charlotte"},{categories:/.*food.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  /************************** four combination with keyword, state and city ******************/
+
+  //15. search by keyword,state,city and categories.
+        db.yelp.aggregate([
+                          {$match:{$and:[{$or:[{name:/.*Salon.*/i},{categories:/.*hair.*/i}]},{state:"AZ"},{city:"Phoenix"},{categories:/.*hair.*/i}]}},
+                          {$project:{name:1,address:1,city:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:1}}
+                          ])
+
+  //16. sort without choosing any category.
+        db.yelp.aggregate([
+                          {$match:{}},
+                          {$project:{name:1,city:1,address:1,state:1,stars:1,is_open:1,review_count:1}},
+                          {$sort:{stars:-1}}
+                          ])

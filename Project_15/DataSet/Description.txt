@@ -1,4 +1,4 @@
-Project Description:-This is a hotel recommendation system.It will help user to search various hotels and will be able to apply filters and sort hotels according to their requirement.  
+Project Description:-Trips will help user to find resorts of their choice and will help them to view the detials of every resort .
 Documents:4007
 fields : 20
 

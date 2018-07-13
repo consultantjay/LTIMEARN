@@ -1,4 +1,4 @@
-This Application allows users to search hotels and get inforamation on basis of various parameters.
+This Application allows users to search hotels and get information on basis of various parameters.
 Objectives:-
 1). Search Hotels on the basis of: a). Hotel Name b). City b). Room type 
 

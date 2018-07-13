@@ -1,0 +1,57 @@
+MakeMyTrip: Mongo Query
+
+1.To display 9 hotels names, area and city-
+  db.trip.find({},{_id:0,property_name:1,area:1,city:1}).limit(9)
+
+2.To search by hotel name 
+  db.trip.aggregate([{$match:{property_name:"Luxor Park"}},{$project:{_id:0}}])
+
+3.To count number of hotels according to city 
+  db.trip.find({city:"Udaipur"},{}).count()
+
+4.To display all hotels in city
+  db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}}])
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Search and filter
+
+5. To display area,hotel name and room type according to city and rating
+   db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:"4 star"}]}},{$project:{area:1,room_types:1,_id:0,property_name:1}}])
+
+6. To display room types and rating of a given hotel
+   db.trip.aggregate([{$match:{property_name:"Luxor Park"}},{$project:{room_types:1,_id:0,hotel_star_rating:1}}])
+
+7. To display hotel rating and hotel name according to area and city
+   db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{area:"Udaipole"}]}},{$project:{hotel_star_rating:1,property_name:1,_id:0}}])
+
+8. To display hotel rating and property name and area according to city
+   db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{hotel_star_rating:1,property_name:1,_id:0}}])
+
+9. To display hotel name according to city, area and rating
+   db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{hotel_star_rating:"1 star"},{area:"Udaipole"}]}},{$project:{room_types:1,_id:0,property_name:1}}])
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Sort
+
+10. To display area and hotel name according to city in ascending order of rating
+    db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:+1}}])
+
+11. To display area and hotel name according to city in descending order of rating
+     db.trip.aggregate([{$match:{$and:[{city:"Udaipur"}]}},{$project:{area:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}])
+
+12. To display all hotel names,city and area in ascending order of rating
+    db.trip.aggregate([{$match:{}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{hotel_star_rating:+1}}])
+
+13. To display all hotel names,city and area in descending order of rating
+    db.trip.aggregate([{$match:{}},{$project:{area:1,property_name:1,_id:0,city:1}},{$sort:{hotel_star_rating:-1}}])
+
+14. To display hotel rating in ascending order and property name according to area and city
+    db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{area:"Udaipole"}]}},{$project:{hotel_star_rating:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:+1}}])
+    
+15. To display hotel rating and hotel name in a particular city and area according to rating in descending order
+    db.trip.aggregate([{$match:{$and:[{city:"Udaipur"},{area:"Udaipole"}]}},{$project:{hotel_star_rating:1,property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}])
+
+16. To display all hotels according to rating in descending order of rating
+      db.trip.aggregate([{$match:{}},{$project:{property_name:1,_id:0}},{$sort:{hotel_star_rating:-1}}])
