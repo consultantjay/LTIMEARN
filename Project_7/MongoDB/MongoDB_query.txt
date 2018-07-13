@@ -7,7 +7,7 @@
 
 */
 
-//DataBase name:Project
+//DataBase name:Proj
 //Collection name:deb
 ****************************Queries*********************************
 
