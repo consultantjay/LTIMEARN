@@ -1,3 +1,9 @@
+/*
+This module help us to retrive data from mongodb.This module contains integration of mongodb and node js.
+@author:Ruby Verma
+@version:1.0
+@DISCLAIMER:Following versions may undergo complete makeover
+*/
 //1.Search all
 
 var mongojs=require('mongojs');
