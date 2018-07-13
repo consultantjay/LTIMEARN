@@ -1,5 +1,5 @@
 /*
-This module help us to retrive data from mongodb and print it on browser.This module contains integration of mongodb and node js and express.
+This module help us to retrive data from mongodb and print it on browser.This module contains integration of mongodb and nodejs and expressjs.
 @author:Ruby Verma
 @version:1.0
 @DISCLAIMER:Following versions may undergo complete makeover
