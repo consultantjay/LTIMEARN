@@ -1,3 +1,9 @@
+/*
+This module help us to retrive data from mongodb and print it on browser.This module contains integration of mongodb and node js and express.
+@author:Ruby Verma
+@version:1.0
+@DISCLAIMER:Following versions may undergo complete makeover
+*/
 //1.Search all
 var express = require('express')
 var app = express();
