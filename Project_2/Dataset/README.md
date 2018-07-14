@@ -25,6 +25,8 @@ Columns:
 6.	time: 		Availablity of Doctor.
 7.	contact: 	Doctor's Contact details.
 8.	address: 	Doctor's Address.
+9.  latitude: geolocation coordinate
+10. longitude: geolocation coordinate
 
 Dataset-2 :
 
