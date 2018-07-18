@@ -1,4 +1,4 @@
-##Zaayka
+# Zaayka
 
 This is an application for restaurant search and discovery using MEAN Stack (Mongo, ExpressJs, Angular4, NodeJs) which allows user to:
 
