@@ -81,9 +81,9 @@ var db=mongojs('bookyourdoctor',['doctor','appointment'])
 /*-------------------------------------------------------------------------------------------------------*/
 // 2. At Main page, to know Appointment details
 
-        db.appointment.find( {_id:"45899"},
-                             {_id:1, p_name:1, p_id:1, date:1, time:1,
-                             d_name:1, specialization:1, area:1, p_message:1},
+        db.appointment.find( {_id:"4899"},
+                             {_id:1, p_name:1, p_id:1, p_date:1, p_time:1,
+                             d_sno:1, p_message:1},
                              function(err,res){
                              console.log(res)
                              }
@@ -180,9 +180,8 @@ var db=mongojs('bookyourdoctor',['doctor','appointment'])
 
 //      (b): For Booking Appointment, Following details will get inserted to a new dataset "Appointment"
 
-            db.appointment.insert( { p_name: "Shyam", p_email: "shyam@xyz.com", date: "12 Dec 2018", time:"1:00",
-                                     d_name:"DR GUPTA AJAY", specialization:"General Surgeon", area:"Kothrud",
-                                     p_message:"I am suffering from xyz since last night." },
+            db.appointment.insert( { p_id: "1233", p_name: "Shyam", d_sno: 23, p_contact: "7333546789", b_date: "2018-07-20", b_time:"1:00",
+                                 p_message:"I am suffering from xyz since last night." },
                                      function(err,res){
                                      console.log(res)
                                      }
