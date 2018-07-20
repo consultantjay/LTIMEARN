@@ -1,4 +1,4 @@
-Project Description: WeCare will provide the details and ratings of the hospital for the people in search of good hospital.
+Project Description: WeCare will provide the details of all the hospitals available in USA. User can search for any hospital detail and is also able to sort the display of the hospital list according to the hospital rating.
 Documents: 4813
 Fields: 20
 
