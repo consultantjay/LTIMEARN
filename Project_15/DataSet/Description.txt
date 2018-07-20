@@ -1,4 +1,4 @@
-Project Description:-Trips will help user to find resorts of their choice and will help them to view the detials of every resort .
+Project Description:-Trips will help user to find resorts of their choice accross the country. User will be able to apply filters and sort their search according to requirement. Location of resort with its details is also available at resort.
 Documents:4007
 fields : 20
 
