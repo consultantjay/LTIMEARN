@@ -117,7 +117,6 @@ collection name (2): appointment
 
 //  For Booking Appointment, Following details will get inserted to a new dataset "Appointment"
 
-        db.appointment.insert( { p_name: "Shyam", p_email: "shyam@xyz.com", date: "12 Dec 2018", time:"1:00",
-                                 d_name:"DR GUPTA AJAY", specialization:"General Surgeon", area:"Kothrud",
+        db.appointment.insert( { p_id: "1233", p_name: "Shyam", d_sno: 23, p_contact: "7333546789", b_date: "2018-07-20", b_time:"1:00",
                                  p_message:"I am suffering from xyz since last night." }
                              );
