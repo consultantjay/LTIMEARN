@@ -1,5 +1,6 @@
 1. Dataset_Name- punedoctor.csv
 2. Dataset_Name- appointment.csv
+3. Dataset_Name- contact.csv
 
 Dataset-1 :
 
@@ -9,7 +10,7 @@ Dataset of Doctors includes Name, Specialization, Qualification, Contact Details
 Search for doctors can be made by Name, Specialization, Qualification and Area.
 
 Description of Dataset:
-Columns: 8
+Columns: 11
 Records: 936
 
 Specializations :26 
@@ -22,23 +23,38 @@ Columns:
 3.	qualification :	  Doctor's Qualification.
 4.	specialization:   Doctor's Specialization.
 5.	area: 		Area of Clinic.
-6.	time: 		Availablity of Doctor.
-7.	contact: 	Doctor's Contact details.
-8.	address: 	Doctor's Address.
+6.  availfrom: Doctor availble from time.
+7.	availto: Doctor availble till time.
+8.	contact: 	Doctor's Contact details.
+9.	address: 	Doctor's Address.
+10.  latitude: geolocation coordinate
+11. longitude: geolocation coordinate
 
 Dataset-2 :
 
-On filling the appointment form, following details are inserted into the appointment dataset.
+On filling the appointment form, following details will get inserted into the appointment collection.
 
 Description of Dataset:
-Columns: 8
+Columns: 7
 
-1. p_id   :   This will be system generated id provided to patient through which he can check his appointment details.
-2. p_name :   Name of Patient for who need appointment.
-3. date   :   date of appointment
-4. time   :   time of appointment
-5. message  : if patient wants to leave some messsage.
-6. name     : Doctor's name 
-7. contact  : Doctor's Contact details.
-8. address  : Doctor's Clinic address.  
+1. p_id:      This will be system generated id provided to patient through which he can check his appointment details.
+2. p_name:    Name of Patient for who request appointment.
+3. b_date:    Date of appointment
+4. b_time:    Time of appointment
+5. p_message: Message that patient want to leave for doctor.
+6. d_sno:     Doctor's ID through which appointment is fixed.
+7. p_contact: Patient's Contact details which will be used for booking appointment.  
+
+Dataset-3 :
+
+On filling the contact form, following details will get inserted into the contact collection.
+
+Description of Dataset:
+Columns: 3
+
+1. fullName: Name who will fill the form.
+2. Email: Email Address of him.
+3. Message: feedback he/she will leave.
+
+
 
